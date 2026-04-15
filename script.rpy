@@ -926,6 +926,10 @@ label start:
     #BAO FEEDBACK MINIGAME
     default score_bao = 0
     ba_o "Well done, child."
+    #good feedback
+
+    ba_o "Could be better."
+    #neutral feedback
 
 
 
