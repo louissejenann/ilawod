@@ -1,0 +1,42 @@
+# Ren'Py Compiled scripts
+*.rpyc
+*.rpymc
+
+# Saves and persistent data
+/saves/
+/game/saves/
+persistent
+
+# Auto-generated files
+/tmp/
+/game/cache/
+/game/tl/None/
+
+# Python compiled files
+*.pyc
+*.pyo
+
+# Distribution/Build outputs
+/build/
+/dist/
+*-dists/
+*-rapt/
+*-x64/
+*-x86/
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Optional: Log files
+/log.txt
+/traceback.txt
+/errors.txt
+
+# Ren'Py internal compilation files
+*.rpyc
+*.rpyb
+*.rpymc
+
+# Visual Studio
+.vscode/
