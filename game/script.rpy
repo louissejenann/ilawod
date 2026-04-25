@@ -15,7 +15,7 @@ define sigay     = Character("Sigay",        window_style="character_window")
 define dawa      = Character("Dawa",         window_style="character_window")
 define unknown   = Character("???",          window_style="character_window")
 
-## ── DEFAULT VARIABLES ─────────────────────────────────────────
+
 ## Choices tracking
 default seen_what_is_this = False
 default seen_who_are_you  = False
