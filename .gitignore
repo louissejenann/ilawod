@@ -1,9 +1,9 @@
-# Ren'Py Compiled scripts
+# Ren'Py compiled scripts
 *.rpyc
+*.rpyb
 *.rpymc
 
 # Saves and persistent data
-/saves/
 /game/saves/
 persistent
 
@@ -28,23 +28,17 @@ persistent
 .DS_Store
 Thumbs.db
 
-# Optional: Log files
+# Log files
 /log.txt
 /traceback.txt
 /errors.txt
 
-# Ren'Py internal compilation files
-*.rpyc
-*.rpyb
-*.rpymc
-
-# Visual Studio
-.vscode/
-
-# Ren'Py launcher thumbnails & desktop icon cache
+# Ren'Py launcher
 *.png.bak
-game/cache/
 .renpy_version
+
+# Editor
+.vscode/
 
 # Android/RAPT build artifacts
 android.keystore
