@@ -51,36 +51,44 @@ init python:
                 active.remove(note)
                 miss_box[0] += 1
 
-    def dance_key_press(lane, active, hit_box):
-        for note in active[:]:
+    dance_active   = []
+    dance_hit_box  = [0]
+    dance_miss_box = [0]
+    dance_spawned  = set()
+
+    def dance_key_press(lane):
+        for note in dance_active[:]:
             if note[0] == lane and abs(note[1] - DANCE_HIT_X) < 0.04:
-                active.remove(note)
-                hit_box[0] += 1
-                return True
-        return False
+                dance_active.remove(note)
+                dance_hit_box[0] += 1
+                return
 
 screen minigame_dance():
     default elapsed  = 0.0
-    default active   = []
-    default spawned  = set()
-    default hit_box  = [0]
-    default miss_box = [0]
     default done     = False
+
+    on "show":
+        action [
+            Function(dance_active.clear),
+            Function(dance_spawned.clear),
+            Function(dance_hit_box.__setitem__, 0, 0),
+            Function(dance_miss_box.__setitem__, 0, 0),
+        ]
 
     add "images/bg dance_stage.png"
 
     ## Dancer reacts to hits
-    if hit_box[0] > 20:
+    if dance_hit_box[0] > 20:
         add "images/dancer_great.png" xpos 30 ypos 100
-    elif hit_box[0] > 10:
+    elif dance_hit_box[0] > 10:
         add "images/dancer_okay.png"  xpos 30 ypos 100
     else:
         add "images/dancer_idle.png"  xpos 30 ypos 100
 
     ## Crowd reacts to hits
-    if hit_box[0] > 20:
+    if dance_hit_box[0] > 20:
         add "images/crowd_cheering.png" xpos 950 ypos 80
-    elif hit_box[0] > 10:
+    elif dance_hit_box[0] > 10:
         add "images/crowd_watching.png" xpos 950 ypos 80
     else:
         add "images/crowd_bored.png"    xpos 950 ypos 80
@@ -100,34 +108,33 @@ screen minigame_dance():
             style "rhythm_key"
 
     ## Hit counter
-    text "Hits: [hit_box[0]]" xpos 550 ypos 20 style "minigame_title"
+    text "Hits: [dance_hit_box[0]]" xpos 550 ypos 20 style "minigame_title"
 
     ## Game tick
     if not done:
         timer 0.03 repeat True action [
             SetScreenVariable("elapsed", elapsed + 0.03),
-            Function(dance_spawn, elapsed, active, spawned),
-            Function(dance_move, active, 0.008),
-            Function(dance_miss, active, miss_box),
+            Function(dance_spawn, elapsed, dance_active, dance_spawned),
+            Function(dance_move, dance_active, 0.008),
+            Function(dance_miss, dance_active, dance_miss_box),
+            If(
+                elapsed > 8.0 and len(dance_spawned) == dance_total and len(dance_active) == 0,
+                true = [SetScreenVariable("done", True), Return(dance_hit_box[0])]
+            ),
         ]
 
     ## Draw notes
-    for note in active:
+    for note in dance_active:
         add "images/rhythm_note_dance.png":
             xalign note[1]
             yalign DANCE_LANE_Y[note[0]]
             zoom (DANCE_NOTE_SIZE / 50.0)
 
     ## Key bindings
-    key "K_a" action Function(dance_key_press, 0, active, hit_box)
-    key "K_b" action Function(dance_key_press, 1, active, hit_box)
-    key "K_c" action Function(dance_key_press, 2, active, hit_box)
-    key "K_d" action Function(dance_key_press, 3, active, hit_box)
-
-    if elapsed > 8.0 and len(active) == 0 and not done:
-        $ done = True
-        timer 0.5 action Return(hit_box[0])
-
+    key "K_a" action [Function(dance_key_press, 0), NullAction()]
+    key "K_b" action [Function(dance_key_press, 1), NullAction()]
+    key "K_c" action [Function(dance_key_press, 2), NullAction()]
+    key "K_d" action [Function(dance_key_press, 3), NullAction()]
 
 label minigame_dance_start:
     sili "Show them what the performance can be! Press A, B, C, D when the notes reach the line!"
@@ -138,12 +145,12 @@ label minigame_dance_start:
 
     if dance_hits >= 24:
         $ score_dance = 3
-        sili "Incredible! The dancers moved like the tide itself!"
+        jump BS_good
     elif dance_hits >= 15:
         $ score_dance = 2
-        sili "Not bad! The crowd was mostly with you."
+        jump BS_neutral
     else:
         $ score_dance = 1
-        sili "The rhythm was lost. The dancers stumbled. We will... manage."
+        jump BS_bad
 
     return
