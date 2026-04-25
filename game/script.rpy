@@ -1075,7 +1075,8 @@ label start:
     ## ── BILO/SILI FEEDBACK ─────────────────────────────
 
     label BS_good:
-        kilaw "You mediate between the two, helping each see value in the other's approach and blending their styles into something seamless and unified, where both honor the past and the present."
+        narrator "You mediate between the two, helping each see value in the other's approach." 
+        "Blending their styles into something seamless and unified, where both honor the past and the present."
         bilo "I...did not think that was possible."
         sili "Neither did I. But here we are, swimming in the same direction for once."
         bilo "Don't push your fin, Sili-Sili."
@@ -1099,7 +1100,8 @@ label start:
     ## LUSAY — PROPS COMMITTEE
     ## ═══════════════════════════════════════════════════
     label lusay_intro:
-        narrator "You focused your attention on Lusay. A young oyster brimming with brilliant ideas for props and effects, but you had to find her first. The other spirits already told you about her and her general direction."
+        narrator "You focused your attention on Lusay. A young oyster brimming with brilliant ideas for props and effects."
+        "But you had to find her first. The other spirits already told you about her and her general direction."
         "The Props workshop sounded like a small disaster from outside: things rolling, falling, someone groaning quietly"
 
         narrator "A young oyster brimming with brilliant ideas for props and effects. However lacking the confidence to execute them. Or so they said."

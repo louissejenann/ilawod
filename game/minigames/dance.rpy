@@ -116,6 +116,8 @@ screen minigame_dance():
         text label:
             xalign (DANCE_HIT_X - 0.05)
             yalign lane_y
+            xoffset 10
+            yoffset -5
             style "rhythm_key"
 
     ## Hit counter
