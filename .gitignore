@@ -40,3 +40,16 @@ Thumbs.db
 
 # Visual Studio
 .vscode/
+
+# Ren'Py launcher thumbnails & desktop icon cache
+*.png.bak
+game/cache/
+.renpy_version
+
+# Android/RAPT build artifacts
+android.keystore
+*.apk
+rapt/
+
+# Web build
+web/
