@@ -2,6 +2,7 @@
 *.rpyc
 *.rpyb
 *.rpymc
+cache/
 
 # Saves and persistent data
 /game/saves/
