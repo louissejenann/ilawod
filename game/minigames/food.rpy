@@ -80,7 +80,7 @@ screen minigame_food():
 
     ## ── Remove button (only shows if current category already has a pick) ──
     if _cat in selections and not advancing:
-        imagebutton auto "gui/btn_remove_%s.png" xpos 1150 ypos 20 action [
+        imagebutton idle "gui/btn_remove.png" xpos 1150 ypos 20 action [
             SetScreenVariable("selections", food_set_selection_remove(selections, _cat)),
             SetScreenVariable("cat_index", food_category_order.index(_cat)),
             SetScreenVariable("feedback", ""),
@@ -101,14 +101,14 @@ screen minigame_food():
 
     ## ── Left arrow ──────────────────────────────────────────
     if opt_index > 0 and not advancing and cat_index < 4:
-        imagebutton auto "gui/btn_arrow_left_%s.png" xpos 180 ypos 490 action [
+        imagebutton idle "gui/btn_arrow_left.png" xpos 180 ypos 490 action [
             SetScreenVariable("opt_index", opt_index - 1),
             SetScreenVariable("feedback", ""),
         ]
 
     ## ── Ingredient thumbnail (click to select) ──────────────
     if cat_index < 4 and not advancing:
-        imagebutton auto ("images/ingredient_" + _cur + "_%s.png") xalign 0.5 ypos 460 action [
+        imagebutton idle ("images/ingredient_" + _cur + ".png") xalign 0.5 ypos 460 action [
             SetScreenVariable("selections", food_set_selection(selections, _cat, _cur)),
             SetScreenVariable("bad_picks",  bad_picks if _is_good else bad_picks + 1),
             SetScreenVariable("feedback",   "A fine choice." if _is_good else "Hmm... something feels off."),
@@ -117,7 +117,7 @@ screen minigame_food():
 
     ## ── Right arrow ─────────────────────────────────────────
     if opt_index < 2 and not advancing and cat_index < 4:
-        imagebutton auto "gui/btn_arrow_right_%s.png" xpos 1000 ypos 490 action [
+        imagebutton idle "gui/btn_arrow_right.png" xpos 1000 ypos 490 action [
             SetScreenVariable("opt_index", opt_index + 1),
             SetScreenVariable("feedback", ""),
         ]
