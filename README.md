@@ -49,9 +49,11 @@ The festival must be worthy. The clock is the slow creep of scales spreading acr
 
 Your final score across the five festival preparations determines the outcome:
 
-- **Good Ending** — The Bakunawa is satisfied. The moon is spared. You go home.
-- **Neutral Ending** — The festival buys time, but nothing more. A choice remains: stay, or leave changed.
-- **Bad Ending** — The festival fails. The moon is swallowed. The village lights lanterns for you every night after.
+- **Good Ending** — The Bakunawa is satisfied. The moon is spared, and you and Kadyos walk back into the morning.
+- **Neutral Ending: Stay** — The festival holds off the Bakunawa, but only just. Ba-O offers you a choice. You stay — for the spirits, for the work that still needs doing.
+- **Neutral Ending: Leave** — You choose home. You make it back, but not entirely unchanged. Faint scales along your wrist. 
+- **Bad Ending: The Festival Fails** — The Bakunawa doesn't circle or consider — it simply arrives, and the moon is gone. 
+- **Bad Ending: The Scales** — Mid-way through the preparations, the transformation becomes too much. The panic hits all at once. The festival stumbles forward without you. It isn't enough. The Bakunawa arrives before the last lantern is lit. 
 
 ---
 
