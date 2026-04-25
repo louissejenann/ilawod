@@ -86,19 +86,25 @@ Your final score across the five festival preparations determines the outcome:
 
 ```
 ilawod/
-├── .gitattributes
-├── .gitignore
 ├── game/
 │   ├── script.rpy       # Main narrative script
 │   ├── options.rpy      # Game configuration
 │   ├── screens.rpy      # UI screens
 │   ├── gui.rpy          # GUI configuration
-│   ├── minigames.rpy    # Minigame logic
 │   ├── images/          # Backgrounds, character art, and audio
 │   ├── fonts/           # Custom typography
 │   ├── gui/             # UI assets and icons
 │   ├── libs/            # External libraries
-│   └── tl/              # Translations
+│   ├── tl/              # Translations
+│   └── minigames/       # Festival minigame scripts
+│       ├── food.rpy
+│       ├── dance.rpy
+│       ├── music.rpy
+│       ├── props.rpy
+│       ├── costume.rpy
+│       └── utils.rpy    # Shared styles and scoring
+├── .gitattributes
+└── .gitignore
 ```
 
 ---
