@@ -67,16 +67,18 @@ Your final score across the five festival preparations determines the outcome:
 
 1. Download and install [Ren'Py](https://www.renpy.org/latest.html)
 2. Clone this repository:
-   ```bash
+```bash
    git clone https://github.com/louissejenann/ilawod.git
-   ```
+```
 3. Install [Git LFS](https://git-lfs.github.com) and run:
-   ```bash
+```bash
    git lfs install
    git lfs pull
-   ```
-4. Open the Ren'Py launcher, click **Open Project**, and select the cloned folder
-5. Click **Launch Project**
+```
+4. Move the cloned folder into your Ren'Py **projects directory**
+   - You can find or change this path in the launcher under **Preferences → Projects Directory**
+5. Open the Ren'Py launcher — the project will appear automatically
+6. Select **ILAWOD** and click **Launch Project**
 
 ---
 
@@ -84,13 +86,19 @@ Your final score across the five festival preparations determines the outcome:
 
 ```
 ilawod/
+├── .gitattributes
+├── .gitignore
 ├── game/
 │   ├── script.rpy       # Main narrative script
 │   ├── options.rpy      # Game configuration
 │   ├── screens.rpy      # UI screens
-│   ├── images/          # Backgrounds and character art
-│   ├── audio/           # Music and sound effects
-│   └── fonts/           # Custom typography
+│   ├── gui.rpy          # GUI configuration
+│   ├── minigames.rpy    # Minigame logic
+│   ├── images/          # Backgrounds, character art, and audio
+│   ├── fonts/           # Custom typography
+│   ├── gui/             # UI assets and icons
+│   ├── libs/            # External libraries
+│   └── tl/              # Translations
 ```
 
 ---
