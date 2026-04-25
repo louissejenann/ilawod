@@ -36,36 +36,43 @@ init python:
     def dance_spawn(elapsed, active, spawned):
         for i, note in enumerate(dance_notes):
             if i not in spawned and elapsed >= note[0]:
-                ## note = [lane, xpos_fraction, index]
                 active.append([note[1], 1.05, i])
                 spawned.add(i)
 
     def dance_move(active, speed):
-        ## speed is a fraction of screen width per tick
         for note in active:
             note[1] -= speed
 
-    def dance_miss(active, miss_box):
+    def dance_miss(active, miss_box, last_action):
         for note in active[:]:
             if note[1] < 0.0:
                 active.remove(note)
                 miss_box[0] += 1
+                last_action[0] = "miss"
+                renpy.restart_interaction()
 
-    dance_active   = []
-    dance_hit_box  = [0]
-    dance_miss_box = [0]
-    dance_spawned  = set()
+    dance_active      = []
+    dance_hit_box     = [0]
+    dance_miss_box    = [0]
+    dance_spawned     = set()
+    dance_last_action = ["idle"]
 
     def dance_key_press(lane):
         for note in dance_active[:]:
             if note[0] == lane and abs(note[1] - DANCE_HIT_X) < 0.04:
                 dance_active.remove(note)
                 dance_hit_box[0] += 1
+                dance_last_action[0] = "hit"
+                renpy.restart_interaction()
                 return
+        ## No note in range — counts as a miss
+        dance_last_action[0] = "miss"
+        renpy.restart_interaction()
 
 screen minigame_dance():
-    default elapsed  = 0.0
-    default done     = False
+    default elapsed      = 0.0
+    default done         = False
+    default last_action  = "idle"
 
     on "show":
         action [
@@ -73,25 +80,29 @@ screen minigame_dance():
             Function(dance_spawned.clear),
             Function(dance_hit_box.__setitem__, 0, 0),
             Function(dance_miss_box.__setitem__, 0, 0),
+            Function(dance_last_action.__setitem__, 0, "idle"),
         ]
 
     add "images/bg dance_stage.png"
 
-    ## Dancer reacts to hits
-    if dance_hit_box[0] > 20:
+    ## Sync last_action from global each frame
+    $ last_action = dance_last_action[0]
+
+    ## Dancer reacts to last action
+    if last_action == "hit":
         add "images/dancer_great.png" xpos 30 ypos 100
-    elif dance_hit_box[0] > 10:
+    elif last_action == "miss":
         add "images/dancer_okay.png"  xpos 30 ypos 100
     else:
         add "images/dancer_idle.png"  xpos 30 ypos 100
 
-    ## Crowd reacts to hits
-    if dance_hit_box[0] > 20:
+    ## Crowd reacts to last action
+    if last_action == "hit":
         add "images/crowd_cheering.png" xpos 950 ypos 80
-    elif dance_hit_box[0] > 10:
-        add "images/crowd_watching.png" xpos 950 ypos 80
-    else:
+    elif last_action == "miss":
         add "images/crowd_bored.png"    xpos 950 ypos 80
+    else:
+        add "images/crowd_watching.png" xpos 950 ypos 80
 
     ## Hit targets — one circle per lane at DANCE_HIT_X
     for lane_index, lane_y in enumerate(DANCE_LANE_Y):
@@ -110,13 +121,20 @@ screen minigame_dance():
     ## Hit counter
     text "Hits: [dance_hit_box[0]]" xpos 550 ypos 20 style "minigame_title"
 
+    ## Reset reaction to idle after 0.5s
+    if last_action == "hit":
+        timer 1.5 action [
+            Function(dance_last_action.__setitem__, 0, "idle"),
+            SetScreenVariable("last_action", "idle"),
+        ]
+
     ## Game tick
     if not done:
         timer 0.03 repeat True action [
             SetScreenVariable("elapsed", elapsed + 0.03),
             Function(dance_spawn, elapsed, dance_active, dance_spawned),
             Function(dance_move, dance_active, 0.008),
-            Function(dance_miss, dance_active, dance_miss_box),
+            Function(dance_miss, dance_active, dance_miss_box, dance_last_action),
             If(
                 elapsed > 8.0 and len(dance_spawned) == dance_total and len(dance_active) == 0,
                 true = [SetScreenVariable("done", True), Return(dance_hit_box[0])]
@@ -135,6 +153,7 @@ screen minigame_dance():
     key "K_b" action [Function(dance_key_press, 1), NullAction()]
     key "K_c" action [Function(dance_key_press, 2), NullAction()]
     key "K_d" action [Function(dance_key_press, 3), NullAction()]
+
 
 label minigame_dance_start:
     sili "Show them what the performance can be! Press A, B, C, D when the notes reach the line!"
