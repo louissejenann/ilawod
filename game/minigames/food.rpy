@@ -88,12 +88,12 @@ screen minigame_food():
     if cat_index < 4:
         hbox:
             xalign 0.5
-            ypos 460
+            yalign 0.5
             spacing 20
             for _i, _opt in enumerate(_opts):
                 python:
                     _opt_good = (_opt == food_good.get(_cat, ""))
-                imagebutton idle ("images/ingredient_" + _opt + ".png") action [
+                imagebutton idle ("images/ingredient_" + _opt + ".png") yalign 0.5 action [
                     SetScreenVariable("opt_index",  _i),
                     SetScreenVariable("selections", food_set_selection(selections, _cat, _opt)),
                     SetScreenVariable("bad_picks",  bad_picks if _opt_good else bad_picks + 1),
