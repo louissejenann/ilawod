@@ -64,13 +64,13 @@ screen minigame_food():
     ## ── Plate preview ───────────────────────────────────────
 
     if "plate" in selections:
-        add ("images/food_" + selections["plate"] + ".png") xalign 0.5 ypos 80
+        add ("images/food_" + selections["plate"] + ".png") xalign 0.5 ypos 0
     if "dishes" in selections:
-        add ("images/food_" + selections["dishes"] + ".png") xalign 0.5 ypos 110
+        add ("images/food_" + selections["dishes"] + ".png") xalign 0.5 ypos 0
     if "garnish" in selections:
-        add ("images/food_" + selections["garnish"] + ".png") xalign 0.5 ypos 95
+        add ("images/food_" + selections["garnish"] + ".png") xalign 0.5 ypos 0
     if "sauces" in selections:
-        add ("images/food_" + selections["sauces"] + ".png") xalign 0.5 ypos 125
+        add ("images/food_" + selections["sauces"] + ".png") xalign 0.5 ypos 0
 
     ## ── Category label ──────────────────────────────────────
     text "[_cat_label]" xpos 60 ypos 28 style "minigame_title"
