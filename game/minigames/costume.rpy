@@ -189,7 +189,7 @@ screen sigay_search_screen():
     default flash_timer  = 0           # counts down the flash display
 
     # ── Background ──
-    add "images/bg_sigay_workshop.png"
+    add "images/Sigays workshop.png"
 
     # ── Timer countdown ──
     timer 1.0 repeat True action If(
