@@ -1286,7 +1286,7 @@ label start:
                 jump argue_controlling
             "Screw this.":
                 jump screw_this
-            "what if you combine both?":
+            "What if you combine both?":
                 jump combination
 
         #ROUTE ---------------------------
