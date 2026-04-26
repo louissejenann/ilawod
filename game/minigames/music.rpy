@@ -5,14 +5,30 @@
 ## ============================================================
 
 init python:
-    MUSIC_NOTE_SIZE = 50  ## px — change this to match rhythm_note_music.png
+    ## ============================================================
+    ## TUNING — edit these to adjust gameplay feel
+    ## ============================================================
+    MUSIC_NOTE_SIZE  = 50     ## px — match size to rhythm_note_music.png
+    MUSIC_HIT_Y      = 0.70   ## hit zone Y (0.0=top, 1.0=bottom)
+    MUSIC_LANE_X     = [0.35, 0.45, 0.55, 0.65]  ## lane X positions (centered)
+    MUSIC_TIMING_WINDOW = 0.08  ## hit forgiveness (higher = easier)
 
-    ## Lane X positions as fractions of screen width (centered)
-    ## A=leftmost, D=rightmost, evenly spaced
-    MUSIC_LANE_X = [0.35, 0.45, 0.55, 0.65]
+    ## Note speed per phase (higher = faster)
+    MUSIC_SPEED_P1   = 0.004  ## Phase 1: beginner
+    MUSIC_SPEED_P2   = 0.006  ## Phase 2: warming up
+    MUSIC_SPEED_P3   = 0.009  ## Phase 3: full rhythm
 
-    ## Hit zone Y position as fraction of screen height (30% from bottom)
-    MUSIC_HIT_Y = 0.70
+    ## Phase time boundaries (seconds)
+    MUSIC_PHASE_1_END = 9.0
+    MUSIC_PHASE_2_END = 18.0
+
+    ## Minigame end buffer — how long after last note before game ends
+    MUSIC_END_BUFFER  = 28.0
+
+    ## Score thresholds
+    MUSIC_SCORE_GOOD    = 20
+    MUSIC_SCORE_NEUTRAL = 12
+    ## ============================================================
 
     ## Each note is (spawn_time, lane)
     ## Phase 1 (0-9s):    slow, one at a time, very wide gaps
@@ -52,13 +68,12 @@ init python:
                 spawned.add(i)
 
     def music_move(active, elapsed):
-        ## Speed increases with time: slow → medium → fast
-        if elapsed < 6.0:
-            speed = 0.004
-        elif elapsed < 12.0:
-            speed = 0.006
+        if elapsed < MUSIC_PHASE_1_END:
+            speed = MUSIC_SPEED_P1
+        elif elapsed < MUSIC_PHASE_2_END:
+            speed = MUSIC_SPEED_P2
         else:
-            speed = 0.009
+            speed = MUSIC_SPEED_P3
         for note in active:
             note[1] += speed
 
@@ -78,7 +93,7 @@ init python:
 
     def music_key_press(lane):
         for note in music_active[:]:
-            if note[0] == lane and abs(note[1] - MUSIC_HIT_Y) < 0.04:
+            if note[0] == lane and abs(note[1] - MUSIC_HIT_Y) < MUSIC_TIMING_WINDOW:
                 music_active.remove(note)
                 music_hit_box[0] += 1
                 music_last_action[0] = "hit"
@@ -157,7 +172,7 @@ screen minigame_music():
             Function(music_move, music_active, elapsed),
             Function(music_miss, music_active, music_miss_box, music_last_action),
             If(
-                elapsed > 28.0 and len(music_spawned) == music_total and len(music_active) == 0,
+                elapsed > MUSIC_END_BUFFER and len(music_spawned) == music_total and len(music_active) == 0,
                 true = [SetScreenVariable("done", True), Return(music_hit_box[0])]
             ),
         ]
@@ -183,10 +198,10 @@ label minigame_music_start:
 
     $ music_hits = _return
 
-    if music_hits >= 20:
+    if music_hits >= MUSIC_SCORE_GOOD:
         $ score_music = 3
         jump kasag_good
-    elif music_hits >= 12:
+    elif music_hits >= MUSIC_SCORE_NEUTRAL:
         $ score_music = 2
         jump kasag_neutral
     else:
