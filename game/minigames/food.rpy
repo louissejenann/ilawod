@@ -59,18 +59,18 @@ screen minigame_food():
         _cur_label = food_ingredient_labels.get(_cur, _cur.replace("_", " ").title())
         _cat_label = _cat.capitalize()
 
-    add "bg food_station.png"
+    add "bg food_station.png" fit "cover" xalign 0.5 yalign 0.5
 
     ## ── Plate preview ───────────────────────────────────────
 
     if "plate" in selections:
-        add ("images/food_" + selections["plate"] + ".png") xalign 0.5 ypos 80
+        add ("images/food_" + selections["plate"] + ".png") xalign 0.5 ypos 0
     if "dishes" in selections:
-        add ("images/food_" + selections["dishes"] + ".png") xalign 0.5 ypos 110
+        add ("images/food_" + selections["dishes"] + ".png") xalign 0.5 ypos 0
     if "garnish" in selections:
-        add ("images/food_" + selections["garnish"] + ".png") xalign 0.5 ypos 95
+        add ("images/food_" + selections["garnish"] + ".png") xalign 0.5 ypos 0
     if "sauces" in selections:
-        add ("images/food_" + selections["sauces"] + ".png") xalign 0.5 ypos 125
+        add ("images/food_" + selections["sauces"] + ".png") xalign 0.5 ypos 0
 
     ## ── Category label ──────────────────────────────────────
     text "[_cat_label]" xpos 60 ypos 28 style "minigame_title"
@@ -84,41 +84,25 @@ screen minigame_food():
         SetScreenVariable("feedback",   ""),
     ]
 
-    ## ── Progress indicators ─────────────────────────────────
-    hbox:
-        xalign 0.5
-        ypos 430
-        spacing 30
-        text "Plate"   color ("#FFD700" if "plate"   in selections else ("#ffffff" if cat_index == 0 else "#888888"))
-        text "→"       color "#555555"
-        text "Dishes"  color ("#FFD700" if "dishes"  in selections else ("#ffffff" if cat_index == 1 else "#888888"))
-        text "→"       color "#555555"
-        text "Garnish" color ("#FFD700" if "garnish" in selections else ("#ffffff" if cat_index == 2 else "#888888"))
-        text "→"       color "#555555"
-        text "Sauces"  color ("#FFD700" if "sauces"  in selections else ("#ffffff" if cat_index == 3 else "#888888"))
-
     ## ── All 3 ingredient thumbnails displayed at once ──────────
     if cat_index < 4:
         hbox:
             xalign 0.5
-            ypos 460
+            yalign 0.5
             spacing 20
             for _i, _opt in enumerate(_opts):
                 python:
                     _opt_good = (_opt == food_good.get(_cat, ""))
-                imagebutton idle ("images/ingredient_" + _opt + ".png") action [
+                imagebutton idle ("images/ingredient_" + _opt + ".png") yalign 0.5 action [
                     SetScreenVariable("opt_index",  _i),
                     SetScreenVariable("selections", food_set_selection(selections, _cat, _opt)),
                     SetScreenVariable("bad_picks",  bad_picks if _opt_good else bad_picks + 1),
                     SetScreenVariable("feedback",   "A fine choice." if _opt_good else "Hmm... something feels off."),
                 ]
 
-        ## ── Ingredient name for currently hovered/selected ──
-        text "[_cur_label]" xalign 0.5 ypos 590 color "#cccccc" size 26
-
     ## ── Feedback ────────────────────────────────────────────
     if feedback != "":
-        text "[feedback]" xalign 0.5 ypos 630 style "minigame_success"
+        text "[feedback]" xalign 0.5 ypos 730 style "minigame_success"
 
     ## ── << Back button (shows when not on first category) ──────
     if cat_index > 0:
