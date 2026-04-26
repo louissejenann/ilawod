@@ -1,18 +1,18 @@
 ## ============================================================
 ## MUSIC MINIGAME — Kasag conducts
 ## Speed: MODERATELY FAST
-## Notes travel right to left into lane targets on the left side
+## Notes travel top to bottom into lane targets near the bottom
 ## ============================================================
 
 init python:
     MUSIC_NOTE_SIZE = 50  ## px — change this to match rhythm_note_music.png
 
-    ## Lane Y positions as fractions of screen height (0.0 to 1.0)
-    ## A=top, D=bottom, evenly spaced
-    MUSIC_LANE_Y = [0.25, 0.40, 0.55, 0.70]
+    ## Lane X positions as fractions of screen width (centered)
+    ## A=leftmost, D=rightmost, evenly spaced
+    MUSIC_LANE_X = [0.35, 0.45, 0.55, 0.65]
 
-    ## Hit zone X position as fraction of screen width
-    MUSIC_HIT_X = 0.40
+    ## Hit zone Y position as fraction of screen height (30% from bottom)
+    MUSIC_HIT_Y = 0.70
 
     music_notes = [
         (1.0, 0), (1.5, 1),
@@ -33,16 +33,16 @@ init python:
     def music_spawn(elapsed, active, spawned):
         for i, note in enumerate(music_notes):
             if i not in spawned and elapsed >= note[0]:
-                active.append([note[1], 1.05, i])
+                active.append([note[1], -0.05, i])
                 spawned.add(i)
 
     def music_move(active, speed):
         for note in active:
-            note[1] -= speed
+            note[1] += speed
 
     def music_miss(active, miss_box, last_action):
         for note in active[:]:
-            if note[1] < 0.0:
+            if note[1] > 1.05:
                 active.remove(note)
                 miss_box[0] += 1
                 last_action[0] = "miss"
@@ -56,7 +56,7 @@ init python:
 
     def music_key_press(lane):
         for note in music_active[:]:
-            if note[0] == lane and abs(note[1] - MUSIC_HIT_X) < 0.04:
+            if note[0] == lane and abs(note[1] - MUSIC_HIT_Y) < 0.04:
                 music_active.remove(note)
                 music_hit_box[0] += 1
                 music_last_action[0] = "hit"
@@ -91,30 +91,30 @@ screen minigame_music():
     elif last_action == "miss":
         add "images/conductor_bad.png"  xpos 30 ypos 100
     else:
-        add "images/conductor_idle.png"  xpos 30 ypos 100
+        add "images/conductor_idle.png" xpos 30 ypos 100
 
     ## Musicians react to last action
     if last_action == "hit":
         add "images/musicians_normal.png" xpos 100 ypos 80
     elif last_action == "miss":
-        add "images/musicians_shame.png"    xpos 100 ypos 80
+        add "images/musicians_shame.png"  xpos 100 ypos 80
     else:
         add "images/musicians_normal.png" xpos 100 ypos 80
 
-    ## Hit targets — one circle per lane at MUSIC_HIT_X
-    for lane_index, lane_y in enumerate(MUSIC_LANE_Y):
+    ## Hit targets — one circle per lane at MUSIC_HIT_Y
+    for lane_index, lane_x in enumerate(MUSIC_LANE_X):
         add "images/rhythm_hitzone.png":
-            xalign MUSIC_HIT_X
-            yalign lane_y
+            xalign lane_x
+            yalign MUSIC_HIT_Y
             zoom (MUSIC_NOTE_SIZE / 50.0)
 
-    ## Lane labels A/B/C/D just left of the hit targets
-    for lane_index, (lane_y, label) in enumerate(zip(MUSIC_LANE_Y, ["A", "B", "C", "D"])):
+    ## Lane labels A/B/C/D just below the hit targets
+    for lane_index, (lane_x, label) in enumerate(zip(MUSIC_LANE_X, ["A", "B", "C", "D"])):
         text label:
-            xalign (MUSIC_HIT_X - 0.05)
-            yalign lane_y
-            xoffset 10
-            yoffset -5
+            xalign lane_x
+            yalign (MUSIC_HIT_Y + 0.05)
+            xoffset -5
+            yoffset 0
             style "rhythm_key"
 
     ## Hit counter
@@ -143,8 +143,8 @@ screen minigame_music():
     ## Draw notes
     for note in music_active:
         add "images/rhythm_note_dance.png":
-            xalign note[1]
-            yalign MUSIC_LANE_Y[note[0]]
+            xalign MUSIC_LANE_X[note[0]]
+            yalign note[1]
             zoom (MUSIC_NOTE_SIZE / 50.0)
 
     ## Key bindings
