@@ -84,19 +84,6 @@ screen minigame_food():
         SetScreenVariable("feedback",   ""),
     ]
 
-    ## ── Progress indicators ─────────────────────────────────
-    hbox:
-        xalign 0.5
-        ypos 430
-        spacing 30
-        text "Plate"   color ("#FFD700" if "plate"   in selections else ("#ffffff" if cat_index == 0 else "#888888"))
-        text "→"       color "#555555"
-        text "Dishes"  color ("#FFD700" if "dishes"  in selections else ("#ffffff" if cat_index == 1 else "#888888"))
-        text "→"       color "#555555"
-        text "Garnish" color ("#FFD700" if "garnish" in selections else ("#ffffff" if cat_index == 2 else "#888888"))
-        text "→"       color "#555555"
-        text "Sauces"  color ("#FFD700" if "sauces"  in selections else ("#ffffff" if cat_index == 3 else "#888888"))
-
     ## ── All 3 ingredient thumbnails displayed at once ──────────
     if cat_index < 4:
         hbox:
