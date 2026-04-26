@@ -62,7 +62,6 @@ screen minigame_food():
     add "bg food_station.png"
 
     ## ── Plate preview ───────────────────────────────────────
-    add "food_plate_empty.png" xalign 0.5 ypos 60
 
     if "plate" in selections:
         add ("images/food_" + selections["plate"] + ".png") xalign 0.5 ypos 80
@@ -84,13 +83,6 @@ screen minigame_food():
         SetScreenVariable("bad_picks",  0),
         SetScreenVariable("feedback",   ""),
     ]
-
-    ## ── Remove button (only shows if current category already has a pick) ──
-    if _cat in selections:
-        imagebutton idle "gui/btn_remove.png" xpos 1080 ypos 20 action [
-            SetScreenVariable("selections", food_set_selection_remove(selections, _cat)),
-            SetScreenVariable("feedback", ""),
-        ]
 
     ## ── Progress indicators ─────────────────────────────────
     hbox:
@@ -127,6 +119,14 @@ screen minigame_food():
     ## ── Feedback ────────────────────────────────────────────
     if feedback != "":
         text "[feedback]" xalign 0.5 ypos 630 style "minigame_success"
+
+    ## ── << Back button (shows when not on first category) ──────
+    if cat_index > 0:
+        imagebutton idle "gui/btn_arrow_left.png" xalign 0.15 ypos 490 action [
+            SetScreenVariable("cat_index", cat_index - 1),
+            SetScreenVariable("opt_index", 0),
+            SetScreenVariable("feedback",  ""),
+        ]
 
     ## ── >> Next button (shows after a pick is made, except on last category) ──
     if _cat in selections and cat_index < 3:
