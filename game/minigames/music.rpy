@@ -14,35 +14,57 @@ init python:
     ## Hit zone Y position as fraction of screen height (30% from bottom)
     MUSIC_HIT_Y = 0.70
 
+    ## Each note is (spawn_time, lane)
+    ## Phase 1 (0-9s):    slow, one at a time, very wide gaps
+    ## Phase 2 (9-18s):   medium, occasional pairs, more breathing room
+    ## Phase 3 (18-26s):  faster, tighter but not overwhelming
     music_notes = [
-        (1.0, 0), (1.5, 1),
-        (2.0, 2), (2.5, 3),
-        (3.0, 0), (3.3, 2),
-        (3.7, 1), (4.0, 3),
-        (4.3, 0), (4.6, 1),
-        (5.0, 2), (5.3, 3),
-        (5.6, 0), (5.9, 2),
-        (6.2, 1), (6.5, 3),
-        (6.8, 0), (7.0, 1),
-        (7.3, 2), (7.6, 3),
-        (8.0, 0), (8.3, 2),
-        (8.6, 1), (9.0, 3),
+        ## Phase 1 — one at a time, very relaxed
+        (1.0, 0),
+        (3.0, 2),
+        (5.0, 1),
+        (7.0, 3),
+        (9.0, 0),
+
+        ## Phase 2 — slight pairs, still breathing room
+        (11.0, 1),
+        (12.5, 3),
+        (14.0, 0), (14.0, 2),
+        (16.0, 1),
+        (17.0, 3),
+        (18.0, 2), (18.0, 0),
+
+        ## Phase 3 — fuller but still manageable
+        (20.0, 1),
+        (21.0, 3),
+        (22.0, 0), (22.0, 2),
+        (23.0, 1),
+        (23.8, 3),
+        (24.6, 0), (24.6, 2),
+        (25.4, 1), (25.4, 3),
     ]
     music_total = len(music_notes)
 
     def music_spawn(elapsed, active, spawned):
         for i, note in enumerate(music_notes):
             if i not in spawned and elapsed >= note[0]:
-                active.append([note[1], -0.05, i])
+                active.append([note[1], -0.05, i])  ## start above screen
                 spawned.add(i)
 
-    def music_move(active, speed):
+    def music_move(active, elapsed):
+        ## Speed increases with time: slow → medium → fast
+        if elapsed < 6.0:
+            speed = 0.004
+        elif elapsed < 12.0:
+            speed = 0.006
+        else:
+            speed = 0.009
         for note in active:
             note[1] += speed
 
     def music_miss(active, miss_box, last_action):
         for note in active[:]:
-            if note[1] > 1.05:
+            if note[1] > 1.05:  ## past bottom of screen
                 active.remove(note)
                 miss_box[0] += 1
                 last_action[0] = "miss"
@@ -132,10 +154,10 @@ screen minigame_music():
         timer 0.03 repeat True action [
             SetScreenVariable("elapsed", elapsed + 0.03),
             Function(music_spawn, elapsed, music_active, music_spawned),
-            Function(music_move, music_active, 0.008),
+            Function(music_move, music_active, elapsed),
             Function(music_miss, music_active, music_miss_box, music_last_action),
             If(
-                elapsed > 11.0 and len(music_spawned) == music_total and len(music_active) == 0,
+                elapsed > 28.0 and len(music_spawned) == music_total and len(music_active) == 0,
                 true = [SetScreenVariable("done", True), Return(music_hit_box[0])]
             ),
         ]
