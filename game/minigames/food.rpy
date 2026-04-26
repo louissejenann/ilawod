@@ -102,7 +102,7 @@ screen minigame_food():
 
     ## ── Feedback ────────────────────────────────────────────
     if feedback != "":
-        text "[feedback]" xalign 0.5 ypos 630 style "minigame_success"
+        text "[feedback]" xalign 0.5 ypos 730 style "minigame_success"
 
     ## ── << Back button (shows when not on first category) ──────
     if cat_index > 0:
