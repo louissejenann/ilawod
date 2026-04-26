@@ -87,19 +87,19 @@ screen minigame_music():
 
     ## Conductor reacts to last action
     if last_action == "hit":
-        add "images/conductor_great.png" xpos 30 ypos 100
+        add "images/conductor_okay.png" xpos 30 ypos 100
     elif last_action == "miss":
-        add "images/conductor_okay.png"  xpos 30 ypos 100
+        add "images/conductor_bad.png"  xpos 30 ypos 100
     else:
         add "images/conductor_idle.png"  xpos 30 ypos 100
 
-    ## Crowd reacts to last action
+    ## Musicians react to last action
     if last_action == "hit":
-        add "images/crowd_cheering.png" xpos 950 ypos 80
+        add "images/musicians_normal.png" xpos 100 ypos 80
     elif last_action == "miss":
-        add "images/crowd_bored.png"    xpos 950 ypos 80
+        add "images/musicians_shame.png"    xpos 100 ypos 80
     else:
-        add "images/crowd_watching.png" xpos 950 ypos 80
+        add "images/musicians_normal.png" xpos 100 ypos 80
 
     ## Hit targets — one circle per lane at MUSIC_HIT_X
     for lane_index, lane_y in enumerate(MUSIC_LANE_Y):
@@ -142,7 +142,7 @@ screen minigame_music():
 
     ## Draw notes
     for note in music_active:
-        add "images/rhythm_note_music.png":
+        add "images/rhythm_note_dance.png":
             xalign note[1]
             yalign MUSIC_LANE_Y[note[0]]
             zoom (MUSIC_NOTE_SIZE / 50.0)
