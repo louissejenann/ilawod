@@ -126,6 +126,56 @@ screen say(who, what):
                 text who id "who"
 
         text what id "what" 
+
+        if who is None:
+
+            hbox:
+                xpos 883
+                ypos 387
+                xanchor 0.5
+                spacing -50
+                style "quick_menu"
+
+                imagebutton:
+                    idle "gui/ig_log.png"
+                    action ShowMenu("history")
+                imagebutton:
+                    idle "gui/ig_skip.png"
+                    action Skip()
+                imagebutton:
+                    idle "gui/ig_save.png"
+                    action ShowMenu("save")
+                imagebutton:
+                    idle "gui/ig_load.png"
+                    action ShowMenu("load")
+                imagebutton:
+                    idle "gui/ig_settings.png"
+                    action ShowMenu("preferences")
+
+        else:
+
+            hbox:
+                xpos 883
+                ypos 379
+                xanchor 0.5
+                spacing -50
+                style "quick_menu"
+
+                imagebutton:
+                    idle "gui/ig_log.png"
+                    action ShowMenu("history")
+                imagebutton:
+                    idle "gui/ig_skip.png"
+                    action Skip()
+                imagebutton:
+                    idle "gui/ig_save.png"
+                    action ShowMenu("save")
+                imagebutton:
+                    idle "gui/ig_load.png"
+                    action ShowMenu("load")
+                imagebutton:
+                    idle "gui/ig_settings.png"
+                    action ShowMenu("preferences")
         
 
     #INGAME BUTTONS
@@ -275,63 +325,60 @@ style choice_button_text is default:
 ## The quick menu is displayed in-game to provide easy access to the out-of-game
 ## menus.
 
-screen quick_menu():
+# screen quick_menu():
 
-    ## Ensure this appears on top of other screens.
-    zorder 100
+#     ## Ensure this appears on top of other screens.
+#     zorder 100
 
-    if quick_menu:
+#     if quick_menu:
 
-        hbox:
+#         hbox:
 
-            xalign 0.5
-            yalign 1.0
-            yoffset -30
-            spacing -50
+#             xalign 0.5
+#             yalign 1.0
+#             yoffset -30
+#             spacing -50
             
-            #style_prefix "quick"
-            style "quick_menu"
+#             #style_prefix "quick"
+#             style "quick_menu"
 
-            #textbutton _("Back") action Rollback()
+#             #textbutton _("Back") action Rollback()
             
-            #textbutton _("History") action ShowMenu('history')
-            imagebutton:
-                idle  "gui/ig_log.png"
-                #hover "gui/log.png"
-                action ShowMenu("history")
+#             #textbutton _("History") action ShowMenu('history')
+#             imagebutton:
+#                 idle  "gui/ig_log.png"
+#                 #hover "gui/log.png"
+#                 action ShowMenu("history")
            
-            #textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            imagebutton:
-                idle  "gui/ig_skip.png"
-                #hover "gui/skip.png"
-                action Skip()
+#             #textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
+#             imagebutton:
+#                 idle  "gui/ig_skip.png"
+#                 #hover "gui/skip.png"
+#                 action Skip()
             
-            #textbutton _("Auto") action Preference("auto-forward", "toggle")
+#             #textbutton _("Auto") action Preference("auto-forward", "toggle")
             
-            #textbutton _("Save") action ShowMenu('save')
-            imagebutton:
-                idle  "gui/ig_save.png"
-                #hover "gui/save.png"
-                action ShowMenu("save")
+#             #textbutton _("Save") action ShowMenu('save')
+#             imagebutton:
+#                 idle  "gui/ig_save.png"
+#                 #hover "gui/save.png"
+#                 action ShowMenu("save")
             
-            #textbutton _("Q.Save") action QuickSave()
-            #textbutton _("Q.Load") action QuickLoad()
-            imagebutton:
-                idle  "gui/ig_load.png"
-                #hover "gui/load.png"
-                action ShowMenu("load")
+#             #textbutton _("Q.Save") action QuickSave()
+#             #textbutton _("Q.Load") action QuickLoad()
+#             imagebutton:
+#                 idle  "gui/ig_load.png"
+#                 #hover "gui/load.png"
+#                 action ShowMenu("load")
                         
-            #textbutton _("Prefs") action ShowMenu('preferences')
-            imagebutton:
-                idle  "gui/ig_settings.png"
-                #hover "gui/settings.png"
-                action ShowMenu("preferences")
+#             #textbutton _("Prefs") action ShowMenu('preferences')
+#             imagebutton:
+#                 idle  "gui/ig_settings.png"
+#                 #hover "gui/settings.png"
+#                 action ShowMenu("preferences")
 
-
-## This code ensures that the quick_menu screen is displayed in-game, whenever
-## the player has not explicitly hidden the interface.
-init python:
-    config.overlay_screens.append("quick_menu")
+# init python:
+#     config.overlay_screens.append("quick_menu")
 
 default quick_menu = True
 
