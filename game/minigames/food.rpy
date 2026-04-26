@@ -113,9 +113,6 @@ screen minigame_food():
                     SetScreenVariable("feedback",   "A fine choice." if _opt_good else "Hmm... something feels off."),
                 ]
 
-        ## ── Ingredient name for currently hovered/selected ──
-        text "[_cur_label]" xalign 0.5 ypos 590 color "#cccccc" size 26
-
     ## ── Feedback ────────────────────────────────────────────
     if feedback != "":
         text "[feedback]" xalign 0.5 ypos 630 style "minigame_success"
