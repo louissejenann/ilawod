@@ -159,9 +159,12 @@ label minigame_costume_start:
 
     if costumes_made >= 7:
         $ score_costume = 3
+        jump sigay_good
     elif costumes_made >= 4:
         $ score_costume = 2
+        jump sigay_neutral
     else:
         $ score_costume = 1
+        jump sigay_bad
 
     return

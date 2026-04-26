@@ -129,9 +129,12 @@ label minigame_props_start:
 
     if props_lanterns >= 7:
         $ score_props = 3
+        jump lusay_good
     elif props_lanterns >= 4:
         $ score_props = 2
+        jump lusay_neutral
     else:
         $ score_props = 1
+        jump lusay_bad
 
     return

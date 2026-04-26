@@ -100,10 +100,10 @@ label minigame_music_start:
 
     if music_hits >= 20:
         $ score_music = 3
-        kasag "...Hmph. I will admit that was not terrible."
+        jump kasag_good
     elif music_hits >= 12:
         $ score_music = 2
-        kasag "Passable. A few missed cues but the melody held."
+        jump kasag_neutral
     else:
         $ score_music = 1
         jump kasag_bad
