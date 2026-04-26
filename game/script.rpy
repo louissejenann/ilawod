@@ -871,18 +871,23 @@ label start:
     ## BA-O — FOOD COMMITTEE
     ## ═══════════════════════════════════════════════════
     label route_kitchen:
-        narrator "Ba-O leads you through a passage where the walls are woven from dried sea-grass and old fishing nets — the kind of weave, you think, that looks almost like hablon from back home, if hablon were made of wood itself. It looks natural."
+        narrator "Ba-O leads you through a passage where the walls are woven from dried sea-grass and old fishing nets."
+        "The kind of weave, you think, that looks almost like hablon from back home, if hablon were made of wood itself. It looks natural."
 
         ba_o "You cook, child?"
         kilaw "A little. My lola taught me."
-        ba_o "Good. Then you understand that food is memory. Every dish I have forgotten is a piece of this realm lost, naman. We cannot let the Bakunawa come to an empty table."
+        ba_o "Good. Then you understand that food is memory." 
+        ba_o "Every dish I have forgotten is a piece of this realm lost. We cannot let the Bakunawa come to an empty table."
 
-        narrator "The kitchen opens up enormous — clay pots the size of fishing boats, fires lit with bioluminescent coral, the smell of sea and something warm and familiar. Your stomach growls."
+        narrator "The kitchen opens up enormous clay pots the size of fishing boats, fires lit with bioluminescent coral."
+        "The smell of sea and something warm and familiar."
+        "Your stomach growls."
 
         ba_o "I would offer you something, but I can't trust my own taste right now. That is the problem."
 
         kilaw "...What do you normally make? For the festival?"
-        ba_o "Everything. Seafood layered in the olden way — each ingredient placed with intention, a prayer. We call it the ceremonial dish. Every realm has one. Ours is from the deep."
+        ba_o "Everything. Seafood layered in the olden way, each ingredient placed with intention, a prayer."
+        ba_o "We call it the ceremonial dish. Every realm has one. Ours is from the deep."
 
         narrator "She slides a tray of ingredients toward you. It glows faintly."
 
@@ -1254,6 +1259,7 @@ label start:
         "Kadyos leans against you. He is all fin now, and still— somehow—entirely him."
         "His tail moves, once. Slowly. You put your hand on his back."
         "Somewhere far away, you thought, you don't think can ever find a way back home, you can't even recognize yourself anymore."
+        
         return #BAD ENDING: Your fear was real. So was everything it cost you. 
 
     

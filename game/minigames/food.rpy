@@ -142,8 +142,7 @@ screen minigame_food():
 
 
 label minigame_food_start:
-    ba_o "The ingredients are before you. Build the ceremonial dish, layer by layer."
-    ba_o "Each ingredient matters. Not everything on the table belongs here — choose with care."
+    ba_o "Each ingredient matters. Not everything on the table belongs here, choose with care."
     narrator "Browse each category with the arrows. Click an ingredient to place it on the dish."
     call screen minigame_food
 
