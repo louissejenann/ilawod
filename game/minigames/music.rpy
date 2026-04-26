@@ -1,9 +1,19 @@
 ## ============================================================
 ## MUSIC MINIGAME — Kasag conducts
 ## Speed: MODERATELY FAST
+## Notes travel right to left into lane targets on the left side
 ## ============================================================
 
 init python:
+    MUSIC_NOTE_SIZE = 50  ## px — change this to match rhythm_note_music.png
+
+    ## Lane Y positions as fractions of screen height (0.0 to 1.0)
+    ## A=top, D=bottom, evenly spaced
+    MUSIC_LANE_Y = [0.25, 0.40, 0.55, 0.70]
+
+    ## Hit zone X position as fraction of screen width
+    MUSIC_HIT_X = 0.40
+
     music_notes = [
         (1.0, 0), (1.5, 1),
         (2.0, 2), (2.5, 3),
@@ -23,72 +33,125 @@ init python:
     def music_spawn(elapsed, active, spawned):
         for i, note in enumerate(music_notes):
             if i not in spawned and elapsed >= note[0]:
-                active.append([note[1], -30, i])
+                active.append([note[1], 1.05, i])
                 spawned.add(i)
 
     def music_move(active, speed):
         for note in active:
-            note[1] += speed
+            note[1] -= speed
 
-    def music_miss(active, miss_box):
+    def music_miss(active, miss_box, last_action):
         for note in active[:]:
-            if note[1] > 660:
+            if note[1] < 0.0:
                 active.remove(note)
                 miss_box[0] += 1
+                last_action[0] = "miss"
+                renpy.restart_interaction()
 
-    def music_key_press(lane, active, hit_box):
-        for note in active[:]:
-            if note[0] == lane and 570 <= note[1] <= 650:
-                active.remove(note)
-                hit_box[0] += 1
-                return True
-        return False
+    music_active      = []
+    music_hit_box     = [0]
+    music_miss_box    = [0]
+    music_spawned     = set()
+    music_last_action = ["idle"]
+
+    def music_key_press(lane):
+        for note in music_active[:]:
+            if note[0] == lane and abs(note[1] - MUSIC_HIT_X) < 0.04:
+                music_active.remove(note)
+                music_hit_box[0] += 1
+                music_last_action[0] = "hit"
+                renpy.restart_interaction()
+                return
+        ## No note in range — counts as a miss
+        music_last_action[0] = "miss"
+        renpy.restart_interaction()
 
 screen minigame_music():
-    default elapsed  = 0.0
-    default active   = []
-    default spawned  = set()
-    default hit_box  = [0]
-    default miss_box = [0]
-    default done     = False
+    default elapsed      = 0.0
+    default done         = False
+    default last_action  = "idle"
+
+    on "show":
+        action [
+            Function(music_active.clear),
+            Function(music_spawned.clear),
+            Function(music_hit_box.__setitem__, 0, 0),
+            Function(music_miss_box.__setitem__, 0, 0),
+            Function(music_last_action.__setitem__, 0, "idle"),
+        ]
 
     add "images/bg music_hall.png"
-    add "images/conductor.png" xpos 20 ypos 80
 
-    add "images/rhythm_hitzone.png" xalign 0.5 ypos 600
+    ## Sync last_action from global each frame
+    $ last_action = music_last_action[0]
 
-    hbox:
-        xalign 0.5
-        ypos 620
-        spacing 80
-        text "A" style "rhythm_key"
-        text "B" style "rhythm_key"
-        text "C" style "rhythm_key"
-        text "D" style "rhythm_key"
+    ## Conductor reacts to last action
+    if last_action == "hit":
+        add "images/conductor_great.png" xpos 30 ypos 100
+    elif last_action == "miss":
+        add "images/conductor_okay.png"  xpos 30 ypos 100
+    else:
+        add "images/conductor_idle.png"  xpos 30 ypos 100
 
-    text "Cues: [hit_box[0]]" xpos 550 ypos 20 style "minigame_title"
+    ## Crowd reacts to last action
+    if last_action == "hit":
+        add "images/crowd_cheering.png" xpos 950 ypos 80
+    elif last_action == "miss":
+        add "images/crowd_bored.png"    xpos 950 ypos 80
+    else:
+        add "images/crowd_watching.png" xpos 950 ypos 80
 
+    ## Hit targets — one circle per lane at MUSIC_HIT_X
+    for lane_index, lane_y in enumerate(MUSIC_LANE_Y):
+        add "images/rhythm_hitzone.png":
+            xalign MUSIC_HIT_X
+            yalign lane_y
+            zoom (MUSIC_NOTE_SIZE / 50.0)
+
+    ## Lane labels A/B/C/D just left of the hit targets
+    for lane_index, (lane_y, label) in enumerate(zip(MUSIC_LANE_Y, ["A", "B", "C", "D"])):
+        text label:
+            xalign (MUSIC_HIT_X - 0.05)
+            yalign lane_y
+            xoffset 10
+            yoffset -5
+            style "rhythm_key"
+
+    ## Hit counter
+    text "Cues: [music_hit_box[0]]" xpos 550 ypos 20 style "minigame_title"
+
+    ## Reset reaction to idle after 1.5s
+    if last_action == "hit":
+        timer 1.5 action [
+            Function(music_last_action.__setitem__, 0, "idle"),
+            SetScreenVariable("last_action", "idle"),
+        ]
+
+    ## Game tick
     if not done:
         timer 0.03 repeat True action [
             SetScreenVariable("elapsed", elapsed + 0.03),
-            Function(music_spawn, elapsed, active, spawned),
-            Function(music_move, active, 8),
-            Function(music_miss, active, miss_box),
+            Function(music_spawn, elapsed, music_active, music_spawned),
+            Function(music_move, music_active, 0.008),
+            Function(music_miss, music_active, music_miss_box, music_last_action),
+            If(
+                elapsed > 11.0 and len(music_spawned) == music_total and len(music_active) == 0,
+                true = [SetScreenVariable("done", True), Return(music_hit_box[0])]
+            ),
         ]
 
-    for note in active:
+    ## Draw notes
+    for note in music_active:
         add "images/rhythm_note_music.png":
-            xpos (370 + note[0] * 90)
-            ypos int(note[1])
+            xalign note[1]
+            yalign MUSIC_LANE_Y[note[0]]
+            zoom (MUSIC_NOTE_SIZE / 50.0)
 
-    key "K_a" action Function(music_key_press, 0, active, hit_box)
-    key "K_b" action Function(music_key_press, 1, active, hit_box)
-    key "K_c" action Function(music_key_press, 2, active, hit_box)
-    key "K_d" action Function(music_key_press, 3, active, hit_box)
-
-    if elapsed > 11.0 and len(active) == 0 and not done:
-        $ done = True
-        timer 0.5 action Return(hit_box[0])
+    ## Key bindings
+    key "K_a" action [Function(music_key_press, 0), NullAction()]
+    key "K_b" action [Function(music_key_press, 1), NullAction()]
+    key "K_c" action [Function(music_key_press, 2), NullAction()]
+    key "K_d" action [Function(music_key_press, 3), NullAction()]
 
 
 label minigame_music_start:

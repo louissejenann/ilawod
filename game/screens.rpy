@@ -75,6 +75,23 @@ style frame:
     padding gui.frame_borders.padding
     background Frame("gui/frame.png", gui.frame_borders, tile=gui.frame_tile)
 
+transform fit_screen:
+    xysize (1920, 1080)
+    fit "fill"
+    xalign 0.5
+    yalign 0.5
+
+init python:
+    _bg_tags = {"intro", "bg", "wood", "mangrove", "normal", "BS", "Kitchen", "Kasag", "Lusays", "Sigays", "Spirit"}
+    _original_show = config.show
+
+    def _scaled_show(name, at_list, layer, what, zorder, tag, behind, **kwargs):
+        img_tag = tag or (name[0] if name else None)
+        if img_tag in _bg_tags and not at_list:
+            at_list = [fit_screen]
+        return _original_show(name, at_list, layer, what, zorder, tag, behind, **kwargs)
+
+    config.show = _scaled_show
 
 
 ################################################################################
