@@ -59,7 +59,7 @@ screen minigame_food():
         _cur_label = food_ingredient_labels.get(_cur, _cur.replace("_", " ").title())
         _cat_label = _cat.capitalize()
 
-    add "bg food_station.png"
+    add "bg food_station.png" fit "cover" xalign 0.5 yalign 0.5
 
     ## ── Plate preview ───────────────────────────────────────
 
