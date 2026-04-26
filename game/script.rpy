@@ -250,9 +250,10 @@ label start:
                 linear 3.0 xpos -700
 
     narrator "Kadyos barks and trots ahead."
-    scene wood_with_kadyos 
+    scene mangrove no mc
 
     "Together, they made their way deeper into the mangrove."
+    scene wood_with_kadyos 
     
     #GIF IMAHGE
 
