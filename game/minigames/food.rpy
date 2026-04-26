@@ -130,7 +130,7 @@ screen minigame_food():
 
     ## ── >> Next button (shows after a pick is made, except on last category) ──
     if _cat in selections and cat_index < 3:
-        imagebutton idle "gui/btn_arrow_right_double.png" xalign 0.85 ypos 490 action [
+        imagebutton idle "gui/btn_arrow_right.png" xalign 0.85 ypos 490 action [
             SetScreenVariable("cat_index", cat_index + 1),
             SetScreenVariable("opt_index", 0),
             SetScreenVariable("feedback",  ""),
