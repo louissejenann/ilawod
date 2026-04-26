@@ -71,7 +71,7 @@ label start:
     "The people here speak of tides, and moon, and seasons when the fish are plentiful."
     scene intro night
     
-    "... and seasons when even the nets come back empty."
+    "...and seasons when even the nets come back empty."
 
     "Beyond the village, the sea stretches wide and honest."
     #zoom intro night
