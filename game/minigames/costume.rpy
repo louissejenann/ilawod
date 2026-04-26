@@ -1,162 +1,321 @@
 ## ============================================================
-## COSTUME MINIGAME — Sigay's costumes
-## Target: 7 costumes, drag + stitch
+## COSTUME MINIGAME — Sigay's Workshop
+## Mechanic: Timed search — click correct items Sigay describes.
+## Correct items = joy materials. Wrong items = decoys.
+## Score routing preserved from original:
+##   >= 7 correct clicks → good   (sigay_good)
+##   >= 4 correct clicks → neutral (sigay_neutral)
+##   < 4 correct clicks  → bad    (sigay_bad)
+##
+## IMAGE FILES NEEDED:
+##   images/bg_sigay_workshop.png        ← your workshop background
+##   images/sigay_workshop_items.png     ← optional overlay layer
+##
+##   Correct (joy) items — should glow warmly, feel alive:
+##   images/item_teal_weave.png          ← teal diagonal fabric
+##   images/item_pincushion.png          ← the red pin cushion
+##   images/item_thread_spool.png        ← thread spool on table
+##   images/item_jellyfish_sketch.png    ← design sketch on wall
+##   images/item_sea_green_fabric.png    ← hanging sea-green swatch
+##   images/item_light_sash.png          ← the light flowing sash
+##   images/item_biolum_trim.png         ← glowing trim piece
+##
+##   Wrong (fear/decoy) items — dull, rigid, or heavy:
+##   images/item_orange_bolt.png         ← plain heavy orange fabric
+##   images/item_hoop_frame.png          ← the rigid circular frame
+##   images/item_brown_roll.png          ← the rolled brown bolt
+##   images/item_dark_drape.png          ← heavy dark drape
+##   images/item_broken_hanger.png       ← empty broken hanger
+##
+##   Feedback overlays:
+##   images/item_glow_correct.png        ← glow flash on correct click
+##   images/item_flash_wrong.png         ← red flash on wrong click
 ## ============================================================
 
+
 init python:
-    def costume_piece_dropped(drags, drop):
-        if drop is None:
-            return False
-        piece = drags[0].drag_name
-        slot  = drop.drag_name
-        correct_map = {
-            "piece_headdress" : "slot_headdress",
-            "piece_top"       : "slot_top",
-            "piece_skirt"     : "slot_skirt",
-            "piece_sash"      : "slot_sash",
-            "piece_shoes"     : "slot_shoes",
-        }
-        return correct_map.get(piece) == slot
 
-screen minigame_costume():
-    default costumes_done = 0
-    default current_slots = []
-    default stitched      = []
+    # ── Item definitions ──────────────────────────────────────
+    # Each item: position on screen, image, whether it's correct,
+    # and a hint label (shown briefly on hover if you want it)
 
-    add "images/bg costume_workshop.png"
+    SIGAY_ITEMS = [
 
-    text "Costumes: [costumes_done] / 7" xalign 0.5 ypos 20 style "minigame_title"
+        # ── CORRECT items (joy materials) ──
+        {
+            "name"    : "teal_weave",
+            "correct" : True,
+            "hint"    : "Something that moves like water",
+            "xpos"    : 120,
+            "ypos"    : 180,
+            "xsize"   : 110,
+            "ysize"   : 130,
+            "image"   : "images/item_teal_weave.png",
+        },
+        {
+            "name"    : "pincushion",
+            "correct" : True,
+            "hint"    : "Something to hold it all together",
+            "xpos"    : 860,
+            "ypos"    : 340,
+            "xsize"   : 80,
+            "ysize"   : 80,
+            "image"   : "images/item_pincushion.png",
+        },
+        {
+            "name"    : "thread_spool",
+            "correct" : True,
+            "hint"    : "The one that catches the light",
+            "xpos"    : 1340,
+            "ypos"    : 290,
+            "xsize"   : 70,
+            "ysize"   : 90,
+            "image"   : "images/item_thread_spool.png",
+        },
+        {
+            "name"    : "jellyfish_sketch",
+            "correct" : True,
+            "hint"    : "Last year's memory",
+            "xpos"    : 1100,
+            "ypos"    : 60,
+            "xsize"   : 160,
+            "ysize"   : 130,
+            "image"   : "images/item_jellyfish_sketch.png",
+        },
+        {
+            "name"    : "sea_green_fabric",
+            "correct" : True,
+            "hint"    : "The color of the sea igniting",
+            "xpos"    : 310,
+            "ypos"    : 40,
+            "xsize"   : 100,
+            "ysize"   : 160,
+            "image"   : "images/item_sea_green_fabric.png",
+        },
+        {
+            "name"    : "light_sash",
+            "correct" : True,
+            "hint"    : "Something that breathes",
+            "xpos"    : 530,
+            "ypos"    : 260,
+            "xsize"   : 90,
+            "ysize"   : 110,
+            "image"   : "images/item_light_sash.png",
+        },
+        {
+            "name"    : "biolum_trim",
+            "correct" : True,
+            "hint"    : "It glows from below",
+            "xpos"    : 750,
+            "ypos"    : 460,
+            "xsize"   : 100,
+            "ysize"   : 70,
+            "image"   : "images/item_biolum_trim.png",
+        },
 
-    add "images/costume_outline.png" xalign 0.5 ypos 60
+        # ── WRONG items (fear materials / decoys) ──
+        {
+            "name"    : "orange_bolt",
+            "correct" : False,
+            "hint"    : "",
+            "xpos"    : 420,
+            "ypos"    : 40,
+            "xsize"   : 110,
+            "ysize"   : 160,
+            "image"   : "images/item_orange_bolt.png",
+        },
+        {
+            "name"    : "hoop_frame",
+            "correct" : False,
+            "hint"    : "",
+            "xpos"    : 870,
+            "ypos"    : 120,
+            "xsize"   : 130,
+            "ysize"   : 130,
+            "image"   : "images/item_hoop_frame.png",
+        },
+        {
+            "name"    : "brown_roll_left",
+            "correct" : False,
+            "hint"    : "",
+            "xpos"    : 820,
+            "ypos"    : 380,
+            "xsize"   : 140,
+            "ysize"   : 130,
+            "image"   : "images/item_brown_roll.png",
+        },
+        {
+            "name"    : "brown_roll_right",
+            "correct" : False,
+            "hint"    : "",
+            "xpos"    : 1230,
+            "ypos"    : 390,
+            "xsize"   : 140,
+            "ysize"   : 130,
+            "image"   : "images/item_brown_roll.png",
+        },
+        {
+            "name"    : "dark_drape",
+            "correct" : False,
+            "hint"    : "",
+            "xpos"    : 600,
+            "ypos"    : 40,
+            "xsize"   : 110,
+            "ysize"   : 170,
+            "image"   : "images/item_dark_drape.png",
+        },
+        {
+            "name"    : "broken_hanger",
+            "correct" : False,
+            "hint"    : "",
+            "xpos"    : 660,
+            "ypos"    : 220,
+            "xsize"   : 80,
+            "ysize"   : 60,
+            "image"   : "images/item_broken_hanger.png",
+        },
+    ]
 
-    if "slot_headdress" in stitched:
-        add "images/costume_headdress.png" xalign 0.5 ypos 70
-    if "slot_top" in stitched:
-        add "images/costume_top.png"       xalign 0.5 ypos 160
-    if "slot_skirt" in stitched:
-        add "images/costume_skirt.png"     xalign 0.5 ypos 310
-    if "slot_sash" in stitched:
-        add "images/costume_sash.png"      xalign 0.5 ypos 290
-    if "slot_shoes" in stitched:
-        add "images/costume_shoes.png"     xalign 0.5 ypos 490
 
-    draggroup:
+## ── Screen ────────────────────────────────────────────────────
 
-        drag:
-            drag_name "slot_headdress"
-            droppable True
-            xpos 560 ypos 70
-            xsize 80 ysize 70
-            if "slot_headdress" not in stitched:
-                add "images/slot_dashed.png"
+screen sigay_search_screen():
 
-        drag:
-            drag_name "slot_top"
-            droppable True
-            xpos 545 ypos 155
-            xsize 110 ysize 130
-            if "slot_top" not in stitched:
-                add "images/slot_dashed.png"
+    # Variables local to this screen
+    default time_left    = 55           # seconds — adjust here if needed
+    default found        = []           # list of correct item names found
+    default wrong_clicks = []           # wrong items clicked (greyed out)
+    default last_click   = ""          # "correct" / "wrong" / "" for flash
+    default flash_timer  = 0           # counts down the flash display
 
-        drag:
-            drag_name "slot_sash"
-            droppable True
-            xpos 545 ypos 280
-            xsize 110 ysize 50
-            if "slot_sash" not in stitched:
-                add "images/slot_dashed.png"
+    # ── Background ──
+    add "images/bg_sigay_workshop.png"
 
-        drag:
-            drag_name "slot_skirt"
-            droppable True
-            xpos 540 ypos 300
-            xsize 120 ysize 180
-            if "slot_skirt" not in stitched:
-                add "images/slot_dashed.png"
+    # ── Timer countdown ──
+    timer 1.0 repeat True action If(
+        time_left > 0,
+        true  = SetScreenVariable("time_left", time_left - 1),
+        false = Return(len(found))
+    )
 
-        drag:
-            drag_name "slot_shoes"
-            droppable True
-            xpos 555 ypos 480
-            xsize 90 ysize 60
-            if "slot_shoes" not in stitched:
-                add "images/slot_dashed.png"
+    # ── Sigay's request — changes as timer gets low ──
+    if time_left > 35:
+        text "Sigay: \"Find me something that moves like the sea igniting — warm, alive, light from below.\"":
+            xalign 0.5 ypos 16 size 19 color "#F0E6C8"
+    elif time_left > 15:
+        text "Sigay: \"Hurry — something flowing, something that glows — not the heavy ones, not the rigid ones—\"":
+            xalign 0.5 ypos 16 size 19 color "#FAC775"
+    else:
+        text "Sigay: \"Anything — just not the dull ones — please—\"":
+            xalign 0.5 ypos 16 size 19 color "#F09595"
 
-        if "slot_headdress" not in current_slots and "slot_headdress" not in stitched:
-            drag:
-                drag_name "piece_headdress"
-                draggable True
-                xpos 80 ypos 80
-                dragged costume_piece_dropped
-                dropped SetScreenVariable("current_slots", current_slots + ["slot_headdress"])
-                add "images/piece_headdress.png"
+    # ── Timer display ──
+    text "[time_left]s":
+        xpos 30 ypos 20 size 26
+        color ("#F09595" if time_left <= 15 else "#FAC775")
 
-        if "slot_top" not in current_slots and "slot_top" not in stitched:
-            drag:
-                drag_name "piece_top"
-                draggable True
-                xpos 80 ypos 180
-                dragged costume_piece_dropped
-                dropped SetScreenVariable("current_slots", current_slots + ["slot_top"])
-                add "images/piece_top.png"
+    # ── Found counter ──
+    text "Found: [len(found)] / 7":
+        xpos 1180 ypos 20 size 22 color "#9FE1CB"
 
-        if "slot_sash" not in current_slots and "slot_sash" not in stitched:
-            drag:
-                drag_name "piece_sash"
-                draggable True
-                xpos 1060 ypos 180
-                dragged costume_piece_dropped
-                dropped SetScreenVariable("current_slots", current_slots + ["slot_sash"])
-                add "images/piece_sash.png"
+    # ── Items ──
+    for item in SIGAY_ITEMS:
 
-        if "slot_skirt" not in current_slots and "slot_skirt" not in stitched:
-            drag:
-                drag_name "piece_skirt"
-                draggable True
-                xpos 1060 ypos 300
-                dragged costume_piece_dropped
-                dropped SetScreenVariable("current_slots", current_slots + ["slot_skirt"])
-                add "images/piece_skirt.png"
+        $ already_found  = item["name"] in found
+        $ already_wrong  = item["name"] in wrong_clicks
 
-        if "slot_shoes" not in current_slots and "slot_shoes" not in stitched:
-            drag:
-                drag_name "piece_shoes"
-                draggable True
-                xpos 80 ypos 430
-                dragged costume_piece_dropped
-                dropped SetScreenVariable("current_slots", current_slots + ["slot_shoes"])
-                add "images/piece_shoes.png"
-
-    for slot in current_slots:
-        if slot not in stitched:
+        if not already_found and not already_wrong:
             imagebutton:
-                idle  "gui/btn_stitch.png"
-                hover "gui/btn_stitch.png"
-                xalign 0.5
-                ypos 570
-                action SetScreenVariable("stitched", stitched + [slot])
+                idle  item["image"]
+                hover item["image"]
+                xpos  item["xpos"]
+                ypos  item["ypos"]
+                xsize item["xsize"]
+                ysize item["ysize"]
 
-    text "Stitched: [len(stitched)] / 5" xpos 60 ypos 600 color "#ffffff"
+                action If(
+                    item["correct"],
+                    # Correct — add to found, trigger correct flash
+                    true = [
+                        SetScreenVariable("found", found + [item["name"]]),
+                        SetScreenVariable("last_click", "correct"),
+                        SetScreenVariable("flash_timer", 3),
+                        If(
+                            len(found) + 1 >= 7,
+                            true = Return(len(found) + 1),
+                            false = NullAction()
+                        )
+                    ],
+                    # Wrong — grey it out, trigger wrong flash
+                    false = [
+                        SetScreenVariable("wrong_clicks", wrong_clicks + [item["name"]]),
+                        SetScreenVariable("last_click", "wrong"),
+                        SetScreenVariable("flash_timer", 3),
+                    ]
+                )
 
-    if len(stitched) == 5:
-        timer 0.5 action [
-            SetScreenVariable("costumes_done", costumes_done + 1),
-            SetScreenVariable("current_slots", []),
-            SetScreenVariable("stitched", []),
-        ]
-        text "Costume complete!" xalign 0.5 ypos 630 style "minigame_success"
+        # Greyed out — already grabbed (wrong) or found (correct)
+        elif already_found:
+            add item["image"]:
+                xpos  item["xpos"]
+                ypos  item["ypos"]
+                xsize item["xsize"]
+                ysize item["ysize"]
+                alpha 0.35
 
-    if costumes_done >= 7:
-        timer 0.5 action Return(7)
+        elif already_wrong:
+            add item["image"]:
+                xpos  item["xpos"]
+                ypos  item["ypos"]
+                xsize item["xsize"]
+                ysize item["ysize"]
+                alpha 0.2
 
+    # ── Click feedback flash ──
+    if flash_timer > 0:
+        timer 0.3 repeat True action SetScreenVariable(
+            "flash_timer", max(0, flash_timer - 1)
+        )
+        if last_click == "correct":
+            text "✓ That's it!":
+                xalign 0.5 ypos 580 size 28 color "#9FE1CB"
+        elif last_click == "wrong":
+            text "✗ Not this one.":
+                xalign 0.5 ypos 580 size 28 color "#F09595"
+
+    # ── Time up overlay ──
+    if time_left <= 0:
+        frame:
+            xalign 0.5 yanchor 0.5 ypos 360
+            background "#000000CC"
+            padding (40, 24)
+            vbox:
+                spacing 14
+                text "The tide turned.":
+                    xalign 0.5 size 28 color "#FAC775"
+                text "Items found: [len(found)] / 7":
+                    xalign 0.5 size 22 color "#C8B89A"
+                textbutton "Show Sigay what you found →":
+                    xalign 0.5
+                    action Return(len(found))
+                    background "#1A3A1A"
+                    hover_background "#2A5A2A"
+                    padding (16, 10)
+
+
+## ── Label ─────────────────────────────────────────────────────
 
 label minigame_costume_start:
-    sigay "The costumes need to come alive. Help me put them together — drag each piece and stitch it in place!"
-    narrator "Drag pieces to the dashed slots, then click Stitch to confirm. Complete all 7 costumes!"
-    call screen minigame_costume
+
+    sigay "The studio is — I know it looks like chaos, it IS chaos, but everything I need is in here somewhere."
+    sigay "Find me what I'm looking for. Something that moves. Something alive. Not the heavy ones. Not the rigid ones."
+    narrator "Click the right materials before the tide turns. Listen to what Sigay is describing."
+
+    call screen sigay_search_screen
 
     $ costumes_made = _return
 
+    ## ── Score routing — preserved from original ──
     if costumes_made >= 7:
         $ score_costume = 3
         jump sigay_good
