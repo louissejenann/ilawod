@@ -30,7 +30,7 @@ screen minigame_props():
     add "images/Lusays workshop.png"
 
     text "Time: [time_left]s"            xpos 60  ypos 30 style "minigame_title"
-    text "Lanterns: [lanterns_done] / 7" xpos 850 ypos 30 style "minigame_title"
+    text "Lanterns: [lanterns_done] / 7" xpos 1630 ypos 30 style "minigame_title"
 
     timer 1.0 repeat True action If(
         time_left > 0,
@@ -38,7 +38,7 @@ screen minigame_props():
         false = Return(lanterns_done)
     )
 
-    add "images/Lantern_Line_Jellyfish.png" xalign 0.5 ypos 120
+    add "images/Lantern_Line_Jellyfish.png" xalign 0.5 ypos 0
 
     draggroup:
         # SLOTS (Targets)
