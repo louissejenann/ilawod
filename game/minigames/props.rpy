@@ -29,7 +29,7 @@ screen minigame_props():
     default lanterns_done = 0
     default current_slots = []
 
-    add "images/bg props_workshop.png"
+    add "images/Lusays workshop.png"
 
     text "Time: [time_left]s"            xpos 60  ypos 30 style "minigame_title"
     text "Lanterns: [lanterns_done] / 7" xpos 850 ypos 30 style "minigame_title"
