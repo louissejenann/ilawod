@@ -307,7 +307,7 @@ screen sigay_search_screen():
 
 label minigame_costume_start:
 
-    sigay "The studio is — I know it looks like chaos, it IS chaos, but everything I need is in here somewhere."
+    sigay "The studio is... I know it looks like chaos, it IS chaos, but everything I need is in here somewhere."
     sigay "Find me what I'm looking for. Something that moves. Something alive. Not the heavy ones. Not the rigid ones."
     narrator "Click the right materials before the tide turns. Listen to what Sigay is describing."
 
