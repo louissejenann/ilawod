@@ -90,57 +90,57 @@ screen minigame_props():
         # PIECES (Draggables)
         if "slot_1" not in current_slots:
             drag:
-                drag_name "piece_1" draggable True xpos 80 ypos 130
+                drag_name "piece_1" draggable True xpos 50 ypos 80
                 dragged lantern_piece_dropped
                 add "images/Lantern_1P_Jellyfish.png"
         if "slot_2" not in current_slots:
             drag:
-                drag_name "piece_2" draggable True xpos 80 ypos 200
+                drag_name "piece_2" draggable True xpos 1200 ypos 30
                 dragged lantern_piece_dropped
                 add "images/Lantern_2P_Jellyfish.png"
         if "slot_3" not in current_slots:
             drag:
-                drag_name "piece_3" draggable True xpos 80 ypos 270
+                drag_name "piece_3" draggable True xpos 1300 ypos 340
                 dragged lantern_piece_dropped
                 add "images/Lantern_3P_Jellyfish.png"
         if "slot_4" not in current_slots:
             drag:
-                drag_name "piece_4" draggable True xpos 80 ypos 340
+                drag_name "piece_4" draggable True xpos 1490 ypos 500
                 dragged lantern_piece_dropped
                 add "images/Lantern_4P_Jellyfish.png"
         if "slot_5" not in current_slots:
             drag:
-                drag_name "piece_5" draggable True xpos 1050 ypos 130
+                drag_name "piece_5" draggable True xpos 344 ypos 40
                 dragged lantern_piece_dropped
                 add "images/Lantern_5P_Jellyfish.png"
         if "slot_6" not in current_slots:
             drag:
-                drag_name "piece_6" draggable True xpos 1050 ypos 200
+                drag_name "piece_6" draggable True xpos 1610 ypos 280
                 dragged lantern_piece_dropped
                 add "images/Lantern_6P_Jellyfish.png"
         if "slot_7" not in current_slots:
             drag:
-                drag_name "piece_7" draggable True xpos 1050 ypos 270
+                drag_name "piece_7" draggable True xpos 230 ypos 300
                 dragged lantern_piece_dropped
                 add "images/Lantern_7P_Jellyfish.png"
         if "slot_8" not in current_slots:
             drag:
-                drag_name "piece_8" draggable True xpos 1050 ypos 340
+                drag_name "piece_8" draggable True xpos 980 ypos 500
                 dragged lantern_piece_dropped
                 add "images/Lantern_8P_Jellyfish.png"
         if "slot_9" not in current_slots:
             drag:
-                drag_name "piece_9" draggable True xpos 1050 ypos 410
+                drag_name "piece_9" draggable True xpos 660 ypos 60
                 dragged lantern_piece_dropped
                 add "images/Lantern_9P_Jellyfish.png"
         if "slot_10" not in current_slots:
             drag:
-                drag_name "piece_10" draggable True xpos 80 ypos 410
+                drag_name "piece_10" draggable True xpos 60 ypos 750
                 dragged lantern_piece_dropped
                 add "images/Lantern_10P_Jellyfish.png"
         if "slot_11" not in current_slots:
             drag:
-                drag_name "piece_11" draggable True xpos 80 ypos 480
+                drag_name "piece_11" draggable True xpos 420 ypos 580
                 dragged lantern_piece_dropped
                 add "images/Lantern_11P_Jellyfish.png"
 
