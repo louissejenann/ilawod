@@ -59,7 +59,7 @@ Your final score across the five festival preparations determines the outcome:
 
 ## Built With
 
-- [Ren'Py](https://www.renpy.org/) — Visual Novel Engine
+- [Ren'Py 8.5.2](https://www.renpy.org/) — Visual Novel Engine
 - Custom UI and styling via `screens.rpy` and `style.rpy`
 - Original assets: backgrounds, character art, music, and fonts
 
