@@ -29,6 +29,7 @@ default score_props       = 0
 default total_score       = 0
 ## ──────────────────────────────────────────────────────────────
 
+image background moving = Movie(play= "images/Comp1.webm")
 
 label start:
 
@@ -255,7 +256,7 @@ label start:
     "Together, they made their way deeper into the mangrove."
     scene wood_with_kadyos 
     
-    #GIF IMAHGE
+    show background moving
 
     "The air grew thicker, the trees taller, their roots twisting like ancient arms reaching for the sky."
 
