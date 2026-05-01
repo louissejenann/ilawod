@@ -131,7 +131,7 @@ screen say(who, what):
 
             hbox:
                 xpos 883
-                ypos 336
+                ypos 334
                 xanchor 0.5
                 spacing -50
                 style "quick_menu"
@@ -207,7 +207,7 @@ style narrator_window is say_window:
 
 #DEFAULT BELOW
 style window:
-    ypos 990
+    ypos 993
     xpos 76 
     xfill True
     yalign gui.textbox_yalign
