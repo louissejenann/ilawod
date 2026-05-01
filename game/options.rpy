@@ -65,7 +65,6 @@ define config.has_voice = True
 
 define config.main_menu_music = "main-menu-theme.ogg"
 
-
 ## Transitions #################################################################
 ##
 ## These variables set transitions that are used when certain events occur.

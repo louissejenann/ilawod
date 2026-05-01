@@ -90,6 +90,10 @@ define gui.title_text_size = 75
 define gui.main_menu_background = "gui/main_menu.png"
 define gui.game_menu_background = "gui/game_menu.png"
 
+style main_menu_button:
+    hover_sound "audio/hover-bubble.ogg"
+    activate_sound "audio/click-bubble.ogg"
+
 
 ## Dialogue ####################################################################
 ##
