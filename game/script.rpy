@@ -27,9 +27,15 @@ default score_dance       = 0
 default score_music       = 0
 default score_props       = 0
 default total_score       = 0
+
+## Background
+image background moving = Movie(play= "images/Comp1.webm")
+
+## Music
+
+
 ## ──────────────────────────────────────────────────────────────
 
-image background moving = Movie(play= "images/Comp1.webm")
 
 label start:
 
