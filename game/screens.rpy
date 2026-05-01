@@ -463,9 +463,13 @@ style navigation_button:
 style navigation_button_text:
     properties gui.text_properties("navigation_button")
 
-style navigation_button:
+style button:
     size_group "navigation"
     properties gui.button_properties("navigation_button")
+    hover_sound "audio/hover-bubble.ogg"
+    activate_sound "audio/click-bubble.ogg"
+
+style image_button:
     hover_sound "audio/hover-bubble.ogg"
     activate_sound "audio/click-bubble.ogg"
 
