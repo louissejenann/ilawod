@@ -123,15 +123,40 @@ screen say(who, what):
             window:
                 id "namebox"
                 style "namebox"
-                text who id "who"
+
+                if who == "Kilaw":
+                    add "gui/namebox_kilaw.png" xalign gui.name_xalign
+                elif who == "Ba-O":
+                    add "gui/namebox_ba_o.png" xalign gui.name_xalign
+                elif who == "Toto":
+                    add "gui/namebox_toto.png" xalign gui.name_xalign
+                elif who == "Dawa":
+                    add "gui/namebox_dawa.png" xalign gui.name_xalign
+                elif who == "Sigay":
+                    add "gui/namebox_sigay.png" xalign gui.name_xalign
+                elif who == "Sili-Sili":
+                    add "gui/namebox_sili.png" xalign gui.name_xalign
+                elif who == "Bilong-Bilong":
+                    add "gui/namebox_bilo.png" xalign gui.name_xalign
+                elif who == "Kasag":
+                    add "gui/namebox_kasag.png" xalign gui.name_xalign
+                elif who == "Lusay":
+                    add "gui/namebox_lusay.png" xalign gui.name_xalign
+                elif who == "???":
+                    add "gui/namebox_unknown.png" xalign gui.name_xalign
+                else:
+                    add "gui/namebox.png" xalign gui.name_xalign
+
+                #text who id "who"
 
         text what id "what" 
 
-        if who is None:
+        #BUTTON INGAME
+        if True:
 
             hbox:
-                xpos 883
-                ypos 334
+                xpos 960
+                ypos 290
                 xanchor 0.5
                 spacing -50
                 style "quick_menu"
@@ -152,36 +177,9 @@ screen say(who, what):
                     idle "gui/ig_settings.png"
                     action ShowMenu("preferences")
 
-        else:
-
-            hbox:
-                xpos 883
-                ypos 379
-                xanchor 0.5
-                spacing -50
-                style "quick_menu"
-
-                imagebutton:
-                    idle "gui/ig_log.png"
-                    action ShowMenu("history")
-                imagebutton:
-                    idle "gui/ig_skip.png"
-                    action Skip()
-                imagebutton:
-                    idle "gui/ig_save.png"
-                    action ShowMenu("save")
-                imagebutton:
-                    idle "gui/ig_load.png"
-                    action ShowMenu("load")
-                imagebutton:
-                    idle "gui/ig_settings.png"
-                    action ShowMenu("preferences")
         
 
     #INGAME BUTTONS
-    
-
-
     ## If there's a side image, display it above the text. Do not display on the
     ## phone variant - there's no room.
     if not renpy.variant("small"):
@@ -202,13 +200,10 @@ style namebox_label is say_label
 
 #ADDED TEXTBOX FOR EACH PURPOSES:
 
-style narrator_window is say_window:
-    background "gui/textbox_narrator.png"
-
 #DEFAULT BELOW
 style window:
-    ypos 993
-    xpos 76 
+    ypos 1045
+    xpos 00
     xfill True
     yalign gui.textbox_yalign
     ysize gui.textbox_height
@@ -216,26 +211,49 @@ style window:
     background Image("gui/textbox_narrator.png", xalign=0.5, yalign=1.0)
     #narrator
 
-style character_window is say_window:
-    background "gui/textbox_characterdialogue.png"
-    xpos 76
-    ypos 920
-    xsize 1280
-    ysize 250
-    #characterdialogue
-
-
 
 #CHARACTER NAME
 style namebox:
     xpos 660
     xanchor gui.name_xalign
     xsize gui.namebox_width
-    ypos 18
+    ypos -90
     ysize gui.namebox_height
-
-    background Frame("gui/namebox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
+    background None                  # ← change this line
     padding gui.namebox_borders.padding
+
+## ── Per-character namebox image styles ──────────────────────
+
+# Base for all character nameboxes — inherits position from namebox
+style namebox_char is namebox:
+    xsize None   # let the image define its own width
+    ysize None
+    padding (0, 0, 0, 0)
+    background None  # image handles everything
+
+# One style per character — swap the filename to match your gui folder
+style namebox_kilaw_label    is say_label:
+    xalign 0.5
+style namebox_ba_o_label     is say_label:
+    xalign 0.5
+style namebox_toto_label     is say_label:
+    xalign 0.5
+style namebox_lusay_label    is say_label:
+    xalign 0.5
+style namebox_sili_label     is say_label:
+    xalign 0.5
+style namebox_bilo_label     is say_label:
+    xalign 0.5
+style namebox_kasag_label    is say_label:
+    xalign 0.5
+style namebox_sigay_label    is say_label:
+    xalign 0.5
+style namebox_dawa_label     is say_label:
+    xalign 0.5
+style namebox_kadyos_label   is say_label:
+    xalign 0.5
+style namebox_unknown_label  is say_label:
+    xalign 0.5
 
 style say_label:
     properties gui.text_properties("name", accent=True)

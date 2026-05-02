@@ -3,18 +3,17 @@
 #define e = Character("Eileen") -- DEFAULT ALREADY THERE
 
 define narrator = Character(None, window_style="narrator_window")
-define kilaw     = Character("Kilaw",        window_style="character_window")
-define kadyos    = Character("Kadyos",       window_style="character_window")
-define ba_o      = Character("Ba-O",         window_style="character_window")
-define toto      = Character("Toto",         window_style="character_window")
-define lusay     = Character("Lusay",        window_style="character_window")
-define sili      = Character("Sili-Sili",    window_style="character_window")
-define bilo      = Character("Bilong-Bilong",window_style="character_window")
-define kasag     = Character("Kasag",        window_style="character_window")
-define sigay     = Character("Sigay",        window_style="character_window")
-define dawa      = Character("Dawa",         window_style="character_window")
-define unknown   = Character("???",          window_style="character_window")
-
+define kilaw    = Character("Kilaw",         window_style="character_window", what_style="character_dialogue", who_style="namebox_kilaw_label")
+define kadyos   = Character("Kadyos",        window_style="character_window", who_style="namebox_kadyos_label")
+define ba_o     = Character("Ba-O",          window_style="character_window", who_style="namebox_ba_o_label")
+define toto     = Character("Toto",          window_style="character_window", who_style="namebox_toto_label")
+define lusay    = Character("Lusay",         window_style="character_window", who_style="namebox_lusay_label")
+define sili     = Character("Sili-Sili",     window_style="character_window", who_style="namebox_sili_label")
+define bilo     = Character("Bilong-Bilong", window_style="character_window", who_style="namebox_bilo_label")
+define kasag    = Character("Kasag",         window_style="character_window", who_style="namebox_kasag_label")
+define sigay    = Character("Sigay",         window_style="character_window", who_style="namebox_sigay_label")
+define dawa     = Character("Dawa",          window_style="character_window", who_style="namebox_dawa_label")
+define unknown  = Character("???",           window_style="character_window", who_style="namebox_unknown_label")
 
 ## Choices tracking
 default seen_what_is_this = False
