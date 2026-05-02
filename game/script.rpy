@@ -2,8 +2,8 @@
 
 #define e = Character("Eileen") -- DEFAULT ALREADY THERE
 
-define narrator = Character(None, window_style="narrator_window")
-define kilaw    = Character("Kilaw",         window_style="character_window", what_style="character_dialogue", who_style="namebox_kilaw_label")
+define narrator = Character(None,            window_style="narrator_window")
+define kilaw    = Character("Kilaw",         window_style="character_window", who_style="namebox_kilaw_label")
 define kadyos   = Character("Kadyos",        window_style="character_window", who_style="namebox_kadyos_label")
 define ba_o     = Character("Ba-O",          window_style="character_window", who_style="namebox_ba_o_label")
 define toto     = Character("Toto",          window_style="character_window", who_style="namebox_toto_label")
