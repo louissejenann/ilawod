@@ -692,6 +692,7 @@ style game_menu_side is gui_side
 style game_menu_scrollbar is gui_vscrollbar
 
 style game_menu_label is gui_label
+
 style game_menu_label_text is gui_label_text:
     font "fonts/knewave.ttf"
     xalign 0.5
