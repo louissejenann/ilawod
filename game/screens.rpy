@@ -694,6 +694,9 @@ style game_menu_scrollbar is gui_vscrollbar
 style game_menu_label is gui_label
 style game_menu_label_text is gui_label_text:
     font "fonts/knewave.ttf"
+    xalign 0.5
+    yalign 0.9
+    color "#0A2735"
 
 style return_button is navigation_button
 style return_button_text is navigation_button_text
