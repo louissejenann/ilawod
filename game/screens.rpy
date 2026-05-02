@@ -850,19 +850,24 @@ screen file_slots(title):
                         key "save_delete" action FileDelete(slot)
 
             ## Buttons to access other pages.
-            vbox:
+            default cur_page = 1
+
+            hbox:
                 style_prefix "page"
+                xalign 1.0
+                yalign 0.5
+                spacing 0
 
-                xalign 0.5
-                yalign 1.0
-
-                hbox:
+                vbox:
                     xalign 0.5
+                    spacing 5
 
-                    spacing gui.page_spacing
+                    $ _fp = persistent._file_page
+                    $ _cur = int(_fp) if str(_fp).isdigit() else 1
+                    $ _start = max(1, min(_cur, 6))
 
-                    textbutton _("<") action FilePagePrevious()
-                    key "save_page_prev" action FilePagePrevious()
+                    textbutton _("▲") action FilePage(max(1, _cur - 1))
+                    key "save_page_prev" action FilePage(max(1, _cur - 1))
 
                     if config.has_autosave:
                         textbutton _("{#auto_page}A") action FilePage("auto")
@@ -870,24 +875,26 @@ screen file_slots(title):
                     if config.has_quicksave:
                         textbutton _("{#quick_page}Q") action FilePage("quick")
 
-                    ## range(1, 10) gives the numbers from 1 to 9.
-                    for page in range(1, 10):
-                        textbutton "[page]" action FilePage(page)
+                    for page in range(_start, _start + 4):
+                        textbutton "[page]":
+                            action FilePage(page)
+                            selected (_cur == page)
 
-                    textbutton _(">") action FilePageNext()
-                    key "save_page_next" action FilePageNext()
+                    textbutton _("▼") action FilePage(min(9, _cur + 1))
+                    key "save_page_next" action FilePage(min(9, _cur + 1))
 
-                if config.has_sync:
-                    if CurrentScreenName() == "save":
-                        textbutton _("Upload Sync"):
-                            action UploadSync()
-                            xalign 0.5
-                            yalign 0.5
-                    else:
-                        textbutton _("Download Sync"):
-                            action DownloadSync()
-                            xalign 0.5
-                            yalign 0.5
+            ## Sync button below the grid
+            if config.has_sync:
+                if CurrentScreenName() == "save":
+                    textbutton _("Upload Sync"):
+                        action UploadSync()
+                        xalign 0.5
+                        yalign 0.96
+                else:
+                    textbutton _("Download Sync"):
+                        action DownloadSync()
+                        xalign 0.5
+                        yalign 0.96
 
 
 style page_label is gui_label
