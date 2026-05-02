@@ -195,6 +195,9 @@ style say_thought is say_dialogue
 style namebox is default
 style namebox_label is say_label
 
+style narrator_dialogue is say_dialogue:
+    ypos 30
+
 #ADDED TEXTBOX FOR EACH PURPOSES:
 
 #DEFAULT BELOW
