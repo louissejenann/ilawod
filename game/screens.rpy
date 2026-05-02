@@ -211,7 +211,7 @@ style window:
 
 #CHARACTER NAME
 style namebox:
-    xpos 460
+    xpos 370
     xanchor gui.name_xalign
     xsize gui.namebox_width
     ypos -90
