@@ -156,7 +156,7 @@ screen say(who, what):
 
             hbox:
                 xpos 960
-                ypos 290
+                ypos 300
                 xanchor 0.5
                 spacing -50
                 style "quick_menu"
@@ -214,7 +214,7 @@ style window:
 
 #CHARACTER NAME
 style namebox:
-    xpos 660
+    xpos 460
     xanchor gui.name_xalign
     xsize gui.namebox_width
     ypos -90
