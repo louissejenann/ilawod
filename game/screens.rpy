@@ -117,35 +117,32 @@ screen say(who, what):
     window:
         id "window"
 
+        window:
+            id "namebox"
+            style "namebox"
 
-        if who is not None:
-
-            window:
-                id "namebox"
-                style "namebox"
-
-                if who == "Kilaw":
-                    add "gui/namebox_kilaw.png" xalign gui.name_xalign
-                elif who == "Ba-O":
-                    add "gui/namebox_ba_o.png" xalign gui.name_xalign
-                elif who == "Toto":
-                    add "gui/namebox_toto.png" xalign gui.name_xalign
-                elif who == "Dawa":
-                    add "gui/namebox_dawa.png" xalign gui.name_xalign
-                elif who == "Sigay":
-                    add "gui/namebox_sigay.png" xalign gui.name_xalign
-                elif who == "Sili-Sili":
-                    add "gui/namebox_sili.png" xalign gui.name_xalign
-                elif who == "Bilong-Bilong":
-                    add "gui/namebox_bilo.png" xalign gui.name_xalign
-                elif who == "Kasag":
-                    add "gui/namebox_kasag.png" xalign gui.name_xalign
-                elif who == "Lusay":
-                    add "gui/namebox_lusay.png" xalign gui.name_xalign
-                elif who == "???":
-                    add "gui/namebox_unknown.png" xalign gui.name_xalign
-                else:
-                    add "gui/namebox.png" xalign gui.name_xalign
+            if who == "Kilaw":
+                add "gui/namebox_kilaw.png" xalign gui.name_xalign
+            elif who == "Ba-O":
+                add "gui/namebox_ba_o.png" xalign gui.name_xalign
+            elif who == "Toto":
+                add "gui/namebox_toto.png" xalign gui.name_xalign
+            elif who == "Dawa":
+                add "gui/namebox_dawa.png" xalign gui.name_xalign
+            elif who == "Sigay":
+                add "gui/namebox_sigay.png" xalign gui.name_xalign
+            elif who == "Sili-Sili":
+                add "gui/namebox_sili.png" xalign gui.name_xalign
+            elif who == "Bilong-Bilong":
+                add "gui/namebox_bilo.png" xalign gui.name_xalign
+            elif who == "Kasag":
+                add "gui/namebox_kasag.png" xalign gui.name_xalign
+            elif who == "Lusay":
+                add "gui/namebox_lusay.png" xalign gui.name_xalign
+            elif who == "???":
+                add "gui/namebox_unknown.png" xalign gui.name_xalign
+            else:
+                add "gui/namebox.png" xalign gui.name_xalign
 
                 #text who id "who"
 
@@ -198,6 +195,9 @@ style say_thought is say_dialogue
 style namebox is default
 style namebox_label is say_label
 
+style narrator_dialogue is say_dialogue:
+    ypos 30
+
 #ADDED TEXTBOX FOR EACH PURPOSES:
 
 #DEFAULT BELOW
@@ -214,7 +214,7 @@ style window:
 
 #CHARACTER NAME
 style namebox:
-    xpos 460
+    xpos 370
     xanchor gui.name_xalign
     xsize gui.namebox_width
     ypos -90
