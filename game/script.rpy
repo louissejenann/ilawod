@@ -27,8 +27,11 @@ default score_music       = 0
 default score_props       = 0
 default total_score       = 0
 
+## Layers
+init python:
+    config.layers = ["master", "foreground", "transient", "screens", "overlay"]
+
 ## Background
-image background moving = Movie(play= "images/Comp1.webm")
 
 ## Music
 
@@ -253,29 +256,42 @@ label start:
     
     show happy kilaw kadyos:
                 xpos 900
-                linear 3.0 xpos -700
+                linear 3.0 xpos -900
 
     narrator "Kadyos barks and trots ahead."
-    scene mangrove no mc
 
-    "Together, they made their way deeper into the mangrove."
-    scene wood_with_kadyos 
-    
     show background moving
+    
+    "Together, they made their way deeper into the mangrove."
 
     "The air grew thicker, the trees taller, their roots twisting like ancient arms reaching for the sky."
-
+    
+    scene bushes background with fade
+    
     # BOATT! ----------- 
 
     narrator "You saw something at the corner of your eyes."
+
+    scene bushes background2 with hpunch
+    show kilaw looking with hpunch
+
     "You push through a wall of bushes and gasp."
+
     "You found it in a small clearing where the water had pulled back, an old wooden boat, worn and patient, sitting half-in, half-out of the mud."
 
+    hide kilaw looking
+    show kilaw looking happy
+
     kilaw "A boat?"
+
+    scene boat scene with dissolve
 
     narrator "You looked at the boat with careful attention."
     "In your village, there was a rituals seafarers practiced which involved chanting before fishing or sea raids."
     "If the boat swayed, the spirits blessed the trip."
+
+    scene boat light with dissolve
+
     "The greater the movement, the greater the fortune! Or so they say."
     "The boat shifted, barely, just a lean, before settling." 
     "You blinked your eyes. you thought you saw a light." 
@@ -293,7 +309,7 @@ label start:
 
     # CHOICES: YOU FOUND A BOAT ------------------
     menu: 
-        "Take the boat along with Kadyos":
+        "Take the boat with Kadyos":
             jump route_take_the_boat
         
         "Stay on Land":
@@ -318,6 +334,8 @@ label start:
         "Even some wild kangkong near the water's edge."
 
         kilaw "Ha. Mom would be proud. Fresh greens, fresh fish. Better than the our own traders brought."
+
+        show boat scene 
 
         narrator "You passed by the boat as you went home. It still sits there, old and patient, as if waiting."
 
@@ -381,9 +399,13 @@ label start:
 
 
     label route_take_the_boat:
+        show boat scene2 with dissolve
+
         kilaw "I'll take that as a yes. Let's go!"
 
         narrator "You grab the edge of the old wooden hull and haul yourself in, arm already extended."
+
+        scene boat in with dissolve
 
         kilaw "All aboard! Let's see what secrets this mangrove's been hiding."
 
