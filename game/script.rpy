@@ -32,6 +32,7 @@ init python:
     config.layers = ["master", "foreground", "transient", "screens", "overlay"]
 
 ## Background
+image background moving = Movie(play= "images/Comp1.webm")
 
 ## Music
 
@@ -292,7 +293,8 @@ label start:
 
     scene boat light with dissolve
 
-    "The greater the movement, the greater the fortune! Or so they say."
+    "The greater the movement, the greater the fortune!"
+    "Or so they say."
     "The boat shifted, barely, just a lean, before settling." 
     "You blinked your eyes. you thought you saw a light." 
     "The water reflection hitting your eyes."
@@ -335,7 +337,7 @@ label start:
 
         kilaw "Ha. Mom would be proud. Fresh greens, fresh fish. Better than the our own traders brought."
 
-        show boat scene 
+        show boat light with dissolve
 
         narrator "You passed by the boat as you went home. It still sits there, old and patient, as if waiting."
 
@@ -348,9 +350,13 @@ label start:
 
         
         label route_go_for_an_adventure:
+            show boat scene2 with dissolve
+
             narrator "You paused. You look at the boat. You look at Kadyos."
 
             kilaw "...Ugh. Okay. Just a little look. Ten minutes. Then we go home."
+
+            show boat in with dissolve
 
             narrator "You grab Kadyos and tie your food for later. You step into the boat together."
 
@@ -373,19 +379,26 @@ label start:
 
             narrator "Kadyos trots after you, tail going. He glances back at the boat once, just once, then follows"
 
-            "By the time you reach the stilts the sky is the color of cooling embers, and the smell of woodsmoke and neighbor-cooking is the best thing you've encountered all day." 
+            "By the time you reach the stilts the sky is the color of cooling embers."
+            "The smell of woodsmoke and neighbor-cooking is the best thing you've encountered all day." 
             
-            "Your mother scolds you for coming back without fish. You show her the kangkong and the bayabas and the mudskippers, and she scolds you less."
+            "Your mother scolds you for coming back without fish."
+            "You show her the kangkong and the bayabas and the mudskippers, and she scolds you less."
             
-            "You cook together. It's good. It's a normal evening. You sleep."
+            "You cook together."
+            "It's good. It was a normal evening."
+            "You went to sleep."
 
             "Behind the village, in the deep water hours, the mangrove is very quiet."
             
             "The men on the night watch stand at the treeline and face it, the way they always do."
 
-            "The festival does not fall apart loudly. It falls apart the way a net comes undone, one thread, then another, then a hole where the fish slip through."
+            "The festival does not fall apart loudly."
+            "It falls apart the way a net comes undone, one thread, then another, then a hole where the fish slip through."
 
-            "You wake to darkness. Not the soft darkness of early morning — the other kind. The kind that sits wrong on the skin."
+            "You wake to darkness."
+            "Not the soft darkness of early morning."
+            "The other kind. The kind that sits wrong on the skin."
 
             "You light a lantern."
 
