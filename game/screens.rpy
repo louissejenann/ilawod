@@ -725,9 +725,9 @@ style game_menu_navigation_frame:
     yfill True
 
 style game_menu_content_frame:
-    left_margin 60
+    left_margin 160
     right_margin 30
-    top_margin 15
+    top_margin 0
 
 style game_menu_viewport:
     xsize 1380
@@ -964,6 +964,8 @@ screen preferences():
 
             hbox:
                 box_wrap True
+                yoffset 50
+                xoffset 0
 
                 if renpy.variant("pc") or renpy.variant("web"):
 
