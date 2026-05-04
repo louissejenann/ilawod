@@ -45,66 +45,66 @@ label start:
 
     #PROLOGUE -- PANHUY-AN
 
+    scene intro sun with Fade(0.5, 0.3, 0.8)
     narrator "There is a place where the sea does not end and the land does not begin."
-    scene intro sun
-
+    
+    scene intro village 
     "At the far edge of the island, where the land loosens its grip and gives way to the tide, lies a quiet village called Panhuy-an."
 
     narrator "The houses stand on stilts above shallow breathing water. Wooden floors creak with every step."
-    scene intro village 
-
-    "Banca boats rest loosely tied to posts, hollowed from trees older than the people who carved them."
-    scene intro morning village
-
-    "The sea feeds the village." 
-    scene intro fisher
     
-    "The village, in turn, learns never to take more than it is given."
+    scene intro morning village
+    "Banca boats rest loosely tied to posts, hollowed from trees older than the people who carved them."
+    
+    scene intro fisher
+    "The sea feeds the village." 
+    
     scene intro village2
-
-    "In the mornings, the elders watch the horizon."
+    "The village, in turn, learns never to take more than it is given."
+    
     scene intro village3
-
+    "In the mornings, the elders watch the horizon."
+    
     "Morning smells of salt and smoke. Children run between the stilts"
     
-    "Neighbors call to each other across the water."
     scene intro caught fish
-
+    "Neighbors call to each other across the water."
+    
+    scene intro children
     "The old lecturing the young."
 
     "The whole village moves with the easy rhythm of a place that knows itself."
 
     "The evening carries distant laughter, the sound of wind and waves folding into each other."
-    scene intro children
 
+    scene intro night #with zoom 
     "The people here speak of tides, and moon, and seasons when the fish are plentiful."
-    scene intro night
-    
+   
     "...and seasons when even the nets come back empty."
 
     "Beyond the village, the sea stretches wide and honest."
     #zoom intro night
 
     "But behind it," 
-    scene intro moon
+    scene intro moon 
     
     "behind the stilts and the smoke and the festival drums already beginning their preparations," 
-    scene intro moon2
+    scene intro moon2 with Dissolve(2.0)
     
     "stands the bakawan."
-    scene intro frog
+    scene intro frog 
 
     "Not planted." 
-    scene intro frog2
+    scene intro frog2 with Dissolve(1.0)
     
     "Older than any name the villagers could give it." 
-    scene intro frog3
+    scene intro frog3 with Dissolve(1.0)
     
     "Its roots twist deep into the earth and deeper still into stories passed down by those who came before." 
-    scene intro frog jump
+    scene intro frog jump with Dissolve(1.0)
     
     "The locals call it simply the bakawan," 
-    scene intro bakawan #zoomed in
+    scene intro bakawan #with zoom in
     
     "but they speak of it the way one speaks of something that deserves caution. "
 
@@ -113,7 +113,7 @@ label start:
     "Just... not meant for staying too long."
 
     "The men of Panhuy-an know this instictively."
-    #zoom out scene bakawan
+    scene intro bakawan #with zoom out
 
     "Every evening at dusk, they face the treeline and stand."
 
@@ -132,19 +132,19 @@ label start:
 
 
     # BY THE WATERS -- DAWA --------------------
-
+    scene intro dawa with Fade(0.5, 0.3, 0.8)
     narrator "A woman crouches by the water, hands deep in a fishing net."
-    scene intro dawa
     
     "She hums something old."
 
-    "Kadyos sniffs nearby."
     scene intro dawa noticed
-
-    dawa "Your dog's got more sense than you."
+    "Kadyos sniffs nearby."
+    
     scene intro dawa mc
+    dawa "Your dog's got more sense than you."
 
     kilaw "He just wants food."
+    
     scene intro dawa screen
 
     dawa "Mm. Don't we all."
@@ -153,8 +153,8 @@ label start:
 
     kilaw "We haven't caught anything since yesterday."
     
-    narrator "Dawa pulls a crab from the net, tosses it into a basket without looking."
     scene intro dawa screen2
+    narrator "Dawa pulls a crab from the net, tosses it into a basket without looking."
 
     dawa "Then you waited too long. Tide's already turning."
     kilaw "Then i'll go deeper." 
@@ -196,14 +196,15 @@ label start:
     kilaw "Don't worry, I'll remember."
 
     narrator "With that you went on your way."
+    
     scene intro festival prep1
 
     "The afternoon light is golden and low." 
     
     "Somewhere, further down the shoreline, you can hear the faint pulse of drums — the festival preparations already beginning."
 
-    "Dawa called after you."
     scene intro into bakawan
+    "Dawa called after you."
 
     "Her voice carries over the water, easy as the wind."
 
@@ -221,7 +222,7 @@ label start:
     "You'll be back in time. You're always on time."
 
     # INTO THE WOODS -------------
-    scene wood upwards
+    scene wood upwards with Fade(0.5, 0.3, 0.8)
 
     narrator "In search of dinner, you wandered into the forbidden mangrove, a place whispered about in old stories."
     "You didn't bring anyone."
@@ -273,8 +274,13 @@ label start:
 
     narrator "You saw something at the corner of your eyes."
 
-    scene bushes background2 with hpunch
-    show kilaw looking with hpunch
+    transform gentle_jump:
+        yoffset 0
+        ease 0.1 yoffset -15    # jump up a little
+        ease 0.1 yoffset 0      # settle back down
+
+    scene bushes background2
+    show kilaw looking at gentle_jump
 
     "You push through a wall of bushes and gasp."
 
@@ -435,8 +441,34 @@ label start:
         hide rowing boat
 
         narrator "The sun hung low, painting the mangrove in warm orange light. The water glimmered softly, catching the last fire of the day."
+        
+        transform pan_bg:
+            xpos -1920 ypos 0
+            linear 45.0 xpos 0
+
+        transform fog_pan:
+            xpos -1920 ypos 55
+            linear 45.0 xpos 0
+
+        transform rowing_move:
+            xpos 1020 ypos 210    
+            linear 45.0 xpos -200      
+
+        scene mangrove long at pan_bg
+        show fog at fog_pan
+        show rowing at rowing_move
+        with Fade(0.5, 0.3, 0.8)
 
         "As you drifted deeper, the shadows grew longer, and the forest started to whisper in the wind."
+
+        transform fog1_pan:
+            xpos 0 ypos -10
+            linear 45.0 xpos -1920
+
+        scene spiritual realm at pan_bg
+        show rowing at rowing_move
+        show fog1 at fog1_pan
+        with Dissolve(4.0)
 
         "Your eyes widened as the light faded, the roots beneath you shimmered faintly."
 
@@ -447,6 +479,8 @@ label start:
         "Unaware of the world you knew was slowly slipping away."
 
         "The tide came and went. Your stomach grumbled."
+
+        scene hungry kilaw with fade
 
         "The glow of the mangrove was lovely but unfortunately it wasn't food. You sighed."
 
