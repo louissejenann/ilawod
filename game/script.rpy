@@ -2,18 +2,17 @@
 
 #define e = Character("Eileen") -- DEFAULT ALREADY THERE
 
-define narrator = Character(None,            window_style="narrator_window", what_style="narrator_dialogue")
-define kilaw    = Character("Kilaw",         window_style="character_window", who_style="namebox_kilaw_label")
-define kadyos   = Character("Kadyos",        window_style="character_window", who_style="namebox_kadyos_label")
-define ba_o     = Character("Ba-O",          window_style="character_window", who_style="namebox_ba_o_label")
-define toto     = Character("Toto",          window_style="character_window", who_style="namebox_toto_label")
-define lusay    = Character("Lusay",         window_style="character_window", who_style="namebox_lusay_label")
-define sili     = Character("Sili-Sili",     window_style="character_window", who_style="namebox_sili_label")
-define bilo     = Character("Bilong-Bilong", window_style="character_window", who_style="namebox_bilo_label")
-define kasag    = Character("Kasag",         window_style="character_window", who_style="namebox_kasag_label")
-define sigay    = Character("Sigay",         window_style="character_window", who_style="namebox_sigay_label")
-define dawa     = Character("Dawa",          window_style="character_window", who_style="namebox_dawa_label")
-define unknown  = Character("???",           window_style="character_window", who_style="namebox_unknown_label")
+define kilaw = Character("Kilaw", window_style="character_window", who_style="namebox_kilaw_label", callback=typewriter_sfx)
+define kadyos = Character("Kadyos", window_style="character_window", who_style="namebox_kadyos_label")
+define ba_o = Character("Ba-O", window_style="character_window", who_style="namebox_ba_o_label")
+define toto = Character("Toto", window_style="character_window", who_style="namebox_toto_label")
+define lusay = Character("Lusay", window_style="character_window", who_style="namebox_lusay_label")
+define sili = Character("Sili-Sili", window_style="character_window", who_style="namebox_sili_label")
+define bilo = Character("Bilong-Bilong", window_style="character_window", who_style="namebox_bilo_label")
+define kasag = Character("Kasag", window_style="character_window", who_style="namebox_kasag_label")
+define sigay = Character("Sigay", window_style="character_window", who_style="namebox_sigay_label")
+define dawa = Character("Dawa", window_style="character_window", who_style="namebox_dawa_label")
+define unknown = Character("???", window_style="character_window", who_style="namebox_unknown_label")
 
 ## Choices tracking
 default seen_what_is_this = False
@@ -554,6 +553,7 @@ label start:
             ease 0.4 ypos 300
             linear 2.5 ypos 1080 alpha 0.0
 
+        #play sound "audio/kilaw.ogg"
         kilaw "Kadyos... Help! The water is pulling me!"
 
         narrator "The shallow tide rose like a living thing — spinning, dragging you both beneath the glowing current."

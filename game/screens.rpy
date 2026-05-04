@@ -93,6 +93,37 @@ init python:
 
     config.show = _scaled_show
 
+#TYPEWRITER TESTING 
+init python:
+    renpy.music.register_channel("typewriter", mixer="sfx", loop=False)
+    renpy.music.set_volume(0.3, channel="typewriter")
+
+    _char_sounds = {
+        "Kilaw":         ["audio/kilaw.ogg"],
+        "Kadyos":        ["audio/kadyos.ogg"],
+        "Ba-O":          ["audio/ba_o.ogg"],
+        "Toto":          ["audio/toto.ogg"],
+        "Lusay":         ["audio/lusay.ogg"],
+        "Sili-Sili":     ["audio/sili.ogg"],
+        "Bilong-Bilong": ["audio/bilo.ogg"],
+        "Kasag":         ["audio/kasag.ogg"],
+        "Sigay":         ["audio/sigay.ogg"],
+        "Dawa":          ["audio/dawa.ogg"],
+        "???":           ["audio/unknown.ogg"],
+    }
+
+    def typewriter_sfx(event, interact=True, who=None, **kwargs):
+        sounds = _char_sounds.get(who, ["audio/kilaw.ogg"])
+        if event == "show":
+            for i in range(30):
+                if i == 0:
+                    renpy.sound.play(renpy.random.choice(sounds), channel="typewriter")
+                else:
+                    renpy.sound.queue(renpy.random.choice(sounds), channel="typewriter")
+        elif event in ("slow_done", "end"):
+            renpy.sound.stop(channel="typewriter")
+
+
 
 ################################################################################
 ## In-game screens
