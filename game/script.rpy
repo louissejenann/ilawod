@@ -35,6 +35,7 @@ init python:
 image background moving = Movie(play= "images/Comp1.webm")
 image intro village = Movie(play= "images/intro village.webm")
 image intro village2 = Movie(play= "images/intro village2.webm")
+image intro caught fish = Movie(play= "images/intro caught fish.webm")
 
 ## Images
 
@@ -71,7 +72,7 @@ label start:
     
     "Morning smells of salt and smoke. Children run between the stilts"
     
-    scene intro caught fish
+    scene intro caught fish with Dissolve(2.0)
     "Neighbors call to each other across the water."
     
     scene intro children
@@ -280,8 +281,8 @@ label start:
 
     transform gentle_jump:
         yoffset 0
-        ease 0.1 yoffset -15    # jump up a little
-        ease 0.1 yoffset 0      # settle back down
+        ease 0.1 yoffset -15   
+        ease 0.1 yoffset 0      
 
     scene bushes background2
     show kilaw looking at gentle_jump
@@ -441,7 +442,7 @@ label start:
 
         show rowing boat at boat_move
         with None
-        pause 4.0                     # wait for animation to finish
+        pause 4.0                     
         hide rowing boat
 
         narrator "The sun hung low, painting the mangrove in warm orange light. The water glimmered softly, catching the last fire of the day."
@@ -488,7 +489,7 @@ label start:
 
         "The glow of the mangrove was lovely but unfortunately it wasn't food. You sighed."
 
-        kilaw "I'm starving Kadyos. If we don't find anything soon, we'll force to eat this boat."
+        kilaw "I'm starving Kadyos. If we don't find anything soon, we'll be force to eat this boat."
 
         narrator "Kadyos whines softly."
 
