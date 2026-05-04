@@ -36,7 +36,6 @@ image background moving = Movie(play= "images/Comp1.webm")
 
 ## Music
 
-
 ## ──────────────────────────────────────────────────────────────
 
 
@@ -261,6 +260,7 @@ label start:
 
     narrator "Kadyos barks and trots ahead."
 
+    hide happy kilaw kadyos
     show background moving
     
     "Together, they made their way deeper into the mangrove."
@@ -421,6 +421,18 @@ label start:
         scene boat in with dissolve
 
         kilaw "All aboard! Let's see what secrets this mangrove's been hiding."
+        
+        scene boat scene3 
+        with Fade(0.5, 0.3, 0.8)
+
+        transform boat_move:
+            xpos 40 ypos -100        # start offscreen top-right
+            linear 4.0 xpos -1000 ypos 1010
+
+        show rowing boat at boat_move
+        with None
+        pause 4.0                     # wait for animation to finish
+        hide rowing boat
 
         narrator "The sun hung low, painting the mangrove in warm orange light. The water glimmered softly, catching the last fire of the day."
 
