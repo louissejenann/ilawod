@@ -528,6 +528,9 @@ label start:
 
         narrator "You try to pull the fish to the surface. Before—"
 
+        show splash with Dissolve(0.2)
+        show splash2 with Dissolve(0.4)
+
         kilaw "Wait... Whoa—!"
 
         narrator "You tumbled into the glowing water. Bubbles rise. You gasped, trying to swim up."
