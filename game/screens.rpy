@@ -96,7 +96,6 @@ init python:
 #TYPEWRITER TESTING 
 init python:
     renpy.music.register_channel("typewriter", mixer="sfx", loop=False)
-    renpy.music.set_volume(0.3, channel="typewriter")
 
     _char_sounds = {
         "Kilaw":         ["audio/kilaw.ogg"],
@@ -115,7 +114,7 @@ init python:
     def typewriter_sfx(event, interact=True, who=None, **kwargs):
         sounds = _char_sounds.get(who, ["audio/kilaw.ogg"])
         if event == "show":
-            for i in range(30):
+            for i in range(60):
                 if i == 0:
                     renpy.sound.play(renpy.random.choice(sounds), channel="typewriter")
                 else:

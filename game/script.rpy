@@ -44,6 +44,7 @@ image intro caught fish = Movie(play= "images/intro caught fish.webm")
 
 
 label start:
+    $ renpy.music.set_volume(0.1, channel="typewriter")
 
     #ACT 01 ---------- EXPOSITION
 
