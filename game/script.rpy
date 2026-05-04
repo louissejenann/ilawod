@@ -529,11 +529,29 @@ label start:
         narrator "You try to pull the fish to the surface. Before—"
 
         show splash with dissolve
-        show splash2 with Dissolve(0.7)
+        show splash2 with Dissolve(0.9)
 
         kilaw "Wait... Whoa—!"
 
+        scene underwater with Fade(0.5, 0.3, 0.9)
+
         narrator "You tumbled into the glowing water. Bubbles rise. You gasped, trying to swim up."
+
+        show hand:
+            xpos 0
+            ypos 1080
+            alpha 0.0
+
+            ease 2.0 ypos 50 alpha 1.0
+            pause 0.2
+            ease 0.3 ypos 20
+            ease 0.3 ypos 60
+
+            ease 0.7 ypos 100
+            ease 0.4 ypos 250
+            ease 0.5 ypos 150
+            ease 0.4 ypos 300
+            linear 2.5 ypos 1080 alpha 0.0
 
         kilaw "Kadyos... Help! The water is pulling me!"
 
