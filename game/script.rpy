@@ -512,15 +512,17 @@ label start:
 
         "Suddenly, the glowing water rippled. A mudfish appears near the boat."
 
-        scene kilaw kadyos hungry with dissolve
+        scene kilaw kadyos hungry 
+        #show text grumble
+        with dissolve
 
         kilaw "Hey! Did you see that? Dinner's served!"
 
         scene time for fishing with hpunch
-        show text splash 
+        #show text splash 
 
         narrator "You try to time it properly before lunging on the fish's direction with half of your body still on the boat."
-        hide text splash
+        #hide text splash with dissolve
 
         kilaw "Almost... got you!"
 
