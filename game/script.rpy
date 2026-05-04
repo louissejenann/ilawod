@@ -36,6 +36,8 @@ image background moving = Movie(play= "images/Comp1.webm")
 image intro village = Movie(play= "images/intro village.webm")
 image intro village2 = Movie(play= "images/intro village2.webm")
 
+## Images
+
 ## Music
 
 ## ──────────────────────────────────────────────────────────────
@@ -490,13 +492,35 @@ label start:
 
         narrator "Kadyos whines softly."
 
-        scene water
-        
+        scene tree water with Dissolve(2.0)
+
+        show fish spirit:
+            xpos -1920        
+            ypos 1080        
+            linear 3.0 xpos 0 ypos 0 
+
+        $ renpy.pause(4.0)
+
+        show water effect with Dissolve(0.2)
+        pause 0.15
+        hide water effect 
+        show water effect2 with Dissolve(0.2)   
+        pause 0.15
+        hide water effect2 
+        show water effect3 with Dissolve(0.2)
+        pause 0.15
+
         "Suddenly, the glowing water rippled. A mudfish appears near the boat."
+
+        scene kilaw kadyos hungry with dissolve
 
         kilaw "Hey! Did you see that? Dinner's served!"
 
+        scene time for fishing with hpunch
+        show text splash 
+
         narrator "You try to time it properly before lunging on the fish's direction with half of your body still on the boat."
+        hide text splash
 
         kilaw "Almost... got you!"
 
