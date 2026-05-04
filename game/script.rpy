@@ -33,6 +33,8 @@ init python:
 
 ## Background
 image background moving = Movie(play= "images/Comp1.webm")
+image intro village = Movie(play= "images/intro village.webm")
+image intro village2 = Movie(play= "images/intro village2.webm")
 
 ## Music
 
@@ -45,10 +47,10 @@ label start:
 
     #PROLOGUE -- PANHUY-AN
 
-    scene intro sun with Fade(0.5, 0.3, 0.8)
+    scene intro sun with Fade(0.5, 0.3, 0.9)
     narrator "There is a place where the sea does not end and the land does not begin."
     
-    scene intro village 
+    scene intro village with Dissolve(2.0)
     "At the far edge of the island, where the land loosens its grip and gives way to the tide, lies a quiet village called Panhuy-an."
 
     narrator "The houses stand on stilts above shallow breathing water. Wooden floors creak with every step."
@@ -56,10 +58,10 @@ label start:
     scene intro morning village
     "Banca boats rest loosely tied to posts, hollowed from trees older than the people who carved them."
     
-    scene intro fisher
+    scene intro fisher #parang same lng siya with int vuillage2
     "The sea feeds the village." 
     
-    scene intro village2
+    show intro village2 with Dissolve(2.0)
     "The village, in turn, learns never to take more than it is given."
     
     scene intro village3
@@ -487,6 +489,8 @@ label start:
         kilaw "I'm starving Kadyos. If we don't find anything soon, we'll force to eat this boat."
 
         narrator "Kadyos whines softly."
+
+        scene water
         
         "Suddenly, the glowing water rippled. A mudfish appears near the boat."
 
