@@ -426,7 +426,7 @@ label start:
         with Fade(0.5, 0.3, 0.8)
 
         transform boat_move:
-            xpos 40 ypos -100        # start offscreen top-right
+            xpos 50 ypos -300       
             linear 4.0 xpos -1000 ypos 1010
 
         show rowing boat at boat_move
