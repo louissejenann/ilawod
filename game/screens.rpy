@@ -477,19 +477,12 @@ screen navigation():
 
         spacing gui.navigation_spacing
 
-        if main_menu:
-
-            textbutton _("Start") action Start()
-        
-        else:
-
+        textbutton _("Return") action Return()
+        if not main_menu:
             textbutton _("History") action ShowMenu("history")
-
             textbutton _("Save") action ShowMenu("save")
-
         textbutton _("Load") action ShowMenu("load")
-
-        textbutton _("Preferences") action ShowMenu("preferences")
+        textbutton _("Settings") action ShowMenu("preferences")
 
 
         if _in_replay:
@@ -714,11 +707,6 @@ screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
                     transclude
 
     use navigation
-
-    textbutton _("Return"):
-        style "return_button"
-
-        action Return()
 
     label title
 
