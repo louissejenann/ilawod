@@ -734,7 +734,7 @@ style return_button is navigation_button
 style return_button_text is navigation_button_text
 
 style game_menu_outer_frame:
-    bottom_padding 45
+    bottom_padding 200
     top_padding 180
 
     background "gui/overlay/game_menu.png"
@@ -1811,7 +1811,7 @@ style game_menu_content_frame:
 
 style game_menu_viewport:
     variant "small"
-    xsize 1305
+    xsize 1380
 
 style pref_vbox:
     variant "small"
