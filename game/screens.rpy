@@ -95,7 +95,7 @@ init python:
 
 #TYPEWRITER TESTING 
 init python:
-    renpy.music.register_channel("typewriter", mixer="sfx", loop=False)
+    renpy.music.register_channel("typewriter", mixer="voice", loop=False)
 
     _char_sounds = {
         "Kilaw":         ["audio/kilaw.ogg"],
