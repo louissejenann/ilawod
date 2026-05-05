@@ -911,12 +911,12 @@ screen file_slots(title):
                     textbutton _("Upload Sync"):
                         action UploadSync()
                         xalign 0.5
-                        yalign 0.96
+                        yalign 1.0
                 else:
                     textbutton _("Download Sync"):
                         action DownloadSync()
-                        xalign 0.5
-                        yalign 0.96
+                        xalign 0.47
+                        yalign 1.0
 
 
 style page_label is gui_label
@@ -1189,7 +1189,7 @@ style history_text:
     xpos gui.history_text_xpos
     ypos gui.history_text_ypos
     xanchor gui.history_text_xalign
-    xsize gui.history_text_width
+    xsize 980
     min_width gui.history_text_width
     textalign gui.history_text_xalign
     layout ("subtitle" if gui.history_text_xalign else "tex")
