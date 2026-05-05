@@ -834,7 +834,8 @@ screen file_slots(title):
                 style "page_label"
 
                 key_events True
-                xalign 0.5
+                xalign 0.415
+                yalign -0.1
                 action page_name_value.Toggle()
 
                 input:
@@ -847,6 +848,7 @@ screen file_slots(title):
 
                 xalign 0.5
                 yalign 0.5
+                xoffset -100
 
                 spacing gui.slot_spacing
 
