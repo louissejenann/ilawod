@@ -483,27 +483,13 @@ screen navigation():
             textbutton _("Save") action ShowMenu("save")
         textbutton _("Load") action ShowMenu("load")
         textbutton _("Settings") action ShowMenu("preferences")
-
-
-        if _in_replay:
-
-            textbutton _("End Replay") action EndReplay(confirm=True)
-
-        elif not main_menu:
-
-            textbutton _("Main Menu") action MainMenu()
-
-            textbutton _("About") action ShowMenu("about")
-
         if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
-
-            ## Help isn't necessary or relevant to mobile devices.
             textbutton _("Help") action ShowMenu("help")
-
-        if renpy.variant("pc"):
-
-            ## The quit button is banned on iOS and unnecessary on Android and
-            ## Web.
+        if _in_replay:
+            textbutton _("End Replay") action EndReplay(confirm=True)
+        elif not main_menu:
+            textbutton _("Main Menu") action MainMenu()
+        if renpy.variant("pc") and main_menu:
             textbutton _("Quit") action Quit(confirm=not main_menu)
 
 
@@ -746,7 +732,7 @@ style game_menu_navigation_frame:
     yfill True
 
 style game_menu_content_frame:
-    left_margin 0
+    left_margin 100
     right_margin 100
     top_margin 15
 
@@ -1369,7 +1355,7 @@ style help_label:
     right_padding 30
 
 style help_label_text:
-    size gui.text_size
+    size 38
     xalign 1.0
     textalign 1.0
 
