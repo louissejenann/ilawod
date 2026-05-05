@@ -200,13 +200,13 @@ screen sigay_search_screen():
 
     # ── Sigay's request — changes as timer gets low ──
     if time_left > 35:
-        text "Sigay: \"Find me something that moves like the sea igniting — warm, alive, light from below.\"":
+        text "Sigay: \"Find me something that moves like the sea igniting warm, alive, light from below.\"":
             xalign 0.5 ypos 16 size 19 color "#F0E6C8"
     elif time_left > 15:
         text "Sigay: \"Hurry — something flowing, something that glows — not the heavy ones, not the rigid ones—\"":
             xalign 0.5 ypos 16 size 19 color "#FAC775"
     else:
-        text "Sigay: \"Anything — just not the dull ones — please—\"":
+        text "Sigay: \"Anything, just not the dull ones, please—\"":
             xalign 0.5 ypos 16 size 19 color "#F09595"
 
     # ── Timer display ──

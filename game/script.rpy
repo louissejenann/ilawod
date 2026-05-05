@@ -44,6 +44,8 @@ image intro caught fish = Movie(play= "images/intro caught fish.webm")
 
 
 label start:
+    stop music fadeout 4.0
+
     $ renpy.music.set_volume(0.1, channel="typewriter")
 
     #ACT 01 ---------- EXPOSITION
@@ -674,35 +676,35 @@ label start:
     label welcome_spiritrealm_no_kadyos: 
         narrator "There is no falling, exactly. It's more like the moment you step off a boat and realize the water is far deeper than your feet expected." 
         
-        "One second the roots are solid beneath you. The next second — they aren't anything at all."
+        narrator "One second the roots are solid beneath you. The next second — they aren't anything at all."
 
-        "Then; silence. Before lights came from below."
+        narrator "Then; silence. Before lights came from below."
 
-        "Then the sound of water, not rushing, not still."
+        narrator "Then the sound of water, not rushing, not still."
 
-        "You open your eyes."
+        narrator "You open your eyes."
 
-        "You are lying on something solid. Stone, maybe, or old root, so thick and wide it feels like ground." 
+        narrator "You are lying on something solid. Stone, maybe, or old root, so thick and wide it feels like ground."
+
+        narrator "Above you: the underside of the mangrove, but wrong."
+
+        narrator "The roots here arch upward, tall, braided together into something that looks less like a tree and more like a doorframe." 
         
-        "Above you: the underside of the mangrove, but wrong."
+        narrator "Old and enormous, trailing kelp and blossoms you don't have a name for, its wood dark and warm."
 
-        "The roots here arch upward, tall, braided together into something that looks less like a tree and more like a doorframe." 
+        narrator "You are outside something. Just outside." 
         
-        "Old and enormous, trailing kelp and blossoms you don't have a name for, its wood dark and warm."
+        narrator "Through the arch, there is light."
 
-        "You are outside something. Just outside." 
+        narrator "Before you can sit up fully, a voice arrives."
+
+        narrator "It belongs to a small spirit." 
         
-        "Through the arch, there is light."
-
-        "Before you can sit up fully, a voice arrives."
-
-        "It belongs to a small spirit." 
-        
-        "Narrow, silver-finned, hovering at the edge of the root-arch with the particular energy of someone who looked like a child that was sent to do a task and is now reconsidering the task."
+        narrator "Narrow, silver-finned, hovering at the edge of the root-arch with the particular energy of someone who looked like a child that was sent to do a task and is now reconsidering the task."
 
         unknown "Oh — oh good, you're awake." 
 
-        "Their fins won't quite stay still. They are holding what appears to be a paper??"
+        narrator "Their fins won't quite stay still. They are holding what appears to be a paper??"
         
         "It seems to have been crumpled and re-smoothed at least twice."
 
@@ -730,33 +732,36 @@ label start:
 
     label welcome_spiritrealm_main:
         narrator "There is no falling, exactly. It's more like the moment you step off a boat and realize the water is far deeper than your feet expected." 
-        "One second the roots are solid beneath you."
-        "The next second — they aren't anything at all."
+        narrator "One second the roots are solid beneath you."
+        narrator "The next second — they aren't anything at all."
         
-        "You reached for Kadyos. You aren't sure if you found him or if he found you first."
+        narrator "You reached for Kadyos. You aren't sure if you found him or if he found you first."
 
-        "Then; silence. Before lights came from below."
+        narrator "Then; silence. Before lights came from below."
 
-        "You open your eyes."
+        narrator "You open your eyes."
 
-        "You are lying on something solid. Stone, maybe, or old root — so thick and wide it feels like ground. Above you: the underside of the mangrove, but wrong. "
-
-        "The roots here arch upward, tall, braided together into something that looks less like a tree and more like a doorframe." 
+        narrator "You are lying on something solid. Stone, maybe, or old root, so thick and wide it feels like ground." 
         
-        "Old and enormous, trailing kelp and blossoms you don't have a name for, its wood dark and warm."
+        narrator "Above you: the underside of the mangrove, but wrong. "
 
-        "You are outside something. Just outside." 
+        narrator "The roots here arch upward, tall, braided together into something that looks less like a tree and more like a doorframe." 
         
-        "Through the arch, there is light."
+        narrator "Old and enormous, trailing kelp and blossoms you don't have a name for, its wood dark and warm."
 
-        "Before you can sit up fully, a voice arrives."
+        narrator "You are outside something. Just outside." 
+        
+        narrator "Through the arch, there is light."
 
-        "It belongs to a small spirit — narrow, silver-finned, hovering at the edge of the root-arch with the particular energy of someone who looked like a child that was sent to do a task and is now reconsidering the task."
+        narrator "Before you can sit up fully, a voice arrives."
+
+        narrator "It belongs to a small spirit — narrow, silver-finned, hovering at the edge of the root-arch with the particular energy of someone who looked like a child that was sent to do a task and is now reconsidering the task."
 
         unknown "Oh — oh good, you're awake. We felt you come through."
         narrator "A beat. Kadyos shakes water off his ears."
 
-        "Their fins won't quite stay still. They are holding what appears to be a paper??, and the schedule has been crumpled and re-smoothed at least twice."
+        narrator "Their fins won't quite stay still. They are holding what appears to be a paper??"
+        narrator "and the schedule has been crumpled and re-smoothed at least twice."
 
         unknown "Well." 
         unknown "Everyone felt you come through"
@@ -783,7 +788,7 @@ label start:
         
         narrator "A bark, from somewhere very close. Kadyos materializes from behind the root-arch with a piece of dried sea-grass in his mouth, tail going."
         
-        "Kadyos comes barreling in, scattering a nearby spirit entirely, and hits Kilaw at full speed."
+        narrator "Kadyos comes barreling in, scattering a nearby spirit entirely, and hits Kilaw at full speed."
 
         kilaw "Oh — okay — okay, I've got you—"
 
@@ -830,32 +835,32 @@ label start:
 
         narrator "Kadyos runs past you excitedly."
 
-        "The light. It comes from below as much as above — water running in shallow channels between stone paths, the whole ground lit from underneath. Every shadow falls upward." 
+        narrator "The light. It comes from below as much as above — water running in shallow channels between stone paths, the whole ground lit from underneath. Every shadow falls upward." 
         
-        "The sky looks like the sea" 
+        narrator "The sky looks like the sea" 
         
-        "You're in underwater right now."
+        narrator "You're in underwater right now."
         
-        "What you thought was a small clearing turns out to be a marketplace, enormous." 
-        "Stalls of woven sea-grass and old fishing net, clay pots big enough to sleep in, lanterns strung between crooked posts." 
+        narrator "What you thought was a small clearing turns out to be a marketplace, enormous." 
+        narrator "Stalls of woven sea-grass and old fishing net, clay pots big enough to sleep in, lanterns strung between crooked posts." 
         
-        "At the center: a great stone basin of the same glowing water. The paths all converge on it."
+        narrator "At the center: a great stone basin of the same glowing water. The paths all converge on it."
 
-        "The smell is brine and food and something sweet you don't quite have a name for. Two voices argue from somewhere to the left. Something crashes from behind a stall."
+        narrator "The smell is brine and food and something sweet you don't quite have a name for. Two voices argue from somewhere to the left. Something crashes from behind a stall."
 
-        "None of the spirits stop. None of them look up."
-        "Except that's not quite right. Because here and there, ones and twos, you catch the sideways glance — the way someone pretends to check a stall display while actually looking elsewhere." 
-        "They know you're here. They felt you arrive. They're just letting someone else handle it."
+        narrator "None of the spirits stop. None of them look up."
+        narrator "Except that's not quite right. Because here and there, ones and twos, you catch the sideways glance — the way someone pretends to check a stall display while actually looking elsewhere." 
+        narrator "They know you're here. They felt you arrive. They're just letting someone else handle it."
 
-        "Someone is waiting at the edge of the plaza."
+        narrator "Someone is waiting at the edge of the plaza."
 
-        "She is small and ancient-looking, she's holding something on her head, built like a great tidal clam, her shell smoothed by centuries of water. Flour-dusted hands." 
+        narrator "She is small and ancient-looking, she's holding something on her head, built like a great tidal clam, her shell smoothed by centuries of water. Flour-dusted hands." 
         
-        "An expression of someone who has set down one problem to deal with a second problem and would very much like both problems to resolve quickly. She is holding a clay ladle."
+        narrator "An expression of someone who has set down one problem to deal with a second problem and would very much like both problems to resolve quickly. She is holding a clay ladle."
 
-        "She appears to have forgotten she is holding it. Beside her is someone taller, calmly standing there as they seem to be in a deep discussion." 
+        narrator "She appears to have forgotten she is holding it. Beside her is someone taller, calmly standing there as they seem to be in a deep discussion." 
 
-        "Then they look at you. She looks at Kadyos infront of you. She gave a small nods"
+        narrator "Then they look at you. She looks at Kadyos infront of you. She gave a small nods"
 
         unknown "Good. You're upright. And the dog is — also upright."
 
@@ -864,12 +869,12 @@ label start:
         unknown "Come. Walk with me. There is a great deal to explain and very little time to explain it in."
 
         narrator "Beside her, keeping pace in the way of someone who has always kept pace with her, is a spirit who moves like still water."
-        "Unhurried, present, draped in the particular calm of someone who has seen most things already, and larger than the space they occupy."  
-        "They do not introduce themselves."
+        narrator "Unhurried, present, draped in the particular calm of someone who has seen most things already, and larger than the space they occupy."  
+        narrator "They do not introduce themselves."
         
-        "When you catch their eye, there's a quality to the look that's somewhere between curiosity and recognition."
+        narrator "When you catch their eye, there's a quality to the look that's somewhere between curiosity and recognition."
         
-        "They did not rush, but they don't slow down either — they move automatically, dodging other creatures with ease. You had to actually keep up."
+        narrator "They did not rush, but they don't slow down either — they move automatically, dodging other creatures with ease. You had to actually keep up."
 
         #CHOICES: YOU FOLLOW THEM AND SAID...
         label introduction_choices:
@@ -915,7 +920,7 @@ label start:
         "You are not the first." 
         "Others have gone home."
 
-        "A short silent filled the space as you followed them."
+        narrator "A short silent filled the space as you followed them."
         jump introduction_choices
          
     label route_who_are_you:
