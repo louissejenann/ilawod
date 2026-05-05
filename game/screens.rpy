@@ -473,7 +473,7 @@ screen navigation():
         style_prefix "navigation"
 
         xpos gui.navigation_xpos
-        yalign 0.5
+        yalign 0.45
 
         spacing gui.navigation_spacing
 
@@ -516,6 +516,7 @@ style navigation_button:
 
 style navigation_button_text:
     properties gui.text_properties("navigation_button")
+    size 40
 
 style button:
     size_group "navigation"
@@ -759,18 +760,14 @@ style game_menu_side:
     spacing 15
 
 style game_menu_label:
-    xpos 155
+    xpos 100
+    ypos -90
     ysize 180
 
 style game_menu_label_text:
     size 75
     color gui.accent_color
     yalign 1.7
-
-style return_button:
-    xpos gui.navigation_xpos
-    yalign 1.0
-    yoffset -45
 
 
 ## About screen ################################################################
