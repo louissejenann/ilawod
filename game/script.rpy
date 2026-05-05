@@ -538,6 +538,8 @@ label start:
 
         narrator "You tumbled into the glowing water. Bubbles rise. You gasped, trying to swim up."
 
+        kilaw "Kadyos... Help! The water is pulling me!"
+
         show hand:
             xpos 0
             ypos 1080
@@ -554,10 +556,7 @@ label start:
             ease 0.4 ypos 300
             linear 2.5 ypos 1080 alpha 0.0
 
-        #play sound "audio/kilaw.ogg"
-        kilaw "Kadyos... Help! The water is pulling me!"
-
-        narrator "The shallow tide rose like a living thing — spinning, dragging you both beneath the glowing current."
+        narrator "The shallow tide rose like a living thing — spinning, dragging you beneath the glowing current."
 
         menu:
             "Grab onto the boat":
@@ -568,7 +567,7 @@ label start:
         
     #ROUTE
     label route_grab_boat:
-        narrator "You lunge for the edge of the boat, fingers catching the worn wood. For one breathless moment, you hold on"
+        narrator "You reach for the edge of the boat, fingers catching the worn wood. For one breathless moment, you hold on"
 
         kilaw "Got it — I've got it—!"
 
@@ -578,7 +577,15 @@ label start:
 
         kilaw "No — Kadyos, stay back! Stay—!"
 
-        narrator "The boat lists sideways. The current claims them both. Darkness swallows the last shiver of light."
+        scene waves underwater with Fade(0.5, 0.3, 0.9)
+        show drowning:
+            zoom 1.6
+            xpos 1920
+            ypos -3000
+            alpha 5.0
+            easein 5.0 xpos -1920 ypos 0 alpha 0.0
+
+        narrator "The boat lists sideways. The current claims you both. Darkness swallows the last shiver of light."
         jump welcome_spiritrealm_no_kadyos
         
 
@@ -594,6 +601,17 @@ label start:
         "It is, somehow, less terrifying this way. You hold him tighter."
 
         kilaw "...It's okay, Kadyos. We'll be—"
+
+        scene waves underwater with Fade(0.5, 0.3, 0.9)
+        show drowning:
+            zoom 1.6
+            xpos 1920
+            ypos -3000
+            alpha 5.0
+            easein 5.0 xpos -1920 ypos 0 alpha 0.0
+        
+        pause 3.5
+        scene black with Dissolve(3.0)
 
         narrator "Darkness. Then silence."
         jump welcome_spiritrealm_main
