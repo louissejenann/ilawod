@@ -46,7 +46,7 @@ image intro caught fish = Movie(play= "images/intro caught fish.webm")
 label start:
     stop music fadeout 4.0
 
-    $ renpy.music.set_volume(0.1, channel="typewriter")
+    $ renpy.music.set_volume(1.0, channel="typewriter")
 
     #ACT 01 ---------- EXPOSITION
 

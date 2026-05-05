@@ -122,6 +122,8 @@ init python:
         elif event in ("slow_done", "end"):
             renpy.sound.stop(channel="typewriter")
 
+    #config.character_callback = typewriter_sfx
+
 
 
 ################################################################################
