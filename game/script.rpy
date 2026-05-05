@@ -346,7 +346,7 @@ label start:
         
         "Even some wild kangkong near the water's edge."
 
-        kilaw "Ha. Mom would be proud. Fresh greens, fresh fish. Better than the our own traders brought."
+        kilaw "Ha. Mom would be proud. Fresh greens, fresh fish. Better than the ones our own traders brought."
 
         show boat light with dissolve
 
@@ -365,21 +365,75 @@ label start:
 
             narrator "You paused. You look at the boat. You look at Kadyos."
 
-            kilaw "...Ugh. Okay. Just a little look. Ten minutes. Then we go home."
-
             show boat in with dissolve
 
-            narrator "You grab Kadyos and tie your food for later. You step into the boat together."
+            kilaw "...Ugh. Okay. Just a little look. Ten minutes. Then we go home."
 
-            "They wandered into the mangrove until evening and got lost." 
+            scene boat scene3 
+            with Fade(0.5, 0.3, 0.8)
+
+            transform boat_move:
+                xpos 50 ypos -300       
+                linear 4.0 xpos -1000 ypos 1010
+
+            show rowing boat at boat_move
+            with None
+            pause 4.0                     
+            hide rowing boat
+
+            narrator "You grab Kadyos and tie your food for later. Both of you stepping into the boat together."
+
+            transform fog1_pan:
+                xpos 0 ypos -10
+                linear 45.0 xpos -1920
+
+            scene spiritual realm at pan_bg
+            show rowing at rowing_move
+            show fog1 at fog1_pan
+            with Dissolve(4.0)
+
+            "You both wandered into the mangrove until evening and got lost." 
             
-            "They ate their food, sharing it with Kadyos, until they saw something below the waters" 
+            "You ate your food, sharing it with Kadyos, until you saw something below the waters" 
             
             "A shimmer, a shadow, something moving with purpose."
 
             kilaw "Okay that is...definitely something. Definitely not a normal fish."
 
-            narrator "The mudfish appears. You reach for it without thinking. The rest follows."
+            scene tree water with Dissolve(2.0)
+
+            show fish spirit:
+                xpos -1920        
+                ypos 1080        
+                linear 3.0 xpos 0 ypos 0 
+
+            $ renpy.pause(4.0)
+
+            show water effect with Dissolve(0.2)
+            pause 0.15
+            hide water effect 
+            show water effect2 with Dissolve(0.2)   
+            pause 0.15
+            hide water effect2 
+            show water effect3 with Dissolve(0.2)
+            pause 0.15
+
+            narrator "The mudfish appears."
+            
+            "You reach for it without thinking."
+
+            scene waves underwater with Fade(0.5, 0.3, 1.0)
+            show drowning:
+                zoom 1.6
+                xpos 1920
+                ypos -3000
+                alpha 5.0
+                easein 5.0 xpos -1920 ypos 0 alpha 0.0
+
+            pause 3.5
+            scene black with Dissolve(3.0)
+
+            "You fesll out of the boat and into the water below."
             jump welcome_spiritrealm_main
 
 
