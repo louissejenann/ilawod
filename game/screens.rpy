@@ -533,6 +533,7 @@ screen main_menu():
 
     ## This ensures that any other menu screen is replaced.
     tag menu
+    on "show" action [Stop("sound"), Stop("typewriter")]
 
     add gui.main_menu_background
 

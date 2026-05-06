@@ -32,11 +32,11 @@ init python:
     config.layers = ["master", "foreground", "transient", "screens", "overlay"]
 
 ## Background
-image background moving = Movie(play= "images/Comp1.webm")
+image background moving = Movie(play= "images/Comp1.webm", loop=False, keep_last_frame=True)
 image intro village = Movie(play= "images/intro village.webm", Loop=False, keep_last_frame=True)
 image intro village2 = Movie(play= "images/intro village2.webm")
 image intro caught fish = Movie(play= "images/intro caught fish.webm")
-image intro dawa = Movie(play= "images/intro dawa.webm")
+image intro dawa = Movie(play= "images/intro dawa.webm", loop=False, keep_last_frame=True)
 image intro dawa noticed = Movie(play= "images/intro dawa noticed.webm")
 image intro moon = Movie(play= "images/intro moon.webm")
 image intro moon2 = Movie(play= "images/intro moon2.webm", loop=False, keep_last_frame=True)
@@ -51,6 +51,9 @@ define audio.morning_birds = "audio/morning birds intro sound.ogg"
 define audio.flowing_water = "audio/flowing water sound.ogg"
 define audio.water_drop    = "audio/water drop sound.ogg"
 define audio.fell_underwater = "audio/fell underwater sound.ogg"
+define audio.wood_running = "audio/wood running sound.ogg"
+define audio.night_village = "audio/night village.ogg"
+
 
 ## Character & Narrative SFX
 define audio.dawa_humming  = "audio/dawa humming sound.ogg"
@@ -79,7 +82,8 @@ label start:
     #PROLOGUE -- PANHUY-AN
 
     scene intro sun with Fade(0.5, 0.3, 0.9)
-    #play audio morning_birds
+    play music music_beginning volume 0.1
+    play audio morning_birds volume 0.1
 
     narrator "There is a place where the sea does not end and the land does not begin."
     
@@ -88,31 +92,40 @@ label start:
 
     narrator "The houses stand on stilts above shallow breathing water. Wooden floors creak with every step."
     
-    scene intro morning village
+    #scene intro morning village with Dissolve(2.0)
     "Banca boats rest loosely tied to posts, hollowed from trees older than the people who carved them."
     
-    scene intro fisher #parang same lng siya with int vuillage2
+    #scene intro fisher #parang same lng siya with int vuillage2
     "The sea feeds the village." 
     
     show intro village2 with Dissolve(2.0)
+    #splash sound from fish
+
     "The village, in turn, learns never to take more than it is given."
     
-    scene intro village3
+    #scene intro village3
     "In the mornings, the elders watch the horizon."
     
     "Morning smells of salt and smoke. Children run between the stilts"
     
     scene intro caught fish with Dissolve(2.0)
+    play sound woman_laughter volume 0.2
+
     "Neighbors call to each other across the water."
     
-    scene intro children
+    scene intro children with Dissolve(2.0)
+    play audio children_laughing volume 0.4
+    play sound wood_running volume 0.1
+
     "The old lecturing the young."
 
     "The whole village moves with the easy rhythm of a place that knows itself."
 
+    scene intro night with Dissolve(2.0)
+    play audio night_village volume 1.0 fadein 2.7
+
     "The evening carries distant laughter, the sound of wind and waves folding into each other."
 
-    scene intro night with Dissolve(2.0)
     "The people here speak of tides, and moon, and seasons when the fish are plentiful."
    
     "...and seasons when even the nets come back empty."
@@ -128,6 +141,7 @@ label start:
     
     "stands the bakawan."
     scene intro frog with Dissolve(2.0)
+    #Add frog sounds 
 
     "Not planted." 
     #scene intro frog2 with Dissolve(1.0)
@@ -163,11 +177,15 @@ label start:
 
     "Children are told not to wander near the roots after dark."
 
-    "Some of them listen."
+    stop audio fadeout 2.0
 
+    "Some of them listen."
 
     # BY THE WATERS -- DAWA --------------------
     scene intro dawa with Fade(0.5, 0.3, 0.8)
+    play sound dawa_humming volume 0.9
+    play audio flowing_water volume 0.2
+
     narrator "A woman crouches by the water, hands deep in a fishing net."
     
     "She hums something old."
@@ -235,12 +253,15 @@ label start:
     narrator "With that you went on your way."
     
     scene intro festival prep1
+    play audio festival_drums volume 0.1 fadein 2.0
 
     "The afternoon light is golden and low." 
     
     "Somewhere, further down the shoreline, you can hear the faint pulse of drums — the festival preparations already beginning."
 
     scene intro into bakawan
+    #whistle audio
+
     "Dawa called after you."
 
     "Her voice carries over the water, easy as the wind."
@@ -787,7 +808,8 @@ label start:
 
         narrator "Before you can sit up fully, a voice arrives."
 
-        narrator "It belongs to a small spirit — narrow, silver-finned, hovering at the edge of the root-arch with the particular energy of someone who looked like a child that was sent to do a task and is now reconsidering the task."
+        narrator "It belongs to a small spirit — narrow, silver-finned, hovering at the edge of the root-arch with the particular energy." 
+        "Like someone who looked like a child that was sent to do a task and is now reconsidering the task."
 
         unknown "Oh — oh good, you're awake. We felt you come through."
         narrator "A beat. Kadyos shakes water off his ears."
@@ -867,7 +889,8 @@ label start:
 
         narrator "Kadyos runs past you excitedly."
 
-        narrator "The light. It comes from below as much as above — water running in shallow channels between stone paths, the whole ground lit from underneath. Every shadow falls upward." 
+        narrator "The light. It comes from below as much as above — water running in shallow channels between stone paths." 
+        "The whole ground lit from underneath. Every shadow falls upward." 
         
         narrator "The sky looks like the sea" 
         
@@ -878,19 +901,24 @@ label start:
         
         narrator "At the center: a great stone basin of the same glowing water. The paths all converge on it."
 
-        narrator "The smell is brine and food and something sweet you don't quite have a name for. Two voices argue from somewhere to the left. Something crashes from behind a stall."
+        narrator "The smell is brine and food and something sweet you don't quite have a name for."
+        "Two voices argue from somewhere to the left. Something crashes from behind a stall."
 
         narrator "None of the spirits stop. None of them look up."
-        narrator "Except that's not quite right. Because here and there, ones and twos, you catch the sideways glance — the way someone pretends to check a stall display while actually looking elsewhere." 
+        narrator "Except that's not quite right. Because here and there, ones and twos, you catch the sideways glance."
+        narrator "The way someone pretends to check a stall display while actually looking elsewhere." 
         narrator "They know you're here. They felt you arrive. They're just letting someone else handle it."
 
         narrator "Someone is waiting at the edge of the plaza."
 
-        narrator "She is small and ancient-looking, she's holding something on her head, built like a great tidal clam, her shell smoothed by centuries of water. Flour-dusted hands." 
+        narrator "She is small and ancient-looking, she's holding something on her head." 
+        narrator "Built like a great tidal clam, her shell smoothed by centuries of water. Flour-dusted hands." 
         
-        narrator "An expression of someone who has set down one problem to deal with a second problem and would very much like both problems to resolve quickly. She is holding a clay ladle."
+        narrator "An expression of someone who has set down one problem to deal with a second problem." 
+        narrator "And would very much like both problems to resolve quickly. She is holding a clay ladle."
 
-        narrator "She appears to have forgotten she is holding it. Beside her is someone taller, calmly standing there as they seem to be in a deep discussion." 
+        narrator "She appears to have forgotten she is holding it."
+        narrator "Beside her is someone taller, calmly standing there as they seem to be in a deep discussion." 
 
         narrator "Then they look at you. She looks at Kadyos infront of you. She gave a small nods"
 
@@ -901,12 +929,14 @@ label start:
         unknown "Come. Walk with me. There is a great deal to explain and very little time to explain it in."
 
         narrator "Beside her, keeping pace in the way of someone who has always kept pace with her, is a spirit who moves like still water."
-        narrator "Unhurried, present, draped in the particular calm of someone who has seen most things already, and larger than the space they occupy."  
+        narrator "Unhurried, present, draped in the particular calm of someone who has seen most things already,"
+        "and larger than the space they occupy."  
         narrator "They do not introduce themselves."
         
         narrator "When you catch their eye, there's a quality to the look that's somewhere between curiosity and recognition."
         
-        narrator "They did not rush, but they don't slow down either — they move automatically, dodging other creatures with ease. You had to actually keep up."
+        narrator "They did not rush, but they don't slow down either — they move automatically." 
+        narrator "Dodging other creatures with ease. You had to actually keep up."
 
         #CHOICES: YOU FOLLOW THEM AND SAID...
         label introduction_choices:
@@ -990,11 +1020,11 @@ label start:
         "Your mother's voice over the water." 
         "The feeling, already old enough to have settled in your chest, that you were supposed to be home before dark."
 
-        toto "You came here by tide, child. The tide does not send things without reason, even if the reason reveals itself slowly"
+        toto "You came here by tide, child. The tide does not send things without reason, even if the reason reveals itself slowly."
 
         narrator "Ba-O stops. Looks at you steadily."
 
-        ba_o " You came through the boundary. The tide brought you here, whether you chose it or not." 
+        ba_o "You came through the boundary. The tide brought you here, whether you chose it or not." 
         ba_o "We won't force your hand. But it knows we needed help."
 
         narrator "She glances back at the chaos of the marketplace. The ladle is still in her hand."
@@ -1224,7 +1254,8 @@ label start:
     ## SIGAY — COSTUME COMMITTEE
     ## ═══════════════════════════════════════════════════
     label sigay_intro:
-        narrator "You follow the sound of frustrated sighing, which leads you, eventually, to a studio that appears to have been recently hit by a typhoon." 
+        narrator "You follow the sound of frustrated sighing, which leads you, eventually..." 
+        "to a studio that appears to have been recently hit by a typhoon." 
         "Bolts of luminescent fabric spill across the floor. Half-finished headdresses lean against walls like tired dancers." 
         "In the center of the chaos, a jellyfish the color of a sunset sits surrounded by crumpled designs."
         kilaw "Right. Costumes next. I can do costumes."
@@ -1232,15 +1263,18 @@ label start:
         kilaw "Need a hand with those costumes? I can help figure it out."
         sigay "Oh... thank you I really need some assistance"
         narrator "Sigay holds up a half-made headdress — layers of sea glass and woven thread, technically accomplished, completely lifeless."
-        sigay "Every year, the costumes are the highlight of the festival. Every year, I know exactly what to do. But this year... it's like the current dried up inside me. Nothing flows."
+        sigay "Every year, the costumes are the highlight of the festival. "
+        sigay "Every year, I know exactly what to do. But this year... it's like the current dried up inside me. Nothing flows."
         kilaw "What did last year's look like?"
-        sigay "Magnificent. Sea greens and deep blues. Woven like—oh, what do you mortals call it —that fabric from your islands? The one that takes three moons to make?"
+        sigay "Magnificent. Sea greens and deep blues. Woven like—oh, what do you mortals call it —that fabric from your islands?" 
+        sigay "The one that takes three moons to make?"
         kilaw "Hablon?"
         sigay "Yes! Like hablon, but of bioluminescent thread. The dancers glowed as they moved. It was... it was alive."
         kilaw "So what changed?"
         narrator "Sigay's tentacles droop."
-        sigay "The Bakunawa has been circling for many cycles now. The realm is... frightened. When you design from fear, everything looks like armor. Nothing looks like celebration."
-        kilaw " Then let's design from something else. What does the celebration actually feel like?" 
+        sigay "The Bakunawa has been circling for many cycles now. The realm is... frightened."
+        sigay "When you design from fear, everything looks like armor. Nothing looks like celebration."
+        kilaw "Then let's design from something else. What does the celebration actually feel like?" 
         kilaw "Not what it's supposed to look like, what does it feel like?"
         narrator "Sigay is quiet. Then, slowly:"
         sigay "Like when the bioluminescent sea ignites all at once. Like everyone gasping the same breath at the same time."
@@ -1294,10 +1328,16 @@ label start:
     ## ═══════════════════════════════════════════════════
     label bilo_sili_intro:
         narrator "You said your goodbyes and went to the next spirit in need, the performance committee." 
-        "It was held by two spirits, Bilong-Bilo and Sili-Sili. You heard them before you saw them, two voices, one sharp and declarative, one fluid and insistent, talking over each other in perfect disharmony."
-        "When you got where they were, the two dancers were locked in a bitter disagreement over choreography. One favors traditional movements, the other demands something more fresh and modern in expression."
-        bilo "The steps have not changed in many cycles for a REASON, Sili-Sili! The Bakunawa recognizes the old forms. It is what makes its memory!"
-        sili "And that's exactly the problem! It's been how many long—the Bakunawa has seen the same performance many times since the past centuries!" 
+        narrator "It was held by two spirits, Bilong-Bilong and Sili-Sili."
+        narrator "You heard them before you saw them, two voices, one sharp and declarative, one fluid and insistent,"
+        narrator "talking over each other in perfect disharmony."
+        narrator "When you got where they were, the two dancers were locked in a bitter disagreement over choreography."
+        narrator "One favors traditional movements, the other demands something more fresh and modern in expression."
+
+        bilo "The steps have not changed in many cycles for a REASON, Sili-Sili! The Bakunawa recognizes the old forms."
+        bilo "It is what makes its memory!"
+        sili "And that's exactly the problem!"
+        sili "It's been how many long—the Bakunawa has seen the same performance many times since the past centuries!" 
         sili "We need something that catches it off guard, something it hasn't seen before!"
         bilo "You want to improvise at the most important ceremony of the century?!"
         sili "I want to perform something worth watching!"
@@ -1319,7 +1359,8 @@ label start:
         kilaw "You're both right and you're both not looking at the other's work properly."
         kilaw "Bilong-Bilong, the old forms have weight. Real weight. You can feel it." 
         kilaw "But Sili-Sili, the surprise, the life in it, that's what makes a crowd gasp." 
-        kilaw "I think the foundations should never changes, the rhythm, the footwork, but every year the expression is new. Same roots. Different flower"
+        kilaw "I think the foundations should never changes, the rhythm, the footwork, but every year the expression is new."
+        kilaw "Same roots. Different flower"
         bilo "Same roots..."
         sili "...Different flower."
         narrator "They look at each other. Something shifts."
@@ -1366,7 +1407,8 @@ label start:
 
         narrator "A young oyster brimming with brilliant ideas for props and effects. However lacking the confidence to execute them. Or so they said."
         "Their workshop is absolute chaos. Dozens of started projects, but nothing finished."
-        "You step over three unfinished lanterns, a net of sea glass that has been tangled rather than woven, and what appears to be an entire installation of hanging coral that has fallen sideways."
+        "You step over three unfinished lanterns, a net of sea glass that has been tangled rather than woven."
+        "It appears to be an entire installation of hanging coral that has fallen sideways."
         lusay "Oh! You're... you're the mortal girl. Kilaw, right? I heard about you."
         kilaw "Good things, I hope."
         kilaw "You're Lusay right?"
@@ -1465,7 +1507,8 @@ label start:
         kilaw "Okay. Okay, breathe. Scales—yes. Tail—yes, still there. Ears—fin-shaped, gross."
         kilaw "Am I still...me?"
 
-        narrator "Kadyos licks your scaled hand. His tail is fully finned now too. He looks up at you with the same stupid adoring expression he always has."
+        narrator "Kadyos licks your scaled hand. His tail is fully finned now too."
+        narrator "He looks up at you with the same stupid adoring expression he always has."
         "Exhaling shakily, you reached out as you touch Kadyos face."
 
         kilaw "...Yeah. Still us."
@@ -1609,7 +1652,8 @@ label start:
     ## ── KASAG FEEDBACK ──────────────────────────────────
 
         label kasag_good:
-            narrator "The musicians begin to play—Kasag's strength meeting the young spirits' innovation. Kasag's voice soften in awe. The musicians seems happy with themselves."
+            narrator "The musicians begin to play—Kasag's strength meeting the young spirits' innovation."
+            narrator "Kasag's voice soften in awe. The musicians seems happy with themselves."
             kasag "This... this sounds like—something forgotten."
             narrator "The music becomes something new yet familiar—tradition evolving like the tides."
             "On festival night, the melody moves spirits to tears, reminding them why they celebrate."
@@ -1642,7 +1686,8 @@ label start:
         narrator "It wasn't really a question. Kadyos leans against your transformed legs."
         kilaw "Whatever the Bakunawa decides, we did something real here. All of us. Even the parts that went wrong."
 
-        narrator "The bioluminescent sea ignites below and up the festival grounds, the same glow you followed from the boat, what felt like a lifetime ago."
+        narrator "The bioluminescent sea ignites below and up the festival grounds, the same glow you followed from the boat." 
+        narrator "What felt like a lifetime ago."
         "The same light that started everything."
         "You looks at your hands and saw the scales spreading, fast"
         kilaw "How much more do we have before..."
@@ -1669,7 +1714,8 @@ label start:
     ## CALCULATE SCORE AND ENDINGS
     ## ═══════════════════════════════════════════════════
     label pre_ending:
-        narrator "The water beneath the festival grounds begins to tremble — not the frantic churning of the vortex that brought you here, but something deeper. Deliberate. Aware."
+        narrator "The water beneath the festival grounds begins to tremble — not the frantic churning of the vortex that brought you here."
+        narrator "But something deeper. Deliberate. Aware."
         sigay "It's coming. The Bakunawa comes."
         narrator "Bao looks on quietly. She stayed close, her presence felt. Warmth against the cold waters. She does not reach for you."
         ba_o "Stay where you are, child. Let the festival speak for itself now."
@@ -1725,7 +1771,8 @@ label start:
         narrator "The Bakunawa rises, vast and patient, the way old things are patient."
         "It doesn't rush. It has seen three hundred festivals. It is taking the measure of this one."
         "The music falters for just a moment. Then holds."
-        "The Bakunawa is massive, ancient, neither angry nor pleased. It circles the moon, considering. The festival bought time, but nothing more."
+        "The Bakunawa is massive, ancient, neither angry nor pleased. It circles the moon, considering."
+        "The festival bought time, but nothing more."
         ba_o "Child, quickly, you can return home, partially transformed, or stay and help us find a new way."
         narrator "You stand between two worlds, unsure which path to choose."
         menu:
