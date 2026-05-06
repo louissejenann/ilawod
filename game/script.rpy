@@ -44,6 +44,8 @@ image intro night = Movie(play= "images/intro night.webm", loop=False, keep_last
 image intro sun = Movie(play= "images/intro sun.webm", loop=False, keep_last_frame=True)
 image intro frog = Movie(play= "images/intro frog.webm")
 image intro dawa mc = Movie(play= "images/intro dawa mc.webm", loop=False, keep_last_frame=True)
+image intro bakawan = Movie(play= "images/intro bakawan.webm", loop=False, keep_last_frame=True)
+image intro bye1 = Movie(play= "images/intro bye1.webm")
 
 ## Audios
 ## Atmosphere & Environment
@@ -147,14 +149,17 @@ label start:
     #scene intro frog2 with Dissolve(1.0)
     
     "Older than any name the villagers could give it." 
-    scene intro frog3 with Dissolve(1.0)
+    #scene intro frog3 with Dissolve(1.0)
     
     "Its roots twist deep into the earth and deeper still into stories passed down by those who came before." 
-    scene intro frog jump with Dissolve(1.0)
+    #scene intro frog jump with Dissolve(1.0)
     
     "The locals call it simply the bakawan," 
-    scene intro bakawan #with zoom in
     
+    scene intro bakawan with Dissolve(1.0)
+    show intro bakawan at Transform(zoom=1.0):
+        linear 6.0 zoom 1.3
+
     "but they speak of it the way one speaks of something that deserves caution. "
 
     "Not forbidden." 
@@ -162,7 +167,9 @@ label start:
     "Just... not meant for staying too long."
 
     "The men of Panhuy-an know this instictively."
-    scene intro bakawan #with zoom out
+    
+    show intro bakawan at Transform(zoom=1.3):
+        linear 6.0 zoom 1.0
 
     "Every evening at dusk, they face the treeline and stand."
 
@@ -252,14 +259,17 @@ label start:
 
     narrator "With that you went on your way."
     
-    scene intro festival prep1
+    scene intro festival prep1 with Dissolve(2.0)
     play audio festival_drums volume 0.1 fadein 2.0
 
     "The afternoon light is golden and low." 
     
     "Somewhere, further down the shoreline, you can hear the faint pulse of drums — the festival preparations already beginning."
 
-    scene intro into bakawan
+    scene panahuyan village 
+    show dawa
+    with Dissolve(2.0)
+    #scene intro into bakawan
     #whistle audio
 
     "Dawa called after you."
@@ -269,13 +279,14 @@ label start:
     dawa "Make sure you're back before the festival starts." 
     dawa "Your mother will have both our heads if you're not at the lantern lighting!"
 
+    scene intro bye1 with Dissolve(2.0)
+
     "You wave a hand without turning around."
-    scene intro bye1
 
     "It's still three moons away, but the village never waits until the last moment."
 
     "The lantern-hanging hadn't started yet but you could feel it coming."
-    scene intro bye
+    #scene intro bye
 
     "You'll be back in time. You're always on time."
 
