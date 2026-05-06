@@ -33,7 +33,7 @@ init python:
 
 ## Background
 image background moving = Movie(play= "images/Comp1.webm")
-image intro village = Movie(play= "images/intro village.webm")
+image intro village = Movie(play= "images/intro village.webm", Loop=False, keep_last_frame=True)
 image intro village2 = Movie(play= "images/intro village2.webm")
 image intro caught fish = Movie(play= "images/intro caught fish.webm")
 image intro dawa = Movie(play= "images/intro dawa.webm")
@@ -46,8 +46,25 @@ image intro frog = Movie(play= "images/intro frog.webm")
 image intro dawa mc = Movie(play= "images/intro dawa mc.webm", loop=False, keep_last_frame=True)
 
 ## Audios
+## Atmosphere & Environment
+define audio.morning_birds = "audio/morning birds intro sound.ogg"
+define audio.flowing_water = "audio/flowing water sound.ogg"
+define audio.water_drop    = "audio/water drop sound.ogg"
+define audio.fell_underwater = "audio/fell underwater sound.ogg"
 
-## Music
+## Character & Narrative SFX
+define audio.dawa_humming  = "audio/dawa humming sound.ogg"
+define audio.children_laughing = "audio/children laughing sound.ogg"
+define audio.woman_laughter = "audio/woman laughter sound.ogg"
+define audio.kadyos_bark    = "audio/kadyos bark sound.ogg"
+define audio.kadyos_whimper = "audio/kadyos whimpering sound.ogg"
+define audio.kadyos_silent_whimper = "audio/kadyos silent whimper sound.ogg"
+define audio.festival_drums = "audio/festival drums sound.ogg"
+
+## Music Tracks
+define audio.music_beginning = "audio/music beginning.ogg"
+define audio.music_gate      = "audio/music gate spirit realm.ogg"
+define audio.music_spirit_realm = "audio/music spirit realm.ogg"
 
 ## ──────────────────────────────────────────────────────────────
 
@@ -62,6 +79,8 @@ label start:
     #PROLOGUE -- PANHUY-AN
 
     scene intro sun with Fade(0.5, 0.3, 0.9)
+    #play audio morning_birds
+
     narrator "There is a place where the sea does not end and the land does not begin."
     
     scene intro village with Dissolve(2.0)
@@ -486,7 +505,9 @@ label start:
 
             "Kadyos puts his head in your lap. His tail moves once, slowly."
 
-            return #ENDING 1: BAD (YOU IGNORED THE CALLING)
+            scene black with Dissolve(3.0)
+            $ MainMenu(confirm=False)()
+            #return #ENDING 1: BAD (YOU IGNORED THE CALLING)
 
 
     label route_take_the_boat:
@@ -1093,7 +1114,12 @@ label start:
         kilaw "I should have tried."
 
         "There's no use for regrets in the end."
-        return #ENDING 2: BAD ENDING, YOU SHOULD'VE HELPED
+
+        scene black with Dissolve(3.0)
+        $ MainMenu(confirm=False)()
+        
+        #return 
+        #ENDING 2: BAD ENDING, YOU SHOULD'VE HELPED
     
 
     ## ═══════════════════════════════════════════════════
@@ -1489,7 +1515,11 @@ label start:
         "His tail moves, once. Slowly. You put your hand on his back."
         "Somewhere far away, you thought, you don't think can ever find a way back home, you can't even recognize yourself anymore."
         
-        return #BAD ENDING: Your fear was real. So was everything it cost you. 
+        scene black with Dissolve(3.0)
+        $ MainMenu(confirm=False)()
+        
+        #return 
+        #BAD ENDING: Your fear was real. So was everything it cost you. 
 
     
     ## ═══════════════════════════════════════════════════
@@ -1683,7 +1713,12 @@ label start:
 
         narrator "You look at the water. You're not sure if anyone can hear you. You said it anyway."
         kilaw "Thank you..."
-        return
+        
+        scene black with Dissolve(3.0)
+        $ MainMenu(confirm=False)()
+
+        #return 
+        #You made it.
 
     #NEUTRAL OUTCOME
     label neutral_ending:
@@ -1714,7 +1749,12 @@ label start:
             "He is content here, because you are here. That is all he has ever required." 
             "Quietly, you think to yourself"
             kilaw "I'll write something in the water. Mom will find it eventually."
-            return
+
+            scene black with Dissolve(3.0)
+            $ MainMenu(confirm=False)()
+
+            #return 
+            #You stayed in the spirit realm. You are not sure how long you will stay, but you know you will be here for a while.
 
         label leave_here:
             narrator "You look at the portal. You think of the mangrove at dawn. You think of your village. Your mom."
@@ -1725,7 +1765,12 @@ label start:
             narrator "When you went back to the surface, the aquatic features don't entirely recede."
             "Faint scales along your wrist, ears that catch the sound of running water differently now, a sensitivity to tides you didn't have before." 
             "You don't mind. They're a reminder. Proof that something happened, that it was real, that you were there and came back."
-            return 
+            
+            scene black with Dissolve(3.0)
+            $ MainMenu(confirm=False)()
+
+            #return 
+            #You returned to the mortal world, forever changed.
 
     #BAD OUTCOME
     label bad_ending:
@@ -1746,6 +1791,11 @@ label start:
 
         kilaw "I should have helped more. I should have tried harder."
         narrator "Somewhere in the mortal world, your village lights another lantern."
-        return
+        
+        scene black with Dissolve(3.0)
+        $ MainMenu(confirm=False)()
+        
+        #return
+        #BAD ENDING: Your efforts were not enough. The moon was devoured, and you are left in the darkness of what could have been.
 
     return
