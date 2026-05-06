@@ -67,6 +67,7 @@ define config.main_menu_music = "main-menu-theme.ogg"
 
 default preferences.volume.music = 0.5
 default preferences.volume.sfx = 0.7
+default preferences.volume.voice = 0.5
 
 ## Transitions #################################################################
 ##

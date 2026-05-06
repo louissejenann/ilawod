@@ -95,7 +95,7 @@ init python:
 
 #TYPEWRITER TESTING 
 init python:
-    renpy.music.register_channel("typewriter", mixer="sfx", loop=False)
+    renpy.music.register_channel("typewriter", mixer="voice", loop=False)
 
     _char_sounds = {
         "Kilaw":         ["audio/kilaw.ogg"],
@@ -474,44 +474,23 @@ screen navigation():
         style_prefix "navigation"
 
         xpos gui.navigation_xpos
-        yalign 0.5
+        yalign 0.45
 
         spacing gui.navigation_spacing
 
-        if main_menu:
-
-            textbutton _("Start") action Start()
-        
-        else:
-
+        textbutton _("Return") action Return()
+        if not main_menu:
             textbutton _("History") action ShowMenu("history")
-
             textbutton _("Save") action ShowMenu("save")
-
         textbutton _("Load") action ShowMenu("load")
-
-        textbutton _("Preferences") action ShowMenu("preferences")
-
-
-        if _in_replay:
-
-            textbutton _("End Replay") action EndReplay(confirm=True)
-
-        elif not main_menu:
-
-            textbutton _("Main Menu") action MainMenu()
-
-            textbutton _("About") action ShowMenu("about")
-
+        textbutton _("Settings") action ShowMenu("preferences")
         if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
-
-            ## Help isn't necessary or relevant to mobile devices.
             textbutton _("Help") action ShowMenu("help")
-
-        if renpy.variant("pc"):
-
-            ## The quit button is banned on iOS and unnecessary on Android and
-            ## Web.
+        if _in_replay:
+            textbutton _("End Replay") action EndReplay(confirm=True)
+        elif not main_menu:
+            textbutton _("Main Menu") action MainMenu()
+        if renpy.variant("pc") and main_menu:
             textbutton _("Quit") action Quit(confirm=not main_menu)
 
 
@@ -524,6 +503,7 @@ style navigation_button:
 
 style navigation_button_text:
     properties gui.text_properties("navigation_button")
+    size 40
 
 style button:
     size_group "navigation"
@@ -716,11 +696,6 @@ screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
 
     use navigation
 
-    textbutton _("Return"):
-        style "return_button"
-
-        action Return()
-
     label title
 
     if main_menu:
@@ -746,7 +721,7 @@ style return_button is navigation_button
 style return_button_text is navigation_button_text
 
 style game_menu_outer_frame:
-    bottom_padding 45
+    bottom_padding 200
     top_padding 180
 
     background "gui/overlay/game_menu.png"
@@ -758,7 +733,7 @@ style game_menu_navigation_frame:
     yfill True
 
 style game_menu_content_frame:
-    left_margin 0
+    left_margin 100
     right_margin 100
     top_margin 15
 
@@ -772,18 +747,14 @@ style game_menu_side:
     spacing 15
 
 style game_menu_label:
-    xpos 155
+    xpos 100
+    ypos -90
     ysize 180
 
 style game_menu_label_text:
     size 75
     color gui.accent_color
     yalign 1.7
-
-style return_button:
-    xpos gui.navigation_xpos
-    yalign 1.0
-    yoffset -45
 
 
 ## About screen ################################################################
@@ -864,7 +835,8 @@ screen file_slots(title):
                 style "page_label"
 
                 key_events True
-                xalign 0.5
+                xalign 0.415
+                yalign -0.1
                 action page_name_value.Toggle()
 
                 input:
@@ -877,6 +849,7 @@ screen file_slots(title):
 
                 xalign 0.5
                 yalign 0.5
+                xoffset -100
 
                 spacing gui.slot_spacing
 
@@ -939,12 +912,12 @@ screen file_slots(title):
                     textbutton _("Upload Sync"):
                         action UploadSync()
                         xalign 0.5
-                        yalign 0.96
+                        yalign 1.0
                 else:
                     textbutton _("Download Sync"):
                         action DownloadSync()
-                        xalign 0.5
-                        yalign 0.96
+                        xalign 0.47
+                        yalign 1.0
 
 
 style page_label is gui_label
@@ -1217,7 +1190,7 @@ style history_text:
     xpos gui.history_text_xpos
     ypos gui.history_text_ypos
     xanchor gui.history_text_xalign
-    xsize gui.history_text_width
+    xsize 980
     min_width gui.history_text_width
     textalign gui.history_text_xalign
     layout ("subtitle" if gui.history_text_xalign else "tex")
@@ -1385,7 +1358,7 @@ style help_label:
     right_padding 30
 
 style help_label_text:
-    size gui.text_size
+    size 38
     xalign 1.0
     textalign 1.0
 
@@ -1827,7 +1800,7 @@ style game_menu_content_frame:
 
 style game_menu_viewport:
     variant "small"
-    xsize 1305
+    xsize 1380
 
 style pref_vbox:
     variant "small"
