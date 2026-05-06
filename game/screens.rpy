@@ -93,7 +93,7 @@ init python:
 
     config.show = _scaled_show
 
-#TYPEWRITER TESTING 
+# TYPEWRITER TESTING 
 init python:
     renpy.music.register_channel("typewriter", mixer="voice", loop=False)
 
@@ -112,18 +112,23 @@ init python:
         "":              ["audio/A1.ogg", "audio/A2.ogg", "audio/A3.ogg", "audio/A4.ogg", "audio/A5.ogg", "audio/B1.ogg", "audio/B2.ogg", "audio/B3.ogg", "audio/B4.ogg", "audio/B5.ogg"],
     }
 
-    def typewriter_sfx(event, interact=True, who=None, **kwargs):
-        sounds = _char_sounds.get(who or "", ["audio/A1.ogg", "audio/A2.ogg", "audio/A3.ogg", "audio/A4.ogg", "audio/A5.ogg", "audio/B1.ogg", "audio/B2.ogg", "audio/B3.ogg", "audio/B4.ogg", "audio/B5.ogg"])
+    def typewriter_sfx(event, interact=True, **kwargs):
+        # This looks for the 'cb_who' value we defined in Character()
+        # If it can't find it, it defaults to an empty string (narrator sounds)
+        who_name = kwargs.get("cb_who", "") 
+        sounds = _char_sounds.get(who_name, _char_sounds[""])
+
         if event == "show":
+            # 60 might be too many for short sentences. 
+            # This queues sounds to play one after another.
             for i in range(60):
                 if i == 0:
                     renpy.sound.play(renpy.random.choice(sounds), channel="typewriter")
                 else:
                     renpy.sound.queue(renpy.random.choice(sounds), channel="typewriter")
+        
         elif event in ("slow_done", "end"):
             renpy.sound.stop(channel="typewriter")
-
-    #config.character_callback = typewriter_sfx
 
 
 

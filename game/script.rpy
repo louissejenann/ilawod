@@ -1,19 +1,19 @@
 # The script of the game goes in this file.
 
-#define e = Character("Eileen") -- DEFAULT ALREADY THERE
+define kilaw = Character("Kilaw", window_style="character_window", who_style="namebox_kilaw_label", callback=typewriter_sfx, cb_who="Kilaw")
+define kadyos = Character("Kadyos", window_style="character_window", who_style="namebox_kadyos_label", callback=typewriter_sfx, cb_who="Kadyos")
+define ba_o = Character("Ba-O", window_style="character_window", who_style="namebox_ba_o_label", callback=typewriter_sfx, cb_who="Ba-O")
+define toto = Character("Toto", window_style="character_window", who_style="namebox_toto_label", callback=typewriter_sfx, cb_who="Toto")
+define lusay = Character("Lusay", window_style="character_window", who_style="namebox_lusay_label", callback=typewriter_sfx, cb_who="Lusay")
+define sili = Character("Sili-Sili", window_style="character_window", who_style="namebox_sili_label", callback=typewriter_sfx, cb_who="Sili-Sili")
+define bilo = Character("Bilong-Bilong", window_style="character_window", who_style="namebox_bilo_label", callback=typewriter_sfx, cb_who="Bilong-Bilong")
+define kasag = Character("Kasag", window_style="character_window", who_style="namebox_kasag_label", callback=typewriter_sfx, cb_who="Kasag")
+define sigay = Character("Sigay", window_style="character_window", who_style="namebox_sigay_label", callback=typewriter_sfx, cb_who="Sigay")
+define dawa = Character("Dawa", window_style="character_window", who_style="namebox_dawa_label", callback=typewriter_sfx, cb_who="Dawa")
+define unknown = Character("???", window_style="character_window", who_style="namebox_unknown_label", callback=typewriter_sfx, cb_who="???")
 
-define kilaw = Character("Kilaw", window_style="character_window", who_style="namebox_kilaw_label", callback=typewriter_sfx)
-define kadyos = Character("Kadyos", window_style="character_window", who_style="namebox_kadyos_label")
-define ba_o = Character("Ba-O", window_style="character_window", who_style="namebox_ba_o_label")
-define toto = Character("Toto", window_style="character_window", who_style="namebox_toto_label")
-define lusay = Character("Lusay", window_style="character_window", who_style="namebox_lusay_label")
-define sili = Character("Sili-Sili", window_style="character_window", who_style="namebox_sili_label")
-define bilo = Character("Bilong-Bilong", window_style="character_window", who_style="namebox_bilo_label")
-define kasag = Character("Kasag", window_style="character_window", who_style="namebox_kasag_label")
-define sigay = Character("Sigay", window_style="character_window", who_style="namebox_sigay_label")
-define dawa = Character("Dawa", window_style="character_window", who_style="namebox_dawa_label")
-define unknown = Character("???", window_style="character_window", who_style="namebox_unknown_label")
-define narrator = Character("", callback=typewriter_sfx)
+# This handles the text that has no name attached (narrator)
+define narrator = Character(None, callback=typewriter_sfx, cb_who="")
 
 ## Choices tracking
 default seen_what_is_this = False
