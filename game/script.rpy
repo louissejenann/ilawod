@@ -13,6 +13,7 @@ define kasag = Character("Kasag", window_style="character_window", who_style="na
 define sigay = Character("Sigay", window_style="character_window", who_style="namebox_sigay_label")
 define dawa = Character("Dawa", window_style="character_window", who_style="namebox_dawa_label")
 define unknown = Character("???", window_style="character_window", who_style="namebox_unknown_label")
+define narrator = Character("", callback=typewriter_sfx)
 
 ## Choices tracking
 default seen_what_is_this = False
@@ -46,7 +47,7 @@ image intro caught fish = Movie(play= "images/intro caught fish.webm")
 label start:
     stop music fadeout 4.0
 
-    $ renpy.music.set_volume(1.0, channel="typewriter")
+    $ renpy.music.set_volume(2.9, channel="typewriter")
 
     #ACT 01 ---------- EXPOSITION
 

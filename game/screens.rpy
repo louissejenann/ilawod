@@ -109,10 +109,11 @@ init python:
         "Sigay":         ["audio/sigay.ogg"],
         "Dawa":          ["audio/dawa.ogg"],
         "???":           ["audio/unknown.ogg"],
+        "":              ["audio/A1.ogg", "audio/A2.ogg", "audio/A3.ogg", "audio/A4.ogg", "audio/A5.ogg", "audio/B1.ogg", "audio/B2.ogg", "audio/B3.ogg", "audio/B4.ogg", "audio/B5.ogg"],
     }
 
     def typewriter_sfx(event, interact=True, who=None, **kwargs):
-        sounds = _char_sounds.get(who, ["audio/kilaw.ogg"])
+        sounds = _char_sounds.get(who or "", ["audio/A1.ogg", "audio/A2.ogg", "audio/A3.ogg", "audio/A4.ogg", "audio/A5.ogg", "audio/B1.ogg", "audio/B2.ogg", "audio/B3.ogg", "audio/B4.ogg", "audio/B5.ogg"])
         if event == "show":
             for i in range(60):
                 if i == 0:
