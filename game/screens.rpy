@@ -113,14 +113,17 @@ init python:
     }
 
     def typewriter_sfx(event, interact=True, **kwargs):
-        # This looks for the 'cb_who' value we defined in Character()
-        # If it can't find it, it defaults to an empty string (narrator sounds)
-        who_name = kwargs.get("cb_who", "") 
+        # Ren'Py strips 'cb_' from 'cb_who', so we look for 'who'
+        who_name = kwargs.get("who", "") 
         sounds = _char_sounds.get(who_name, _char_sounds[""])
 
         if event == "show":
-            # 60 might be too many for short sentences. 
-            # This queues sounds to play one after another.
+            # Set volume: 0.4 for narrator, 1.0 for spirits
+            if who_name == "":
+                renpy.music.set_volume(5.0, channel="typewriter")
+            else:
+                renpy.music.set_volume(1.0, channel="typewriter")
+
             for i in range(60):
                 if i == 0:
                     renpy.sound.play(renpy.random.choice(sounds), channel="typewriter")
