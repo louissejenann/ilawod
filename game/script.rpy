@@ -36,6 +36,13 @@ image background moving = Movie(play= "images/Comp1.webm")
 image intro village = Movie(play= "images/intro village.webm")
 image intro village2 = Movie(play= "images/intro village2.webm")
 image intro caught fish = Movie(play= "images/intro caught fish.webm")
+image intro dawa = Movie(play= "images/intro dawa.webm")
+image intro dawa noticed = Movie(play= "images/intro dawa noticed.webm")
+image intro moon = Movie(play= "images/intro moon.webm")
+image intro moon2 = Movie(play= "images/intro moon2.webm")
+image intro night = Movie(play= "images/intro night.webm")
+image intro sun = Movie(play= "images/intro sun.webm")
+image intro frog = Movie(play= "images/intro frog.webm")
 
 ## Images
 
@@ -85,7 +92,7 @@ label start:
 
     "The evening carries distant laughter, the sound of wind and waves folding into each other."
 
-    scene intro night #with zoom 
+    scene intro night with Dissolve(2.0)
     "The people here speak of tides, and moon, and seasons when the fish are plentiful."
    
     "...and seasons when even the nets come back empty."
@@ -94,16 +101,16 @@ label start:
     #zoom intro night
 
     "But behind it," 
-    scene intro moon 
+    scene intro moon with Dissolve(2.0)
     
     "behind the stilts and the smoke and the festival drums already beginning their preparations," 
     scene intro moon2 with Dissolve(2.0)
     
     "stands the bakawan."
-    scene intro frog 
+    scene intro frog with Dissolve(2.0)
 
     "Not planted." 
-    scene intro frog2 with Dissolve(1.0)
+    #scene intro frog2 with Dissolve(1.0)
     
     "Older than any name the villagers could give it." 
     scene intro frog3 with Dissolve(1.0)
@@ -145,7 +152,7 @@ label start:
     
     "She hums something old."
 
-    scene intro dawa noticed
+    scene intro dawa noticed with Dissolve(2.0)
     "Kadyos sniffs nearby."
     
     scene intro dawa mc
