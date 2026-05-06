@@ -39,12 +39,13 @@ image intro caught fish = Movie(play= "images/intro caught fish.webm")
 image intro dawa = Movie(play= "images/intro dawa.webm")
 image intro dawa noticed = Movie(play= "images/intro dawa noticed.webm")
 image intro moon = Movie(play= "images/intro moon.webm")
-image intro moon2 = Movie(play= "images/intro moon2.webm")
-image intro night = Movie(play= "images/intro night.webm")
-image intro sun = Movie(play= "images/intro sun.webm")
+image intro moon2 = Movie(play= "images/intro moon2.webm", loop=False, keep_last_frame=True)
+image intro night = Movie(play= "images/intro night.webm", loop=False, keep_last_frame=True)
+image intro sun = Movie(play= "images/intro sun.webm", loop=False, keep_last_frame=True)
 image intro frog = Movie(play= "images/intro frog.webm")
+image intro dawa mc = Movie(play= "images/intro dawa mc.webm", loop=False, keep_last_frame=True)
 
-## Images
+## Audios
 
 ## Music
 
@@ -54,7 +55,7 @@ image intro frog = Movie(play= "images/intro frog.webm")
 label start:
     stop music fadeout 4.0
 
-    $ renpy.music.set_volume(2.9, channel="typewriter")
+    #$ renpy.music.set_volume(2.9, channel="typewriter")
 
     #ACT 01 ---------- EXPOSITION
 
@@ -104,7 +105,7 @@ label start:
     scene intro moon with Dissolve(2.0)
     
     "behind the stilts and the smoke and the festival drums already beginning their preparations," 
-    scene intro moon2 with Dissolve(2.0)
+    scene intro moon2 with Fade(0.5, 0.3, 0.9)
     
     "stands the bakawan."
     scene intro frog with Dissolve(2.0)
@@ -155,12 +156,14 @@ label start:
     scene intro dawa noticed with Dissolve(2.0)
     "Kadyos sniffs nearby."
     
-    scene intro dawa mc
+    scene intro dawa mc with Dissolve(2.0)
     dawa "Your dog's got more sense than you."
 
     kilaw "He just wants food."
     
-    scene intro dawa screen
+    scene panahuyan village 
+    show dawa
+    with Dissolve(2.0)
 
     dawa "Mm. Don't we all."
 
@@ -168,7 +171,7 @@ label start:
 
     kilaw "We haven't caught anything since yesterday."
     
-    scene intro dawa screen2
+    #scene intro dawa screen2 ung may hawak siyang crab
     narrator "Dawa pulls a crab from the net, tosses it into a basket without looking."
 
     dawa "Then you waited too long. Tide's already turning."
