@@ -1480,7 +1480,8 @@ label start:
     ## ── LUSAY FEEDBACK ─────────────────────────────────
 
     label lusay_good:
-        narrator "Together they completed something spectacular, moving with coordination and at ease. The decoration was finished, and so is the morning."
+        narrator "Together they completed something spectacular, moving with coordination and at ease."
+        "The decoration was finished, and so is the morning."
         lusay "It's—oh. Oh, it actually works. It's actually beautiful."
         kilaw "See? Wrong lanterns and all."
         lusay "The mess works! The mess absolutely works!"

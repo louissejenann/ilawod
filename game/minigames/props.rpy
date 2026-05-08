@@ -1,164 +1,112 @@
 ## ============================================================
-## PROPS MINIGAME — Lusay's lanterns
+## PROPS MINIGAME — Lusay's lanterns (Timing Bar Version)
 ## Target: 7 lanterns before time runs out
 ## ============================================================
 
-init python:
-    def lantern_piece_dropped(drags, drop):
-        if drop is None:
-            return
-
-        piece = drags[0].drag_name
-        slot  = drop.drag_name
-        
-        correct_map = {f"piece_{i}": f"slot_{i}" for i in range(1, 12)}
-
-        if correct_map.get(piece) == slot:
-            drags[0].snap(drop.x, drop.y)
-            
-            if slot not in renpy.store.current_slots:
-                renpy.store.current_slots.append(slot)
-            return
-        else:
-            drags[0].snap(drags[0].start_x, drags[0].start_y)
-            return
-
 screen minigame_props():
+    # Game State
     default time_left     = props_time_left
     default lanterns_done = props_lanterns_done
+    default clicks_needed = 3
+    default current_clicks = 0
+
+    # Slider Logic
+    default bar_val = 0
+    default moving_forward = True
+    default zone_start = 42
+    default zone_end = 58
 
     add "images/Lusays workshop.png"
 
-    text "Time: [time_left]s"            xpos 60  ypos 30 style "minigame_title"
-    text "Lanterns: [lanterns_done] / 7" xpos 1630 ypos 30 style "minigame_title"
+    # Main Game Loop (Movement & Timer)
+    timer 0.02 repeat True action [
+        If(moving_forward,
+            [If(bar_val < 100, SetScreenVariable("bar_val", bar_val + 2), SetScreenVariable("moving_forward", False))],
+            [If(bar_val > 0, SetScreenVariable("bar_val", bar_val - 2), SetScreenVariable("moving_forward", True))]
+        ),
+        If(time_left > 0,
+            SetScreenVariable("time_left", max(0, time_left - 0.02)),
+            Return(lanterns_done)
+        )
+    ]
 
-    timer 1.0 repeat True action If(
-        time_left > 0,
-        true  = SetScreenVariable("time_left", time_left - 1),
-        false = Return(lanterns_done)
-    )
+    ## ── Header (Similar to food.rpy style) ──────────────────
+    hbox:
+        xalign 0.5 ypos 30
+        spacing 100
+        text "Time: [time_left:.1f]s" style "minigame_title"
+        text "Lanterns: [lanterns_done] / 7" style "minigame_title"
 
-    add "images/Lantern_Line_Jellyfish.png" xalign 0.5 ypos 0
+    ## ── Lantern Preview Area ────────────────────────────────
+    frame:
+        background None
+        xalign 0.5 ypos 150
+        xsize 800 ysize 500
+        
+        if current_clicks < clicks_needed:
+            add "images/unorganize lantern squid.jpg" xalign 0.5 yalign 0.5
+            text "Assembly: [current_clicks]/3" xalign 0.5 ypos 450 style "minigame_title" size 30
+        else:
+            add "images/organize lantern squid.jpg" xalign 0.5 yalign 0.5
+            text "Success!" xalign 0.5 ypos 450 style "minigame_success"
+            
+            # Reset for next lantern after a brief pause
+            timer 0.6 action [
+                SetScreenVariable("lanterns_done", lanterns_done + 1),
+                SetScreenVariable("current_clicks", 0)
+            ]
 
-    draggroup:
-        # SLOTS (Targets)
-        drag:
-            drag_name "slot_1" droppable True xpos 570 ypos 125 xsize 60 ysize 50
-            if "slot_1" in current_slots:
-                add "images/Lantern_1P_Jellyfish.png"
-        drag:
-            drag_name "slot_2" droppable True xpos 555 ypos 175 xsize 90 ysize 70
-            if "slot_2" in current_slots:
-                add "images/Lantern_2P_Jellyfish.png"
-        drag:
-            drag_name "slot_3" droppable True xpos 530 ypos 250 xsize 140 ysize 150
-            if "slot_3" in current_slots:
-                add "images/Lantern_3P_Jellyfish.png"
-        drag:
-            drag_name "slot_4" droppable True xpos 555 ypos 400 xsize 90 ysize 60
-            if "slot_4" in current_slots:
-                add "images/Lantern_4P_Jellyfish.png"
-        drag:
-            drag_name "slot_5" droppable True xpos 400 ypos 125 xsize 60 ysize 50
-            if "slot_5" in current_slots:
-                add "images/Lantern_5P_Jellyfish.png"
-        drag:
-            drag_name "slot_6" droppable True xpos 400 ypos 175 xsize 90 ysize 70
-            if "slot_6" in current_slots:
-                add "images/Lantern_6P_Jellyfish.png"
-        drag:
-            drag_name "slot_7" droppable True xpos 400 ypos 250 xsize 140 ysize 150
-            if "slot_7" in current_slots:
-                add "images/Lantern_7P_Jellyfish.png"
-        drag:
-            drag_name "slot_8" droppable True xpos 400 ypos 400 xsize 90 ysize 60
-            if "slot_8" in current_slots:
-                add "images/Lantern_8P_Jellyfish.png"
-        drag:
-            drag_name "slot_9" droppable True xpos 700 ypos 250 xsize 90 ysize 60
-            if "slot_9" in current_slots:
-                add "images/Lantern_9P_Jellyfish.png"
-        drag:
-            drag_name "slot_10" droppable True xpos 700 ypos 320 xsize 90 ysize 60
-            if "slot_10" in current_slots:
-                add "images/Lantern_10P_Jellyfish.png"
-        drag:
-            drag_name "slot_11" droppable True xpos 700 ypos 390 xsize 90 ysize 60
-            if "slot_11" in current_slots:
-                add "images/Lantern_11P_Jellyfish.png"
+    ## ── Timing Bar & Controls (Bottom) ──────────────────────
+    vbox:
+        xalign 0.5 ypos 750
+        spacing 30
 
-        # PIECES (Draggables)
-        if "slot_1" not in current_slots:
-            drag:
-                drag_name "piece_1" draggable True xpos 50 ypos 80
-                dragged lantern_piece_dropped
-                add "images/Lantern_1P_Jellyfish.png"
-        if "slot_2" not in current_slots:
-            drag:
-                drag_name "piece_2" draggable True xpos 1200 ypos 30
-                dragged lantern_piece_dropped
-                add "images/Lantern_2P_Jellyfish.png"
-        if "slot_3" not in current_slots:
-            drag:
-                drag_name "piece_3" draggable True xpos 1300 ypos 340
-                dragged lantern_piece_dropped
-                add "images/Lantern_3P_Jellyfish.png"
-        if "slot_4" not in current_slots:
-            drag:
-                drag_name "piece_4" draggable True xpos 1490 ypos 500
-                dragged lantern_piece_dropped
-                add "images/Lantern_4P_Jellyfish.png"
-        if "slot_5" not in current_slots:
-            drag:
-                drag_name "piece_5" draggable True xpos 344 ypos 40
-                dragged lantern_piece_dropped
-                add "images/Lantern_5P_Jellyfish.png"
-        if "slot_6" not in current_slots:
-            drag:
-                drag_name "piece_6" draggable True xpos 1610 ypos 280
-                dragged lantern_piece_dropped
-                add "images/Lantern_6P_Jellyfish.png"
-        if "slot_7" not in current_slots:
-            drag:
-                drag_name "piece_7" draggable True xpos 230 ypos 300
-                dragged lantern_piece_dropped
-                add "images/Lantern_7P_Jellyfish.png"
-        if "slot_8" not in current_slots:
-            drag:
-                drag_name "piece_8" draggable True xpos 980 ypos 500
-                dragged lantern_piece_dropped
-                add "images/Lantern_8P_Jellyfish.png"
-        if "slot_9" not in current_slots:
-            drag:
-                drag_name "piece_9" draggable True xpos 660 ypos 60
-                dragged lantern_piece_dropped
-                add "images/Lantern_9P_Jellyfish.png"
-        if "slot_10" not in current_slots:
-            drag:
-                drag_name "piece_10" draggable True xpos 60 ypos 750
-                dragged lantern_piece_dropped
-                add "images/Lantern_10P_Jellyfish.png"
-        if "slot_11" not in current_slots:
-            drag:
-                drag_name "piece_11" draggable True xpos 420 ypos 580
-                dragged lantern_piece_dropped
-                add "images/Lantern_11P_Jellyfish.png"
+        # The Visual Slider
+        fixed:
+            xsize 600 ysize 60
+            
+            # Track
+            bar value 100 range 100 xsize 600 yalign 0.5
+            
+            # The Green Sweet Spot
+            frame:
+                xpos (zone_start * 6)
+                xsize ((zone_end - zone_start) * 6)
+                ysize 40
+                background "#00ff00"
+                yalign 0.5
 
-    if len(current_slots) == 11:
-        timer 0.5 action [
-            SetScreenVariable("lanterns_done", lanterns_done + 1),
-            SetVariable("current_slots", [])
-        ]
-        text "Lantern complete!" xalign 0.5 ypos 560 style "minigame_success"
+            # The Moving Indicator
+            frame:
+                xpos (bar_val * 6)
+                xsize 15 ysize 60
+                background "#ffffff"
+                yalign 0.5
 
+        # Interaction Button
+        imagebutton:
+            idle "gui/btn_assemble_idle.png" # Make sure this asset exists
+            hover "gui/btn_assemble_hover.png"
+            xalign 0.5
+            action If(bar_val >= zone_start and bar_val <= zone_end,
+                true = [
+                    SetScreenVariable("current_clicks", current_clicks + 1),
+                    Play("sound", "audio/water_drop.ogg") # From your audio defines
+                ],
+                false = [
+                    SetScreenVariable("current_clicks", 0),
+                    Play("sound", "audio/kadyos_whimper.ogg")
+                ]
+            )
+
+    ## ── Win Condition ───────────────────────────────────────
     if lanterns_done >= 7:
         timer 0.5 action Return(lanterns_done)
 
 label minigame_props_start:
-    lusay "Okay! Let's finish these lanterns — drag each piece to its place!"
-    narrator "Assemble all 7 lanterns before time runs out!"
+    lusay "Okay! Let's finish these lanterns — catch the light at the right moment!" 
+    narrator "Click when the pointer is in the green zone. You need 3 perfect hits per lantern!" 
     
-    $ current_slots = []
     $ props_time_left = 60
     $ props_lanterns_done = 0
     
@@ -168,9 +116,11 @@ label minigame_props_start:
 
     if props_lanterns >= 7:
         $ score_props = 3
+        jump lusay_good
     elif props_lanterns >= 4:
         $ score_props = 2
+        jump lusay_neutral
     else:
         $ score_props = 1
-
+        jump lusay_bad
     return
