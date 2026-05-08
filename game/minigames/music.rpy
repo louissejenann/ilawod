@@ -64,7 +64,7 @@ init python:
     def music_spawn(elapsed, active, spawned):
         for i, note in enumerate(music_notes):
             if i not in spawned and elapsed >= note[0]:
-                active.append([note[1], -0.05, i])  ## start above screen
+                active.append([note[1], -0.05, i])  
                 spawned.add(i)
 
     def music_move(active, elapsed):
@@ -79,7 +79,7 @@ init python:
 
     def music_miss(active, miss_box, last_action):
         for note in active[:]:
-            if note[1] > 1.05:  ## past bottom of screen
+            if note[1] > 1.05:  
                 active.remove(note)
                 miss_box[0] += 1
                 last_action[0] = "miss"
@@ -122,21 +122,21 @@ screen minigame_music():
     ## Sync last_action from global each frame
     $ last_action = music_last_action[0]
 
-    ## Conductor reacts to last action
-    if last_action == "hit":
-        add "images/conductor_okay.png" xpos 30 ypos 100
-    elif last_action == "miss":
-        add "images/conductor_bad.png"  xpos 30 ypos 100
-    else:
-        add "images/conductor_idle.png" xpos 30 ypos 100
-
-    ## Musicians react to last action
+    ## Musicians react to last action 
     if last_action == "hit":
         add "images/musicians_normal.png" xpos 100 ypos 80
     elif last_action == "miss":
         add "images/musicians_shame.png"  xpos 100 ypos 80
     else:
         add "images/musicians_normal.png" xpos 100 ypos 80
+
+    ## Conductor reacts to last action 
+    if last_action == "hit":
+        add "images/conductor_okay.png" xpos 30 ypos 100
+    elif last_action == "miss":
+        add "images/conductor_bad.png"  xpos 30 ypos 100
+    else:
+        add "images/conductor_idle.png" xpos 30 ypos 100
 
     ## Hit targets — one circle per lane at MUSIC_HIT_Y
     for lane_index, lane_x in enumerate(MUSIC_LANE_X):

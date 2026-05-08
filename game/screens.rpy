@@ -497,7 +497,7 @@ screen navigation():
         if _in_replay:
             textbutton _("End Replay") action EndReplay(confirm=True)
         elif not main_menu:
-            textbutton _("Main Menu") action MainMenu()
+            textbutton _("Menu") action MainMenu()
         if renpy.variant("pc") and main_menu:
             textbutton _("Quit") action Quit(confirm=not main_menu)
 

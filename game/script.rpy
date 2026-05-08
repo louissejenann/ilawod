@@ -46,6 +46,7 @@ image intro frog = Movie(play= "images/intro frog.webm")
 image intro dawa mc = Movie(play= "images/intro dawa mc.webm", loop=False, keep_last_frame=True)
 image intro bakawan = Movie(play= "images/intro bakawan.webm", loop=False, keep_last_frame=True)
 image intro bye1 = Movie(play= "images/intro bye1.webm")
+image sunset = Movie(play= "images/sunset.webm", loop=False, keep_last_frame=True)
 
 ## Audios
 ## Atmosphere & Environment
@@ -458,7 +459,7 @@ label start:
 
             "You both wandered into the mangrove until evening and got lost." 
             
-            "You ate your food, sharing it with Kadyos, until you saw something below the waters" 
+            "You ate your food, sharing it with Kadyos, until you saw something below the waters." 
             
             "A shimmer, a shadow, something moving with purpose."
 
@@ -497,7 +498,7 @@ label start:
             pause 3.5
             scene black with Dissolve(3.0)
 
-            "You fesll out of the boat and into the water below."
+            "You fell out of the boat and into the water below."
             jump welcome_spiritrealm_main
 
 
@@ -508,6 +509,8 @@ label start:
 
             narrator "Kadyos trots after you, tail going. He glances back at the boat once, just once, then follows"
 
+            scene sunset with Dissolve(2.0)
+
             "By the time you reach the stilts the sky is the color of cooling embers."
             "The smell of woodsmoke and neighbor-cooking is the best thing you've encountered all day." 
             
@@ -516,6 +519,9 @@ label start:
             
             "You cook together."
             "It's good. It was a normal evening."
+
+            scene black with Dissolve(3.0)
+
             "You went to sleep."
 
             "Behind the village, in the deep water hours, the mangrove is very quiet."
@@ -748,6 +754,8 @@ label start:
 
         narrator "You open your eyes."
 
+        scene Spirit Map with Fade(0.5, 0.3, 0.9)
+
         narrator "You are lying on something solid. Stone, maybe, or old root, so thick and wide it feels like ground."
 
         narrator "Above you: the underside of the mangrove, but wrong."
@@ -772,8 +780,8 @@ label start:
         
         "It seems to have been crumpled and re-smoothed at least twice."
 
-        unknown "We felt you come through."  
-        unknown "Well. Everyone felt you come through"
+        unknown "We felt you came through."  
+        unknown "Well. Everyone felt you came through"
 
         unknown "When something crosses the boundary — falls through the rift — the whole surrouding shift." 
         
@@ -804,6 +812,8 @@ label start:
         narrator "Then; silence. Before lights came from below."
 
         narrator "You open your eyes."
+
+        scene Spirit Map with Fade(0.5, 0.3, 0.9)
 
         narrator "You are lying on something solid. Stone, maybe, or old root, so thick and wide it feels like ground." 
         
@@ -906,6 +916,8 @@ label start:
         narrator "The sky looks like the sea" 
         
         narrator "You're in underwater right now."
+
+        scene marketplace with Dissolve(2.0)
         
         narrator "What you thought was a small clearing turns out to be a marketplace, enormous." 
         narrator "Stalls of woven sea-grass and old fishing net, clay pots big enough to sleep in, lanterns strung between crooked posts." 
@@ -929,7 +941,7 @@ label start:
         narrator "And would very much like both problems to resolve quickly. She is holding a clay ladle."
 
         narrator "She appears to have forgotten she is holding it."
-        narrator "Beside her is someone taller, calmly standing there as they seem to be in a deep discussion." 
+        narrator "c." 
 
         narrator "Then they look at you. She looks at Kadyos infront of you. She gave a small nods"
 
@@ -1175,6 +1187,8 @@ label start:
         ba_o "Good. Then you understand that food is memory." 
         ba_o "Every dish I have forgotten is a piece of this realm lost. We cannot let the Bakunawa come to an empty table."
 
+        scene bao kitchen with Dissolve(2.0)
+
         narrator "The kitchen opens up enormous clay pots the size of fishing boats, fires lit with bioluminescent coral."
         "The smell of sea and something warm and familiar."
         "Your stomach growls."
@@ -1184,6 +1198,8 @@ label start:
         kilaw "...What do you normally make? For the festival?"
         ba_o "Everything. Seafood layered in the olden way, each ingredient placed with intention, a prayer."
         ba_o "We call it the ceremonial dish. Every realm has one. Ours is from the deep."
+
+        scene bao kitchen2 with Dissolve(2.0)
 
         narrator "She slides a tray of ingredients toward you. It glows faintly."
 
@@ -1209,7 +1225,7 @@ label start:
             jump bao_bad
 
     label route_no:
-        ba_o "Ah, honesty. A rare seasoning these days. Let me explain once more, slowly"
+        ba_o "Ah, honesty. A rare seasoning these days. Let me explain once more, slowly."
 
         ba_o "You will build the ceremonial dish layer by layer. After that, dress it with colors and textures from our realm."
 
@@ -1266,6 +1282,9 @@ label start:
     ## ═══════════════════════════════════════════════════
     label sigay_intro:
         narrator "You follow the sound of frustrated sighing, which leads you, eventually..." 
+
+        scene Sigays workshop with Dissolve(2.0) 
+
         "to a studio that appears to have been recently hit by a typhoon." 
         "Bolts of luminescent fabric spill across the floor. Half-finished headdresses lean against walls like tired dancers." 
         "In the center of the chaos, a jellyfish the color of a sunset sits surrounded by crumpled designs."
@@ -1342,6 +1361,9 @@ label start:
         narrator "It was held by two spirits, Bilong-Bilong and Sili-Sili."
         narrator "You heard them before you saw them, two voices, one sharp and declarative, one fluid and insistent,"
         narrator "talking over each other in perfect disharmony."
+
+        scene dance area with Dissolve(2.0)
+
         narrator "When you got where they were, the two dancers were locked in a bitter disagreement over choreography."
         narrator "One favors traditional movements, the other demands something more fresh and modern in expression."
 
@@ -1417,6 +1439,9 @@ label start:
         "The Props workshop sounded like a small disaster from outside: things rolling, falling, someone groaning quietly"
 
         narrator "A young oyster brimming with brilliant ideas for props and effects. However lacking the confidence to execute them. Or so they said."
+
+        scene Lusays workshop with Dissolve(2.0)
+
         "Their workshop is absolute chaos. Dozens of started projects, but nothing finished."
         "You step over three unfinished lanterns, a net of sea glass that has been tangled rather than woven."
         "It appears to be an entire installation of hanging coral that has fallen sideways."
@@ -1512,8 +1537,8 @@ label start:
                 jump scales
 
     label kadyos:
-        narrator "Now fighting panic about your own transformation, your breathe trying to push through your own fears."
-        "You muttered quietly to yourself as you take a deep breathe."
+        narrator "Now fighting panic about your own transformation, your breath trying to push through your own fears."
+        "You muttered quietly to yourself as you took a deep breath."
 
         kilaw "Okay. Okay, breathe. Scales—yes. Tail—yes, still there. Ears—fin-shaped, gross."
         kilaw "Am I still...me?"
@@ -1580,6 +1605,8 @@ label start:
     ## KASAG — MUSIC COMMITTEE
     ## ═══════════════════════════════════════════════════
     label kasag_intro:
+        scene village house with Dissolve(2.0)
+
         narrator "Outside you heard a booming voice, proud and loud, filling the whole corridor of the festival grounds like a wave filling a cave."
         "Kadyos's fin-tail stiffened. Even he seemed uncertain about approaching."
         kilaw "That's... the music committee?"
@@ -1588,6 +1615,9 @@ label start:
         unknown "Been conducting the music for three hundred years, but this cycle—the younger musicians have been pushing back."
         unknown "Makes his claws very... clicky."
         narrator "You took a breath. Scales itched along your collarbone. You walked toward the sound."
+
+        scene Kasag music workshop with Dissolve(2.0)
+
         kilaw "Kasag? I'm here to help with the music—"
         kasag "Help? HAH! Who said I needed help? You?"
         narrator "He berated a nearby spirit for even holding their instrument in a wrong way."
@@ -1613,8 +1643,8 @@ label start:
             kilaw "A strong leader lifts others up. You're just pushing them down."
             kasag "You don't know anything. I'm ensuring quality!"
             kilaw "You're ensuring obedience. There's a difference."
-            narrator "The other nearby spirits were muttering between themselves, busying themselves with idle task."
-            "Kasag took a deep breathe."
+            narrator "The other nearby spirits were muttering between themselves, busying themselves with idle tasks."
+            "Kasag took a deep breath."
             kasag "Mistakes are not allowed, child. Too many risk."
             kasag "Why fix something that doesn't need to be fix?"
             kilaw "The question is whether the same sound, performed without feeling, carries the same power it once did."
@@ -1677,7 +1707,7 @@ label start:
 
         label kasag_bad:
             narrator "The music was nothing but a mix and match of chaos and disorder."
-            "It was a disaster. It left you nothing but dissapointment."
+            "It was a disaster. It left you nothing but disappointment."
             "Kasag maintains an even look, but you can't help but feel his disapointment."
             "He reached out towards you, ruffling your hair."
             kasag "I thank you, child. For your effort."
@@ -1703,6 +1733,9 @@ label start:
         "You looks at your hands and saw the scales spreading, fast"
         kilaw "How much more do we have before..."
         narrator "You don't finish the thought. Kadyos whimpers, his tail now fully finned."
+
+        scene sunset with Dissolve(2.0)
+
         "The final sunset paints the spirit realm in golden light."
         "You kneel beside Kadyos on the festival grounds, exhausted but reflective."
         kilaw "We did it, Kadyos. Well... most of it, anyway."
@@ -1718,6 +1751,8 @@ label start:
         "You wait along them."
         "Scales have spread to your neck. Kadyos is more fish than dog." 
         "Will the Bakunawa accept your offering? Will you ever see home again?"
+
+        scene black with Dissolve(3.0)
         jump pre_ending
 
 
