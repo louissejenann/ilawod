@@ -1,7 +1,12 @@
 ## ============================================================
-## PROPS MINIGAME — Lusay's lanterns (Timing Bar Version)
-## Target: 7 lanterns before time runs out
+## PROPS MINIGAME — Lusay's lanterns
 ## ============================================================
+
+init python:
+    lantern_types = [
+        "squid", "jellyfish", "plant", 
+        "moon", "seed", "mushroom", "lotus"
+    ]
 
 screen minigame_props():
     # Game State
@@ -9,6 +14,7 @@ screen minigame_props():
     default lanterns_done = props_lanterns_done
     default clicks_needed = 3
     default current_clicks = 0
+    default is_switching   = False 
 
     # Slider Logic
     default bar_val = 0
@@ -16,9 +22,15 @@ screen minigame_props():
     default zone_start = 42
     default zone_end = 58
 
-    add "images/Lusays workshop.png"
+    python:
+    
+        current_index = min(lanterns_done, 6)
+        l_name = lantern_types[current_index]
 
-    # Main Game Loop (Movement & Timer)
+    # Background
+    add "images/Lusays workshop blurr.png"
+
+    # Main Game Loop
     timer 0.02 repeat True action [
         If(moving_forward,
             [If(bar_val < 100, SetScreenVariable("bar_val", bar_val + 2), SetScreenVariable("moving_forward", False))],
@@ -30,82 +42,78 @@ screen minigame_props():
         )
     ]
 
-    ## ── Header (Similar to food.rpy style) ──────────────────
+    ## ── Full Screen Images 
+    if current_clicks < clicks_needed and not is_switching:
+        add ("images/unorganize lantern " + l_name + ".png") align (0.5, 0.5)
+        text "Assembly: [current_clicks]/3" xalign 0.5 ypos 700 style "minigame_title" size 30
+    else:
+        # This block now correctly stays on the current lantern while the timer runs
+        add ("images/organize lantern " + l_name + ".png") align (0.5, 0.5)
+        text "Success!" xalign 0.5 ypos 700 style "minigame_success"
+        
+        if not is_switching:
+            timer 0.6 action [
+                SetScreenVariable("is_switching", True),
+                SetScreenVariable("lanterns_done", lanterns_done + 1),
+                SetScreenVariable("current_clicks", 0),
+                SetScreenVariable("is_switching", False)
+            ]
+
+    ## ── Header
     hbox:
         xalign 0.5 ypos 30
         spacing 100
         text "Time: [time_left:.1f]s" style "minigame_title"
         text "Lanterns: [lanterns_done] / 7" style "minigame_title"
 
-    ## ── Lantern Preview Area ────────────────────────────────
-    frame:
-        background None
-        xalign 0.5 ypos 150
-        xsize 800 ysize 500
-        
-        if current_clicks < clicks_needed:
-            add "images/unorganize lantern squid.jpg" xalign 0.5 yalign 0.5
-            text "Assembly: [current_clicks]/3" xalign 0.5 ypos 450 style "minigame_title" size 30
-        else:
-            add "images/organize lantern squid.jpg" xalign 0.5 yalign 0.5
-            text "Success!" xalign 0.5 ypos 450 style "minigame_success"
-            
-            # Reset for next lantern after a brief pause
-            timer 0.6 action [
-                SetScreenVariable("lanterns_done", lanterns_done + 1),
-                SetScreenVariable("current_clicks", 0)
-            ]
-
-    ## ── Timing Bar & Controls (Bottom) ──────────────────────
+    ## ── Timing Bar & Control
     vbox:
-        xalign 0.5 ypos 750
-        spacing 30
+        xalign 0.5 ypos 820
+        spacing 20
 
-        # The Visual Slider
         fixed:
             xsize 600 ysize 60
-            
-            # Track
             bar value 100 range 100 xsize 600 yalign 0.5
             
-            # The Green Sweet Spot
             frame:
                 xpos (zone_start * 6)
                 xsize ((zone_end - zone_start) * 6)
-                ysize 40
+                ysize 30
                 background "#00ff00"
                 yalign 0.5
 
-            # The Moving Indicator
             frame:
                 xpos (bar_val * 6)
-                xsize 15 ysize 60
+                xsize 15 ysize 50
                 background "#ffffff"
                 yalign 0.5
 
-        # Interaction Button
         imagebutton:
-            idle "gui/btn_assemble_idle.png" # Make sure this asset exists
-            hover "gui/btn_assemble_hover.png"
+            idle "gui/assemble_idle.png" 
+            hover "gui/assemble_hover.png" # You can add a hover file here later
             xalign 0.5
-            action If(bar_val >= zone_start and bar_val <= zone_end,
-                true = [
-                    SetScreenVariable("current_clicks", current_clicks + 1),
-                    Play("sound", "audio/water_drop.ogg") # From your audio defines
-                ],
-                false = [
-                    SetScreenVariable("current_clicks", 0),
-                    Play("sound", "audio/kadyos_whimper.ogg")
-                ]
+            
+            # Disable button during the success animation
+            action If(not is_switching, 
+                If(bar_val >= zone_start and bar_val <= zone_end,
+                    true = [
+                        SetScreenVariable("current_clicks", current_clicks + 1),
+                        Play("sound", "audio/water_drop.ogg")
+                    ],
+                    false = [
+                        SetScreenVariable("current_clicks", 0),
+                        Play("sound", "audio/kadyos_whimper.ogg")
+                    ]
+                ),
+                None
             )
 
-    ## ── Win Condition ───────────────────────────────────────
     if lanterns_done >= 7:
         timer 0.5 action Return(lanterns_done)
 
 label minigame_props_start:
-    lusay "Okay! Let's finish these lanterns — catch the light at the right moment!" 
-    narrator "Click when the pointer is in the green zone. You need 3 perfect hits per lantern!" 
+    lusay "Okay! Let's finish these lanterns — catch the light at the right moment!"
+    narrator "Click when the pointer is in the green zone. You need 3 perfect hits per lantern!"
     
     $ props_time_left = 60
     $ props_lanterns_done = 0
