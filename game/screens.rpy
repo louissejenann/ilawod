@@ -975,79 +975,70 @@ screen preferences():
 
     use game_menu(_("Preferences"), scroll="viewport"):
 
-        vbox:
-
-            hbox:
-                box_wrap True
-
-                if renpy.variant("pc") or renpy.variant("web"):
-
+        # Main container with a smaller spacing to bring Volume closer to the left side
+        hbox:
+            spacing 10  # Decreased to move Music/Volume column closer to the middle
+            xpos 15     # Moves the entire settings block slightly to the left
+            ypos 50
+            
+            # --- LEFT SIDE COLUMN ---
+            vbox:
+                spacing 50
+                ypos 13
+                # Top Row: Display and Skip
+                hbox:
+                    spacing -65 # Decreased to push Display and Skip closer together
+                    
                     vbox:
                         style_prefix "radio"
                         label _("Display")
                         textbutton _("Window") action Preference("display", "window")
                         textbutton _("Fullscreen") action Preference("display", "fullscreen")
 
+                    vbox:
+                        style_prefix "check"
+                        label _("Skip")
+                        textbutton _("Unseen Text") action Preference("skip", "toggle")
+                        textbutton _("After Choices") action Preference("after choices", "toggle")
+                        textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
+
+                # Bottom Row (Left): Speed Sliders
                 vbox:
-                    style_prefix "check"
-                    label _("Skip")
-                    textbutton _("Unseen Text") action Preference("skip", "toggle")
-                    textbutton _("After Choices") action Preference("after choices", "toggle")
-                    textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
-
-                ## Additional vboxes of type "radio_pref" or "check_pref" can be
-                ## added here, to add additional creator-defined preferences.
-
-            null height (4 * gui.pref_spacing)
-
-            hbox:
-                style_prefix "slider"
-                box_wrap True
-
-                vbox:
-
+                    style_prefix "slider"
+                    # Matches your defined slider size of 525
                     label _("Text Speed")
-
                     bar value Preference("text speed")
 
-                    label _("Auto-Forward Time")
+                    null height 15
 
+                    label _("Auto-Forward Time")
                     bar value Preference("auto-forward time")
 
-                vbox:
+            # --- RIGHT SIDE COLUMN ---
+            vbox:
+                style_prefix "slider"
+                spacing 20
+                
+                if config.has_music:
+                    label _("Music Volume") 
+                    hbox:
+                        bar value Preference("music volume") 
 
-                    if config.has_music:
-                        label _("Music Volume")
+                if config.has_sound:
+                    label _("Sound Volume") 
+                    hbox:
+                        bar value Preference("sound volume") 
 
-                        hbox:
-                            bar value Preference("music volume")
+                if config.has_voice:
+                    label _("Voice Volume") 
+                    hbox:
+                        bar value Preference("voice volume") 
 
-                    if config.has_sound:
+                null height 15
 
-                        label _("Sound Volume")
-
-                        hbox:
-                            bar value Preference("sound volume")
-
-                            if config.sample_sound:
-                                textbutton _("Test") action Play("sound", config.sample_sound)
-
-
-                    if config.has_voice:
-                        label _("Voice Volume")
-
-                        hbox:
-                            bar value Preference("voice volume")
-
-                            if config.sample_voice:
-                                textbutton _("Test") action Play("voice", config.sample_voice)
-
-                    if config.has_music or config.has_sound or config.has_voice:
-                        null height gui.pref_spacing
-
-                        textbutton _("Mute All"):
-                            action Preference("all mute", "toggle")
-                            style "mute_all_button"
+                textbutton _("Mute All"):
+                    action Preference("all mute", "toggle") 
+                    style "mute_all_button" 
 
 
 style pref_label is gui_label
