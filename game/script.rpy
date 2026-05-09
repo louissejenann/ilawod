@@ -754,7 +754,7 @@ label start:
 
         narrator "You open your eyes."
 
-        scene Spirit Map with Fade(0.5, 0.3, 0.9)
+        scene spirit map with Fade(0.5, 0.3, 0.9)
 
         narrator "You are lying on something solid. Stone, maybe, or old root, so thick and wide it feels like ground."
 
@@ -813,7 +813,7 @@ label start:
 
         narrator "You open your eyes."
 
-        scene Spirit Map with Fade(0.5, 0.3, 0.9)
+        scene spirit map with Fade(0.5, 0.3, 0.9)
 
         narrator "You are lying on something solid. Stone, maybe, or old root, so thick and wide it feels like ground." 
         
@@ -904,6 +904,8 @@ label start:
 
     #ROUTE: INSIDE THE WOODLAND GATES ----------------------------------
     label route_inside_gate_main: 
+        scene village house with Dissolve(2.0)
+
         narrator "Sili-Sili leads you through the root-arch."
 
         kilaw "Woah..."
