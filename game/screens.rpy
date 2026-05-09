@@ -1389,30 +1389,42 @@ screen confirm(message, yes_action, no_action):
 
     ## Ensure other screens do not get input while this screen is displayed.
     modal True
-
     zorder 200
-
     style_prefix "confirm"
-
     add "gui/overlay/confirm.png"
 
     frame:
+        xsize 954 
+        ysize 462
+        xalign 0.5
+        yalign 0.5
 
         vbox:
             xalign .5
             yalign .5
-            spacing 45
-
+            spacing 55
+           
             label _(message):
                 style "confirm_prompt"
                 xalign 0.5
 
             hbox:
                 xalign 0.5
-                spacing 150
+                spacing 80
 
-                textbutton _("Yes") action yes_action
-                textbutton _("No") action no_action
+                imagebutton:
+                    idle "gui/mn_yes.png"
+                    action yes_action
+                    hover "gui/mn_yes_hover.png"
+                    at transform:
+                        zoom 1.3
+
+                imagebutton:
+                    idle "gui/mn_no.png"
+                    action no_action
+                    hover "gui/mn_no_hover.png"
+                    at transform:
+                        zoom 1.3
 
     ## Right-click and escape answer "no".
     key "game_menu" action no_action
@@ -1425,10 +1437,15 @@ style confirm_button is gui_medium_button
 style confirm_button_text is gui_medium_button_text
 
 style confirm_frame:
-    background Frame([ "gui/confirm_frame.png", "gui/frame.png"], gui.confirm_frame_borders, tile=gui.frame_tile)
+    background Frame("gui/frame.png", gui.confirm_frame_borders, tile=gui.frame_tile)
     padding gui.confirm_frame_borders.padding
-    xalign .5
-    yalign .5
+    xalign 0.5
+    yalign 0.5
+    xsize 954  
+    ysize 462
+    xfill True
+    yfill True
+
 
 style confirm_prompt_text:
     textalign 0.5
