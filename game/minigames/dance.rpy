@@ -111,8 +111,9 @@ screen minigame_dance():
             yalign lane_y
             zoom (DANCE_NOTE_SIZE / 50.0)
 
-    ## Lane labels A/B/C/D just left of the hit targets
-    for lane_index, (lane_y, label) in enumerate(zip(DANCE_LANE_Y, ["A", "B", "C", "D"])):
+    ## Lane labels Arrow Symbols
+    $ arrow_labels = ["↑", "←", "→", "↓"]
+    for lane_index, (lane_y, label) in enumerate(zip(DANCE_LANE_Y, arrow_labels)):
         text label:
             xalign (DANCE_HIT_X - 0.05)
             yalign lane_y
@@ -151,14 +152,14 @@ screen minigame_dance():
             zoom (DANCE_NOTE_SIZE / 50.0)
 
     ## Key bindings
-    key "K_a" action [Function(dance_key_press, 0), NullAction()]
-    key "K_b" action [Function(dance_key_press, 1), NullAction()]
-    key "K_c" action [Function(dance_key_press, 2), NullAction()]
-    key "K_d" action [Function(dance_key_press, 3), NullAction()]
+    key "K_UP" action [Function(dance_key_press, 0), NullAction()]
+    key "K_LEFT" action [Function(dance_key_press, 1), NullAction()]
+    key "K_RIGHT" action [Function(dance_key_press, 2), NullAction()]
+    key "K_DOWN" action [Function(dance_key_press, 3), NullAction()]
 
 
 label minigame_dance_start:
-    sili "Show them what the performance can be! Press A, B, C, D when the notes reach the line!"
+    narrator "Show them what the performance can be! Press the arrowkeys when the notes reach the line!"
     narrator "Same roots. Different flower. Press the keys to match the rhythm!"
     call screen minigame_dance
 

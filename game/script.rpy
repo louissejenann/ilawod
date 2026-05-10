@@ -1439,13 +1439,15 @@ label start:
     ## LUSAY — PROPS COMMITTEE
     ## ═══════════════════════════════════════════════════
     label lusay_intro:
+        scene village house with Dissolve(2.0)
+
         narrator "You focused your attention on Lusay. A young oyster brimming with brilliant ideas for props and effects."
         "But you had to find her first. The other spirits already told you about her and her general direction."
         "The Props workshop sounded like a small disaster from outside: things rolling, falling, someone groaning quietly"
 
         narrator "A young oyster brimming with brilliant ideas for props and effects. However lacking the confidence to execute them. Or so they said."
 
-        scene Lusays workshop with Dissolve(2.0)
+        scene lusays_workshop with Dissolve(2.0)
 
         "Their workshop is absolute chaos. Dozens of started projects, but nothing finished."
         "You step over three unfinished lanterns, a net of sea glass that has been tangled rather than woven."
