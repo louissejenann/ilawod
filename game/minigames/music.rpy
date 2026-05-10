@@ -145,13 +145,13 @@ screen minigame_music():
             yalign MUSIC_HIT_Y
             zoom (MUSIC_NOTE_SIZE / 50.0)
 
-    ## Lane labels A/B/C/D just below the hit targets
-    for lane_index, (lane_x, label) in enumerate(zip(MUSIC_LANE_X, ["A", "B", "C", "D"])):
+    ## Lane labels Arrow Symbols
+    for lane_index, (lane_x, label) in enumerate(zip(MUSIC_LANE_X, ["↑", "←", "→", "↓"])):
         text label:
             xalign lane_x
             yalign (MUSIC_HIT_Y + 0.05)
             xoffset -5
-            yoffset 0
+            yoffset 15
             style "rhythm_key"
 
     ## Hit counter
@@ -185,14 +185,15 @@ screen minigame_music():
             zoom (MUSIC_NOTE_SIZE / 50.0)
 
     ## Key bindings
-    key "K_a" action [Function(music_key_press, 0), NullAction()]
-    key "K_b" action [Function(music_key_press, 1), NullAction()]
-    key "K_c" action [Function(music_key_press, 2), NullAction()]
-    key "K_d" action [Function(music_key_press, 3), NullAction()]
+    key "K_UP" action [Function(music_key_press, 0), NullAction()]
+    key "K_LEFT" action [Function(music_key_press, 1), NullAction()]
+    key "K_RIGHT" action [Function(music_key_press, 2), NullAction()]
+    key "K_DOWN" action [Function(music_key_press, 3), NullAction()]
 
 
 label minigame_music_start:
-    kasag "Fine. Show me what you've got. Cue the musicians — press A, B, C, D in time!"
+    kasag "Fine. Show me what you've got."
+    kasag "Cue the musicians — press the arrow keys in time!"
     narrator "Conduct the musicians before the notes pass the line!"
     call screen minigame_music
 

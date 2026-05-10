@@ -1624,7 +1624,7 @@ label start:
         unknown "Makes his claws very... clicky."
         narrator "You took a breath. Scales itched along your collarbone. You walked toward the sound."
 
-        scene Kasag music workshop with Dissolve(2.0)
+        scene kasag_music_workshop with Dissolve(2.0)
 
         kilaw "Kasag? I'm here to help with the music—"
         kasag "Help? HAH! Who said I needed help? You?"
