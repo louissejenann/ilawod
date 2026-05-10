@@ -2,15 +2,18 @@
 
 define kilaw = Character("Kilaw", window_style="character_window", who_style="namebox_kilaw_label", callback=typewriter_sfx, cb_who="Kilaw")
 define kadyos = Character("Kadyos", window_style="character_window", who_style="namebox_kadyos_label", callback=typewriter_sfx, cb_who="Kadyos")
-define ba_o = Character("Ba-O", window_style="character_window", who_style="namebox_ba_o_label", callback=typewriter_sfx, cb_who="Ba-O")
-define toto = Character("Toto", window_style="character_window", who_style="namebox_toto_label", callback=typewriter_sfx, cb_who="Toto")
+define ba_o = Character("[bao_name]", window_style="character_window", who_style="namebox_ba_o_label", callback=typewriter_sfx, cb_who="Ba-O")
+define toto = Character("[toto_name]", window_style="character_window", who_style="namebox_toto_label", callback=typewriter_sfx, cb_who="Toto")
 define lusay = Character("Lusay", window_style="character_window", who_style="namebox_lusay_label", callback=typewriter_sfx, cb_who="Lusay")
 define sili = Character("Sili-Sili", window_style="character_window", who_style="namebox_sili_label", callback=typewriter_sfx, cb_who="Sili-Sili")
 define bilo = Character("Bilong-Bilong", window_style="character_window", who_style="namebox_bilo_label", callback=typewriter_sfx, cb_who="Bilong-Bilong")
 define kasag = Character("Kasag", window_style="character_window", who_style="namebox_kasag_label", callback=typewriter_sfx, cb_who="Kasag")
 define sigay = Character("Sigay", window_style="character_window", who_style="namebox_sigay_label", callback=typewriter_sfx, cb_who="Sigay")
 define dawa = Character("Dawa", window_style="character_window", who_style="namebox_dawa_label", callback=typewriter_sfx, cb_who="Dawa")
-define unknown = Character("???", window_style="character_window", who_style="namebox_unknown_label", callback=typewriter_sfx, cb_who="???")
+define unknown = Character("???", window_style="character_window", who_style="namebox_unknown_label", 
+callback=typewriter_sfx, cb_who="???")
+default bao_name = "???"
+default toto_name = "???"
 
 # This handles the text that has no name attached (narrator)
 define narrator = Character(None, callback=typewriter_sfx, cb_who="")
@@ -47,6 +50,9 @@ image intro dawa mc = Movie(play= "images/intro dawa mc.webm", loop=False, keep_
 image intro bakawan = Movie(play= "images/intro bakawan.webm", loop=False, keep_last_frame=True)
 image intro bye1 = Movie(play= "images/intro bye1.webm")
 image sunset = Movie(play= "images/sunset.webm", loop=False, keep_last_frame=True)
+image intro children = Movie(play= "images/intro children.webm", loop=False, keep_last_frame=True)
+image intro festival prep1 = Movie(play= "images/intro festival prep1.webm", loop=False, keep_last_frame=True)
+image intro feet running = Movie(play= "images/intro feet running.webm", loop=False, keep_last_frame=True)
 
 ## Audios
 ## Atmosphere & Environment
@@ -181,7 +187,7 @@ label start:
     "Showing the old things that the village remembers."
 
     "Attention, in Panhuy-an, is a kind of offering."
-    scene intro feet running
+    scene intro feet running with Dissolve(2.0)
 
     "Children are told not to wander near the roots after dark."
 
@@ -770,9 +776,8 @@ label start:
 
         narrator "Before you can sit up fully, a voice arrives."
 
-        narrator "It belongs to a small spirit." 
-        
-        narrator "Narrow, silver-finned, hovering at the edge of the root-arch with the particular energy of someone who looked like a child that was sent to do a task and is now reconsidering the task."
+        narrator "It belongs to a small spirit — narrow, silver-finned, hovering at the edge of the root-arch with the particular energy." 
+        narrator "Like someone who looked like a child that was sent to do a task and is now reconsidering the task."
 
         unknown "Oh — oh good, you're awake." 
 
@@ -978,29 +983,29 @@ label start:
     #ROUTE REPLY
     label route_what_is_this:
         $ seen_what_is_this = True
-        unknown "Did Sili-Sili not tell you? This is the realm of the spirits. Under the mangrove's roots."
+        ba_o "Did Sili-Sili not tell you? This is the realm of the spirits. Under the mangrove's roots."
         
-        unknown "You came through the boundary when the current took you — through the rift of our world."
+        ba_o "You came through the boundary when the current took you—through the rift of our world."
 
         narrator "A pause. Somewhere nearby, something falls and breaks"
 
-        unknown "You got here by falling off somewhere. Which is, I will admit, not the traditional method." 
+        ba_o "You got here by falling off somewhere. Which is, I will admit, not the traditional method." 
         
-        unknown "But the tide does not ask how you arrived. Only that you have."
+        ba_o "But the tide does not ask how you arrived. Only that you have."
 
         narrator "The tall creature speaks, then, low and even, in the manner of someone who chooses their words with care."
 
-        unknown "It has happened before. A mortal crossing the boundary by accident."
+        toto "It has happened before. A mortal crossing the boundary by accident."
 
-        unknown "Very rarely."
+        ba_o "Very rarely."
 
-        unknown "Two centuries, perhaps three, since the last. A child from the northern shore." 
+        toto "Two centuries, perhaps three, since the last. A child from the northern shore." 
         
-        unknown "Fell in following something bright, the same as you. The tide has particular feelings about children."
+        toto "Fell in following something bright, the same as you. The tide has particular feelings about children."
 
         narrator "They say this without pretense, the way one recounts a thing that is simply true."
 
-        unknown "He made it back."
+        toto "He made it back."
 
         narrator "A beat." 
         "That hangs in the air, not as comfort, but as information."
@@ -1012,6 +1017,9 @@ label start:
          
     label route_who_are_you:
         $ seen_who_are_you = True
+        $ bao_name = "Ba-O"
+        $ toto_name = "Toto"
+
         ba_o "Ba-O. I keep the ceremonial table. Every offering, every dish, every ingredient placed with intention before the Bakunawa."
         ba_o "Also one of those who oversees this festivity."
 
