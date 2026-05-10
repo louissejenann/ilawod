@@ -943,7 +943,7 @@ label start:
         narrator "And would very much like both problems to resolve quickly. She is holding a clay ladle."
 
         narrator "She appears to have forgotten she is holding it."
-        narrator "c." 
+        narrator "Beside her is someone taller, calmly standing there as they seem to be in a deep discussion." 
 
         narrator "Then they look at you. She looks at Kadyos infront of you. She gave a small nods"
 
@@ -1254,7 +1254,8 @@ label start:
     ## ── BA-O FEEDBACK ──────────────────────────────────
 
     label bao_good:
-        ba_o "Wait, this is it! the taste, the texture, the feeling.....it's the recipe I'd forgotten! This is… absolutely wonderful, you're such a wonderful cook!"
+        ba_o "Wait, this is it! the taste, the texture, the feeling.....it's the recipe I'd forgotten!"
+        ba_o "This is… absolutely wonderful, you're such a wonderful cook!"
         ba_o "Well, thanks to you, my memory's back, and I couldn't be happier!"
         ba_o "Anyway, the others definitely need your help."
         ba_o "And Sigay needed some help with their costumes, but with you pitching in, I'm pretty sure it will turn out beautifully."
@@ -1285,7 +1286,7 @@ label start:
     label sigay_intro:
         narrator "You follow the sound of frustrated sighing, which leads you, eventually..." 
 
-        scene Sigays workshop with Dissolve(2.0) 
+        scene sigays_workshop with Dissolve(2.0) 
 
         "to a studio that appears to have been recently hit by a typhoon." 
         "Bolts of luminescent fabric spill across the floor. Half-finished headdresses lean against walls like tired dancers." 
@@ -1294,11 +1295,11 @@ label start:
         sigay " I thought I had it all under control... but why does it still feel like I'm missing something?"
         kilaw "Need a hand with those costumes? I can help figure it out."
         sigay "Oh... thank you I really need some assistance"
-        narrator "Sigay holds up a half-made headdress — layers of sea glass and woven thread, technically accomplished, completely lifeless."
+        narrator "Sigay holds up a half-made headdress—layers of sea glass and woven thread, technically accomplished, completely lifeless."
         sigay "Every year, the costumes are the highlight of the festival. "
         sigay "Every year, I know exactly what to do. But this year... it's like the current dried up inside me. Nothing flows."
         kilaw "What did last year's look like?"
-        sigay "Magnificent. Sea greens and deep blues. Woven like—oh, what do you mortals call it —that fabric from your islands?" 
+        sigay "Magnificent. Sea greens and deep blues. Woven like—oh, what do you mortals call it—that fabric from your islands?" 
         sigay "The one that takes three moons to make?"
         kilaw "Hablon?"
         sigay "Yes! Like hablon, but of bioluminescent thread. The dancers glowed as they moved. It was... it was alive."
@@ -1359,6 +1360,8 @@ label start:
     ## BILO + SILI — PERFORMANCE COMMITTEE
     ## ═══════════════════════════════════════════════════
     label bilo_sili_intro:
+        scene village house with Dissolve(2.0)
+
         narrator "You said your goodbyes and went to the next spirit in need, the performance committee." 
         narrator "It was held by two spirits, Bilong-Bilong and Sili-Sili."
         narrator "You heard them before you saw them, two voices, one sharp and declarative, one fluid and insistent,"
@@ -1379,7 +1382,7 @@ label start:
         narrator "They stop when they saw you."
         bilo "Ah. The mortal girl. Are you here to talk some sense into this current-brained flounder?"
         sili "They meant me, I'm the flounder."
-        kilaw "I could hear you from Sigay's studio, just so you know."
+        kilaw "I could hear you from the other side of the village, just so you know."
         bilo "Good. Someone needed to hear this. Since Sili-Sili won't."
         sili "I hear fine. I simply choose not to drown in your nonsense."
         kilaw "Okay. Show me. Both of you. Show me what you mean, not tell me. Show me."
@@ -1387,7 +1390,7 @@ label start:
         narrator "Bilong-Bilo demonstrates the traditional form first, slow, deliberate, weighted with centuries of intention."
         "Each movement connects to the next like the current connecting islands. You feel something ancient in it."
         "Then Sili-Sili performs, quick, surprising, every movement a question that the next movement answers. It's alive in a different way." 
-        "A New-river-finding-old-riverbed energy."
+        "Something profoundly new."
         kilaw " ...You're both right."
         narrator "..."
         bilo "Excuse me?"

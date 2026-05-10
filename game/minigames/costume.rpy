@@ -8,49 +8,49 @@ init python:
             "name"    : "green_geometrical",
             "correct" : True,
             "label"   : "Green Geometrical Fabric",
-            "xpos"    : 495, "ypos" : 139, "xsize" : 115, "ysize" : 230,
+            "xpos"    : 485, "ypos" : 131, "xsize" : 115, "ysize" : 230,
             "image"   : "images/item_greengeometricalfabric.png",
         },
         {
             "name"    : "pincushion",
             "correct" : True,
             "label"   : "Pincushion",
-            "xpos"    : 1044, "ypos" : 511, "xsize" : 100, "ysize" : 80,
+            "xpos"    : 1030, "ypos" : 486, "xsize" : 100, "ysize" : 80,
             "image"   : "images/item_pincushion.png",
         },
         {
             "name"    : "design_sketches",
             "correct" : True,
             "label"   : "Design Sketches",
-            "xpos"    : 1414, "ypos" : 133, "xsize" : 210, "ysize" : 170,
+            "xpos"    : 1410, "ypos" : 150, "xsize" : 210, "ysize" : 170,
             "image"   : "images/item_sketches.png",
         },
         {
             "name"    : "lavender_fabric",
             "correct" : True,
             "label"   : "Lavender Fabric",
-            "xpos"    : 105,  "ypos" : 621, "xsize" : 100, "ysize" : 160,
+            "xpos"    : 104,  "ypos" : 629, "xsize" : 100, "ysize" : 160,
             "image"   : "images/item_lavenderfabric.png",
         },
         {
             "name"    : "orange_flower",
             "correct" : True,
             "label"   : "Orange Flower Fabric",
-            "xpos"    : 205, "ypos" : 119, "xsize" : 130, "ysize" : 470,
+            "xpos"    : 204, "ypos" : 118, "xsize" : 130, "ysize" : 470,
             "image"   : "images/item_orangeflowerfabric.png",
         },
         {
             "name"    : "red_thread",
             "correct" : True,
             "label"   : "Red Thread",
-            "xpos"    : 1736, "ypos" : 362, "xsize" : 35,  "ysize" : 85,
+            "xpos"    : 1731, "ypos" : 354, "xsize" : 35,  "ysize" : 85,
             "image"   : "images/item_redthread.png",
         },
         {
             "name"    : "scissors",
             "correct" : True,
             "label"   : "Scissors",
-            "xpos"    : 1042, "ypos" : 878, "xsize" : 130, "ysize" : 110,
+            "xpos"    : 1042, "ypos" : 889, "xsize" : 130, "ysize" : 110,
             "image"   : "images/item_scissor.png",
         },
     ]
@@ -72,13 +72,14 @@ screen sigay_search_screen():
     ## ── Header UI ───────────────────────────────────────────
     frame:
         background Solid("#00000088")
-        xalign 0.5 ypos 10
+        xalign 0.5 
+        ypos 38
         padding (20, 10)
         
         vbox:
             spacing 5
             if time_left > 35:
-                text "Sigay: \"I need my sketches, the pincushion, and all the fabrics—especially the lavender and green ones!\"" xalign 0.5 size 22 color "#FFF"
+                text "Sigay: \"I need my sketches, the pincushion, and all the fabrics—especially the lavender and green ones! Find them quickly!\"" xalign 0.5 size 22 color "#FFF"
             else:
                 text "Sigay: \"Hurry! Find the scissors and the red thread so we can finish the festival attire!\"" xalign 0.5 size 22 color "#FFD700"
 
