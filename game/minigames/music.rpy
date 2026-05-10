@@ -151,7 +151,7 @@ screen minigame_music():
             xalign lane_x
             yalign (MUSIC_HIT_Y + 0.05)
             xoffset -5
-            yoffset 15
+            yoffset 25
             style "rhythm_key"
 
     ## Hit counter
@@ -193,8 +193,7 @@ screen minigame_music():
 
 label minigame_music_start:
     kasag "Fine. Show me what you've got."
-    kasag "Cue the musicians — press the arrow keys in time!"
-    narrator "Conduct the musicians before the notes pass the line!"
+    narrator "Cue the musicians, press the arrow keys in time before the notes pass the line!!"
     call screen minigame_music
 
     $ music_hits = _return
