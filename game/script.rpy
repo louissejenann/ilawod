@@ -15,12 +15,19 @@ callback=typewriter_sfx, cb_who="???")
 default bao_name = "???"
 default toto_name = "???"
 
-# This handles the text that has no name attached (narrator)
+## No name is narrator
 define narrator = Character(None, callback=typewriter_sfx, cb_who="")
 
 ## Choices tracking
 default seen_what_is_this = False
 default seen_who_are_you  = False
+
+## Timer 
+screen choice_timer(time, label_to_jump):
+    timer time action Jump(label_to_jump)
+    
+    # Visual countdown bar
+    bar value AnimatedValue(0, time, time, time) xalign 0.5 ypos 0.1 xsize 500
 
 ## Minigame scores
 default score_food        = 0
@@ -276,6 +283,26 @@ label start:
     kilaw "Don't worry, I'll remember."
 
     narrator "With that you went on your way."
+
+    kilaw "Before I head into the bakawan, I should bring an offering..."
+
+    menu:
+        "Handful of coarse sea salt":
+            $ player_offering = "salt"
+            "The elders say salt is a barrier between our world and theirs."
+
+        "Small brass bell":
+            $ player_offering = "noise"
+            "The Bakunawa hates the sound of metal and noise. If I get lost, perhaps a sharp sound will startle the shadows away."
+
+        "Pouch of white rice":
+            $ player_offering = "white_rice"
+            "An offering of peace. Pure and white, it represents the light of the moon that the Great Serpent hungers for."
+
+        "I'll bring nothing":
+            $ player_offering = "none"
+            kilaw "My independence is my offering."
+            kilaw "Dawa says I'm stubborn. Maybe she's right, but I'll find my own way."
     
     scene intro festival prep1 with Dissolve(2.0)
     play audio festival_drums volume 0.1 fadein 2.0
@@ -314,7 +341,7 @@ label start:
     "You'll be back in time. You're always on time."
 
     # INTO THE WOODS -------------
-    scene wood upwards with Fade(0.5, 0.3, 0.8)
+    show background moving with Fade(0.5, 0.3, 0.8)
 
     narrator "In search of dinner, you wandered into the forbidden mangrove, a place whispered about in old stories."
     "You didn't bring anyone."
@@ -362,7 +389,7 @@ label start:
     narrator "Kadyos barks and trots ahead."
 
     hide happy kilaw kadyos
-    show background moving
+    scene wood upwards with dissolve
     
     "Together, they made their way deeper into the mangrove."
 
@@ -436,6 +463,8 @@ label start:
         kilaw "...No. I don't think so. Something doesn't feel right about that water tonight."
 
         narrator "Kadyos presses against your side, as if agreeing. You and Kadyos decided to just stay on land, finding other ways to get food." 
+
+        scene normal mangrove with dissolve
 
         "You foraged for nearby fruit, young leaves, seeds, and fish you could catch near land."
 
@@ -720,14 +749,35 @@ label start:
 
         narrator "The shallow tide rose like a living thing — spinning, dragging you beneath the glowing current."
 
+        show screen choice_timer(3.0, "route_vortex_timeout")
+
         menu:
             "Grab onto the boat":
+                hide screen choice_timer
                 jump route_grab_boat
             
             "Grab onto Kadyos":
+                hide screen choice_timer
                 jump route_grab_kadyos
         
     #ROUTE
+    label route_vortex_timeout:
+        hide screen choice_timer
+        narrator "The water is too fast! Before you can reach for anything, the current pulls you under."
+
+        scene waves underwater with Fade(0.5, 0.3, 0.9)
+        show drowning:
+            zoom 1.6
+            xpos 1920
+            ypos -3000
+            alpha 5.0
+            easein 5.0 xpos -1920 ypos 0 alpha 0.0
+
+        pause 3.5
+        scene black with Dissolve(3.0)
+        jump welcome_spiritrealm_main
+
+
     label route_grab_boat:
         narrator "You reach for the edge of the boat, fingers catching the worn wood. For one breathless moment, you hold on"
 
@@ -746,6 +796,9 @@ label start:
             ypos -3000
             alpha 5.0
             easein 5.0 xpos -1920 ypos 0 alpha 0.0
+
+        pause 3.5
+        scene black with Dissolve(3.0)
 
         narrator "The boat lists sideways. The current claims you both. Darkness swallows the last shiver of light."
         jump welcome_spiritrealm_no_kadyos
@@ -1252,6 +1305,19 @@ label start:
         ba_o "Everything. Seafood layered in the olden way, each ingredient placed with intention, a prayer."
         ba_o "We call it the ceremonial dish. Every realm has one. Ours is from the deep."
 
+        narrator "Ba-O pauses, her ancient shell creaking as she leans in to get a better look at you."
+
+        if player_offering == "salt":
+            ba_o "You carry the scent of the upper tides, child. Coarse salt... 'asin'."
+            ba_o "The elders of your village taught you well. Salt is the memory of the sea, and it keeps the flavors of this realm from fading into the mist."
+        elif player_offering == "white_rice":
+            ba_o "White rice? The grain of the moon and sun."
+            ba_o "It is a pure offering. Using it as a foundation shows you have a respectful hand. It makes me think you might actually be able to handle these ingredients."
+        else:
+            ba_o "A brass bell? You brought a noise-maker to a kitchen?"
+            ba_o "Hmph. Just make sure you don't ring it over the broth."
+            ba_o "The Bakunawa has a long memory for the sounds that drive it back, but my food prefers silence."
+
         scene bao kitchen2 with Dissolve(2.0)
 
         narrator "She slides a tray of ingredients toward you. It glows faintly."
@@ -1692,6 +1758,22 @@ label start:
         kasag "I've been conducting this festival's music for many cycles before you, mortal, was even born."
         kasag "What I need is MY direction followed properly!"
         kasag "My music kept the Bakunawa away from eating the last moon we have! It would've been eaten if I didn't take charge."
+
+        if player_offering == "noise":
+            narrator "As he puffs out his chest, the small brass bell in your pocket gives a sharp, clear ring."
+            kilaw "I brought this from the village. I thought... well, I thought the serpent might need reminding of that sound."
+            kasag "HAH! A noise-maker! You understand then!"
+            kasag "We don't just play music for the ears, mortal. We play to keep the darkness at bay."
+            kasag "Your preparation shows you have more spine than these other musicians!"
+
+        elif player_offering == "salt":
+            kasag "And what do you have there? Salt? You think you can preserve a melody like a piece of dried fish?"
+            kasag "Hmph. At least you’re prepared to protect yourself. But here, only the rhythm will save you."
+
+        elif player_offering == "white_rice":
+            kasag "White rice. A peaceful gift for a creature that wants to swallow the sky."
+            kasag "You have a quiet heart, child. Let's see if that quiet can find the strength to beat a drum."
+
         kilaw "Hmn..."
 
         narrator "He's very..."
