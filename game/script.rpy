@@ -152,16 +152,26 @@ label start:
     scene intro sun with Fade(0.5, 0.3, 0.9)
     play music music_beginning volume 0.1
     play audio morning_birds volume 0.1
+    
+    voice "narration/intro1.wav"
 
     narrator "There is a place where the sea does not end and the land does not begin."
+
+    voice "narration/intro2.wav"
     
     scene intro village with Dissolve(2.0)
     "At the far edge of the island, where the land loosens its grip and gives way to the tide, lies a quiet village called Panhuy-an."
 
+    voice "narration/intro3.wav"
+
     narrator "The houses stand on stilts above shallow breathing water. Wooden floors creak with every step."
+
+    voice "narration/intro4.wav"
     
     #scene intro morning village with Dissolve(2.0)
     "Banca boats rest loosely tied to posts, hollowed from trees older than the people who carved them."
+
+    voice "narration/intro5.wav"
     
     #scene intro fisher #parang same lng siya with int vuillage2
     "The sea feeds the village." 
@@ -169,56 +179,87 @@ label start:
     show intro village2 with Dissolve(2.0)
     #splash sound from fish
 
+    voice "narration/intro6.wav"
+
     "The village, in turn, learns never to take more than it is given."
+    voice "narration/intro7.wav"
     
     #scene intro village3
     "In the mornings, the elders watch the horizon."
+
+    voice "narration/intro8.wav"
     
     "Morning smells of salt and smoke. Children run between the stilts"
     
+    voice "narration/intro9.wav"
     scene intro caught fish with Dissolve(2.0)
     play sound woman_laughter volume 0.2
 
     "Neighbors call to each other across the water."
     
     scene intro children with Dissolve(2.0)
+    voice "narration/intro10.wav"
+
     play audio children_laughing volume 0.4
     play sound wood_running volume 0.1
 
     "The old lecturing the young."
 
+    voice "narration/intro11.wav"
+
     "The whole village moves with the easy rhythm of a place that knows itself."
+
+    voice "narration/intro12.wav"
 
     scene intro night with Dissolve(2.0)
     play audio night_village volume 1.0 fadein 2.7
 
     "The evening carries distant laughter, the sound of wind and waves folding into each other."
 
+    voice "narration/intro13.wav"
+
     "The people here speak of tides, and moon, and seasons when the fish are plentiful."
+
+    voice "narration/intro14.wav"
    
     "...and seasons when even the nets come back empty."
+
+    voice "narration/intro15.wav"
 
     "Beyond the village, the sea stretches wide and honest."
     #zoom intro night
 
+    voice "narration/intro16.wav"
+
     "But behind it," 
     scene intro moon with Dissolve(2.0)
+
+    voice "narration/intro17.wav"
     
     "behind the stilts and the smoke and the festival drums already beginning their preparations," 
     scene intro moon2 with Fade(0.5, 0.3, 0.9)
+
+    voice "narration/intro18.wav"
     
     "stands the bakawan."
     scene intro frog with Dissolve(2.0)
     #Add frog sounds 
 
+    voice "narration/intro19.wav"
     "Not planted." 
-    #scene intro frog2 with Dissolve(1.0)
+    #scene intro frog2 with Dissolve(1.0
+
+    voice "narration/intro20.wav"
     
     "Older than any name the villagers could give it." 
     #scene intro frog3 with Dissolve(1.0)
+
+    voice "narration/intro21.wav"
     
-    "Its roots twist deep into the earth and deeper still into stories passed down by those who came before." 
+    "The roots twist deep into the earth and the deeper it still into stories passed down by those who came before." 
     #scene intro frog jump with Dissolve(1.0)
+    
+    voice "narration/intro22.wav"
     
     "The locals call it simply the bakawan," 
     
@@ -226,29 +267,53 @@ label start:
     show intro bakawan at Transform(zoom=1.0):
         linear 6.0 zoom 1.3
 
+    voice "narration/intro23.wav"
+
     "but they speak of it the way one speaks of something that deserves caution. "
 
+    voice "narration/intro24.wav"
+
     "Not forbidden." 
+
+    voice "narration/intro25.wav"
     
     "Just... not meant for staying too long."
 
+    voice "narration/intro26.wav"
+
     "The men of Panhuy-an know this instictively."
+
+    voice "narration/intro27.wav"
     
     show intro bakawan at Transform(zoom=1.3):
         linear 6.0 zoom 1.0
 
+    voice "narration/intro28_1.wav"
+
     "Every evening at dusk, they face the treeline and stand."
 
+    voice "narration/intro28.wav"
+
     "Not in fear" 
+
+    voice "narration/intro29.wav"
     
     "but in witness." 
+
+    voice "narration/intro30.wav"
     
     "Showing the old things that the village remembers."
+
+    voice "narration/intro31.wav"
 
     "Attention, in Panhuy-an, is a kind of offering."
     scene intro feet running with Dissolve(2.0)
 
+    voice "narration/intro32.wav"
+
     "Children are told not to wander near the roots after dark."
+
+    voice "narration/intro33.wav"
 
     stop audio fadeout 2.0
 
@@ -259,9 +324,15 @@ label start:
     play sound dawa_humming volume 0.9
     play audio flowing_water volume 0.2
 
-    narrator "A woman crouches by the water, hands deep in a fishing net."
-    
+    voice "narration/intro34.wav"
+
+    "A woman crouches by the water, hands deep in a fishing net."
+
+    voice "narration/intro35.wav"
+
     "She hums something old."
+
+    voice "narration/intro36.wav"
 
     scene intro dawa noticed with Dissolve(2.0)
     "Kadyos sniffs nearby."
@@ -273,7 +344,8 @@ label start:
     
     scene panahuyan village 
     show dawa happy
-    show kilaw normal at left
+    show kilaw normal 
+    
     with Dissolve(2.0)
 
     dawa "Mm. Don't we all."
