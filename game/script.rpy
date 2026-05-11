@@ -250,6 +250,17 @@ label start:
     narrator "She pokes your shoulder abruptly. Lightly, in a joking manner"
 
     "You huffed and gently swatted her hands away. She was already smiling at you."
+    
+    menu:
+        "They're just old stories":
+            $ kilaw_personality = "skeptic"
+            kilaw "Stories like that are meant for children, Dawa. I'm not afraid."
+            dawa "Stubborn as a mule. Just remember, the silence is where the sea listens the hardest."
+
+        "I believe in them":
+            $ kilaw_personality = "believer"
+            kilaw "I know. The village elders don't face the treeline for nothing. I'll be careful."
+            dawa "Good. Caution is a better friend than courage when the tide turns."
 
     kilaw "Whatever. I'm going." 
     
@@ -285,6 +296,11 @@ label start:
 
     dawa "Make sure you're back before the festival starts." 
     dawa "Your mother will have both our heads if you're not at the lantern lighting!"
+
+    if kilaw_personality == "skeptic":
+        dawa "And try not to let your big head get stuck in a root! Keep your ears open."
+    else:
+        dawa "And stay on the path where the sun hits. Don't go wandering!"
 
     scene intro bye1 with Dissolve(2.0)
 
@@ -329,6 +345,14 @@ label start:
     show happy kilaw kadyos 
     
     kilaw "Kadyos! You scared me! Where have you been, silly boy?"
+
+    if kilaw_personality == "skeptic":
+        "You pat his head firmly, ignoring the way the trees seem to lean closer to listen."
+        kilaw "Just a forest, Kadyos. Don't let Dawa's ghost stories get to you. We're just here for fish." 
+    else:
+        "You pull him close, feeling the thrum of his heart against your palm." 
+        kilaw "It feels different today, doesn't it? We'll be quick, I promise."
+
     kilaw "Come on, partner. Let's find something for dinner before the sun goes down, hmmm?"
     
     show happy kilaw kadyos:
@@ -360,12 +384,18 @@ label start:
 
     "You push through a wall of bushes and gasp."
 
-    "You found it in a small clearing where the water had pulled back, an old wooden boat, worn and patient, sitting half-in, half-out of the mud."
+    "You found it in a small clearing where the water had pulled back, an old wooden boat."
+    "Worn and patient, sitting half-in, half-out of the mud."
 
-    hide kilaw looking
-    show kilaw looking happy
+    if kilaw_personality == "skeptic":
+        hide kilaw looking
+        show kilaw looking happy
 
-    kilaw "A boat?"
+        narrator "A boat. Just sitting here, abandoned."
+        narrator "Dawa would probably say it was a trap, but it looks like a lucky find to you."
+    else:
+        narrator "A boat. It sits in the mud like a silent witness."
+        narrator "You remember the rituals, the swaying, the blessings. A cold shiver runs down your back."
 
     scene boat scene with dissolve
 
@@ -952,9 +982,14 @@ label start:
 
         narrator "Then they look at you. She looks at Kadyos infront of you. She gave a small nods"
 
-        unknown "Good. You're upright. And the dog is — also upright."
+        unknown "Good. You're upright. And the dog is... also upright."
 
         narrator "Kadyos tail wags."
+
+        if kilaw_personality == "skeptic":
+            unknown "You have the eyes of someone who doesn't believe what they see. That will change soon enough."
+        else:
+            unknown "You carry the weight of your elders' respect. It is rare for a mortal to arrive with so much reverence still intact."
 
         unknown "Come. Walk with me. There is a great deal to explain and very little time to explain it in."
 
@@ -1055,6 +1090,13 @@ label start:
 
         toto "You came here by tide, child. The tide does not send things without reason, even if the reason reveals itself slowly."
 
+        if kilaw_personality == "skeptic":
+            toto "The tide does not care if you believe in it. It will carry you regardless." 
+            toto "Perhaps your 'logic' will be the anchor we need in this chaos." 
+        else:
+            toto "You have been witness to our world from the other side of the treeline for years." 
+            toto "The Bakunawa values a heart that remembers. Do not let that reverence turn into fear."
+
         narrator "Ba-O stops. Looks at you steadily."
 
         ba_o "You came through the boundary. The tide brought you here, whether you chose it or not." 
@@ -1124,7 +1166,8 @@ label start:
 
     #ROUTE: --------------------
     label route_help_them:
-        narrator "You watched, but after the second day, something about the way Ba-O's hands shake as she carries numerous offerings and ingredients made your chest hurt."
+        narrator "You watched, but after the second day."
+        narrator "Something about the way Ba-O's hands shake as she carries numerous offerings and ingredients made your chest hurt."
 
         kilaw "...Okay. Okay, fine. But only because you all look like you're floundering out there. No offense."
 
@@ -1325,6 +1368,14 @@ label start:
         narrator "Sigay sighed, frustrated and tired."
         sigay "It's not that simple."
         kilaw "It's alright. I'll help you as much as I can"
+        
+        if kilaw_personality == "skeptic":
+            kilaw "It's just fabric and light, Sigay. If it worked once, we can make it work again with a little effort." 
+            sigay "Effort? How... practical. Maybe a little human 'fix-it' energy is exactly what we need." 
+        else:
+            kilaw "It's about the soul of the celebration."
+            kilaw "My lola said the threads have to remember the joy to really glow." 
+            sigay "Wise words. Yes... let's try to find that joy together." 
 
         call minigame_costume_start
         if score_costume >= 3:
@@ -1838,7 +1889,7 @@ label start:
         ba_o "Child, quickly, you can return home, partially transformed, or stay and help us find a new way."
         narrator "You stand between two worlds, unsure which path to choose."
         menu:
-            "Stay.":
+            "Stay":
                 jump stay_here
 
             "Leave":
