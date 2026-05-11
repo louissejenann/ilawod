@@ -41,6 +41,58 @@ default total_score       = 0
 init python:
     config.layers = ["master", "foreground", "transient", "screens", "overlay"]
 
+# Human Form
+image kilaw normal    = "kilaw_normal_sprite.png"
+image kilaw happy     = "kilaw_happy_sprite.png"
+image kilaw focused   = "kilaw_focused_sprite.png"
+image kilaw worried   = "kilaw_worried_sprite.png"
+image kilaw shocked   = "kilaw_shock_sprite.png"
+image kilaw sad       = "kilaw_sad_sprite.png"
+image kilaw determined = "kilaw_determined_sprite.png"
+
+# Spirit/Fish Form
+image kilawfish normal = "kilawfish_normal_sprite.png"
+image kilawfish happy  = "kilawfish_happy_sprite.png"
+image kilawfish sad    = "kilawfish_sad_sprite.png"
+image kilawfish shocked = "kilawfish_shock_sprite.png"
+
+# Normal Dog Form
+image kadyos normal = "kadyos_normal_sprite.png"
+image kadyos happy  = "kadyos_happy_sprite.png"
+image kadyos sad    = "kadyos_sad_sprite.png"
+
+# Dawa
+image dawa serious = "dawa_serious_sprite.png"
+image dawa happy   = "dawa_happy_sprite.png"
+image dawa wry     = "dawa_wry_sprite.png"
+image dawa crab    = "dawa_crab_sprite.png"
+
+image spirit_npc = "spiritnpc_sprite.png"
+image rocky      = "rocky_sprite.png"
+image fish_npc   = "fish_sprite.png"
+image jellyfish  = "jellyfish_sprite.png"
+
+# Spirit/Fish Form
+image kadyosfish normal = "kadyosfish_normal_sprite.png"
+image kadyosfish happy  = "kadyosfish_happy_sprite.png"
+image kadyosfish sad    = "kadyosfish_sad_sprite.png"
+
+# Toto
+image toto normal = "toto_normal_sprite.png"
+image toto happy  = "toto_happy_sprite.png"
+image toto calm   = "toto_calm_sprite.png"
+
+# BS
+image sili happy   = "sili_happy_sprite.png"
+image sili worried = "sili_worried_sprite.png"
+image sili mad     = "sili_mad_sprite.png"
+image sili relief  = "sili_relief_sprite.png"
+
+image bilo formal    = "bilo_formal_sprite.png"
+image bilo serious   = "bilo_serious_sprite.png"
+image bilo irritated = "bilo_irritated_sprite.png"
+image bilo surprise  = "bilo_surprise_sprite.png"
+
 ## Background
 image background moving = Movie(play= "images/Comp1.webm", loop=False, keep_last_frame=True)
 image intro village = Movie(play= "images/intro village.webm", Loop=False, keep_last_frame=True)
@@ -220,7 +272,8 @@ label start:
     kilaw "He just wants food."
     
     scene panahuyan village 
-    show dawa
+    show dawa happy
+    show kilaw normal at left
     with Dissolve(2.0)
 
     dawa "Mm. Don't we all."
