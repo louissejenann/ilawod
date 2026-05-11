@@ -757,7 +757,7 @@ style game_menu_side:
 
 style game_menu_label:
     xpos 100
-    ypos -90
+    ypos -50
     ysize 180
 
 style game_menu_label_text:
