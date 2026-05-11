@@ -608,6 +608,8 @@ label start:
 
             "Kadyos puts his head in your lap. His tail moves once, slowly."
 
+            scene ending1 with Fade(0.5, 0.3, 0.8)
+
             scene black with Dissolve(3.0)
             $ MainMenu(confirm=False)()
             #return #ENDING 1: BAD (YOU IGNORED THE CALLING)
@@ -1274,6 +1276,8 @@ label start:
 
         "There's no use for regrets in the end."
 
+        scene ending2 with Fade(0.5, 0.3, 0.8)
+
         scene black with Dissolve(3.0)
         $ MainMenu(confirm=False)()
         
@@ -1726,6 +1730,8 @@ label start:
         "Kadyos leans against you. He is all fin now, and still— somehow—entirely him."
         "His tail moves, once. Slowly. You put your hand on his back."
         "Somewhere far away, you thought, you don't think can ever find a way back home, you can't even recognize yourself anymore."
+
+        scene ending3 with Fade(0.5, 0.3, 0.8)
         
         scene black with Dissolve(3.0)
         $ MainMenu(confirm=False)()
@@ -1954,6 +1960,8 @@ label start:
 
         narrator "You look at the water. You're not sure if anyone can hear you. You said it anyway."
         kilaw "Thank you..."
+
+        scene ending4 with Fade(0.5, 0.3, 0.8)
         
         scene black with Dissolve(3.0)
         $ MainMenu(confirm=False)()
@@ -1992,6 +2000,8 @@ label start:
             "Quietly, you think to yourself"
             kilaw "I'll write something in the water. Mom will find it eventually."
 
+            scene ending7 with Fade(0.5, 0.3, 0.8)
+
             scene black with Dissolve(3.0)
             $ MainMenu(confirm=False)()
 
@@ -2007,6 +2017,8 @@ label start:
             narrator "When you went back to the surface, the aquatic features don't entirely recede."
             "Faint scales along your wrist, ears that catch the sound of running water differently now, a sensitivity to tides you didn't have before." 
             "You don't mind. They're a reminder. Proof that something happened, that it was real, that you were there and came back."
+
+            scene ending6 with Fade(0.5, 0.3, 0.8)
             
             scene black with Dissolve(3.0)
             $ MainMenu(confirm=False)()
@@ -2033,6 +2045,8 @@ label start:
 
         kilaw "I should have helped more. I should have tried harder."
         narrator "Somewhere in the mortal world, your village lights another lantern."
+
+        scene ending5 with Fade(0.5, 0.3, 0.8)
         
         scene black with Dissolve(3.0)
         $ MainMenu(confirm=False)()
