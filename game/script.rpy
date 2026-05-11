@@ -42,6 +42,10 @@ init python:
     config.layers = ["master", "foreground", "transient", "screens", "overlay"]
 
 # Human Form
+transform left_char:
+    xalign 0.2
+    yalign 1.0
+
 image kilaw normal    = "kilaw_normal_sprite.png"
 image kilaw happy     = "kilaw_happy_sprite.png"
 image kilaw focused   = "kilaw_focused_sprite.png"
@@ -344,8 +348,8 @@ label start:
     
     scene panahuyan village 
     show dawa happy
-    show kilaw normal 
-    
+    show kilaw happy at left_char
+
     with Dissolve(2.0)
 
     dawa "Mm. Don't we all."
