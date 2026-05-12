@@ -1129,7 +1129,7 @@ label start:
     label route_where_are_we:
         kilaw "Where...where is this?"
 
-        sili "The spirit realm. The deep part — under the mangrove's roots, where the old tides go." 
+        sili "The spirit realm. The deep part under the mangrove's roots." 
         sili "It's — it's easier to show you than explain."
         
         narrator "A beat. Sili-Sili gestures through the root-arch."
@@ -1197,9 +1197,9 @@ label start:
         narrator "Kadyos tail wags."
 
         if kilaw_personality == "skeptic":
-            unknown "You have the eyes of someone who doesn't believe what they see. That will change soon enough."
+            unknown "You seem to have the eyes of someone who doesn't believe what they see. That will change soon enough."
         else:
-            unknown "You carry the weight of your elders' respect. It is rare for a mortal to arrive with so much reverence still intact."
+            unknown "You seem to carry the weight of your elders' respect. It is rare for a mortal to arrive with so much reverence still intact."
 
         unknown "Come. Walk with me. There is a great deal to explain and very little time to explain it in."
 
@@ -1289,7 +1289,7 @@ label start:
     label route_after_the_introduction:
         narrator "Toto watches the crash with the expression of someone who has already mentally filed it away."
         
-        "Their gaze returns to you. Something settles in it — a decision."
+        "Their gaze returns to you. Something settles in it like a decision."
 
         toto "The mortal world holds its own festival in three days also. The Bakunawa has watched both shores."
 
@@ -1999,7 +1999,7 @@ label start:
 
         elif player_offering == "salt":
             kasag "And what do you have there? Salt? You think you can preserve a melody like a piece of dried fish?"
-            kasag "Hmph. At least you’re prepared to protect yourself. But here, only the rhythm will save you."
+            kasag "Hmph. At least you're prepared to protect yourself. But here, only the rhythm will save you."
 
         elif player_offering == "white_rice":
             kasag "White rice. A peaceful gift for a creature that wants to swallow the sky."
@@ -2118,7 +2118,7 @@ label start:
         voice "narration/berof6.mp3"
         narrator "What felt like a lifetime ago."
 
-        voice "narration/berof.7mp3"
+        voice "narration/berof7.mp3"
         "The same light that started everything."
 
         voice "narration/berof8.mp3"
@@ -2175,11 +2175,18 @@ label start:
     ## CALCULATE SCORE AND ENDINGS
     ## ═══════════════════════════════════════════════════
     label pre_ending:
+        voice "narration/berof21.mp3"
         narrator "The water beneath the festival grounds begins to tremble—not the frantic churning of the vortex that brought you here."
+
+        voice "narration/berof22.mp3"
         narrator "But something deeper. Deliberate. Aware."
         sigay "It's coming. The Bakunawa comes."
+
+        voice "narration/berof23.mp3"
         narrator "Bao looks on quietly. She stayed close, her presence felt. Warmth against the cold waters. She does not reach for you."
         ba_o "Stay where you are, child. Let the festival speak for itself now."
+
+        voice "narration/berof24.mp3"
         narrator "You stand still. Kadyos presses against you. The music plays."
         jump calculate_final_score
 
@@ -2190,34 +2197,80 @@ label start:
 
     #GOOD OUTCOME
     label good_ending:
-        narrator "The Bakunawa sees the sincerity woven into every detail. Satisfied, it circles the moon as guardian, then descends peacefully into the depths."
+        voice "narration/good1.mp3"
+        narrator "The Bakunawa sees the sincerity woven into every detail."
+
+        voice "narration/good2.mp3"
+        narrator "Satisfied, it circles the moon as guardian, then descends peacefully into the depths."
+
+        voice "narration/good3.mp3"
         "Light surrounds you. The scales fade. The gills close." 
-        "A portal shimmers open before you, warm, golden-edged, and on the other side you can smell salt and woodsmoke and the particular smell of a village morning."
+
+        voice "narration/good4.mp3"
+        "A portal shimmers open before you, warm, golden-edged."
+
+        voice "narration/good5.mp3"
+        "And on the other side you can smell salt and woodsmoke and the particular smell of a village morning."
+
+        voice "narration/good6.mp3"
         "Home"
+
+        voice "narration/good7.mp3"
         "You were about to step forward before someone calls you."
         ba_o "Child, Before you go walk the shore first. Let the tide run over your feet. Let it take what followed you. Then you may go home."
+
+        voice "narration/good8.mp3"
         narrator "You nod. You understand. "
         ba_o "Accident or not, thank you for being here. Safe travels"
+
+        voice "narration/good9.mp3"
         narrator "You look at Ba-O for a moment and let it sink to you that this will probably be the last time you'll see this."
+
+        voice "narration/good10.mp3"
         "Both of you are left standing there as the festival continues around you. The music, the dancing, the food felt very real at the moment."
         kilaw "Thank you too."
-    
+        voice "narration/good11.mp3"
         narrator "With that you stepped onto the portal home."
+
+        voice "narration/good12.mp3"
         "Dawn breaks over the mangrove. You and Kadyos emerge through the portal, onto the shore, into the early morning light."
+
+        voice "narration/good13.mp3"
         "Fully restored. The scales are gone."
+
+        voice "narration/good14.mp3"
         "Kadyos shakes the last of the spirit water from his fur, normal fur, entirely, wonderfully, gloriously dog."
+
+        voice "narration/good15.mp3"
         "He looks at you like he's been waiting for this moment this whole time and is very pleased with how it turned out"
+
+        voice "narration/good16.mp3"
         "You walk the shoreline. You let the tide come over your feet. Cold, real, present."
+
+        voice "narration/good17.mp3"
         "You paddle home after that. The boat still where you left it."
+
+        voice "narration/good18.mp3"
         "The mangrove looks exactly the same as it always did, roots, water, morning light filtering down in long gold threads."
+
+        voice "narration/good19.mp3"
         "Nothing about it announces what is underneath. Nothing tells you that you were there."
+
+        voice "narration/good20.mp3"
         "You muttered softly, barely above the sound of the paddle."
 
         kilaw "Kadyos. We made it."
+
+        voice "narration/good21.mp3"
         narrator "Kadyos shakes his fur one more time. He is very happy about this."
-        "Just then, a mudfish that started it all jumps into the boat." 
+
+        voice "narration/good22mp3"
+        "Just then, a mudfish, the one that starts it all, jumps into the boat." 
+        
+        voice "narration/good23.mp3"
         "A meal. Or a thank-you. Or just a reminder that being lost led to finding what you never thought you needed."
 
+        voice "narration/good24.mp3"
         narrator "You look at the water. You're not sure if anyone can hear you. You said it anyway."
         kilaw "Thank you..."
 
@@ -2231,12 +2284,23 @@ label start:
 
     #NEUTRAL OUTCOME
     label neutral_ending:
+        voice "narration/neutro1.mp3"
         narrator "The Bakunawa rises, vast and patient, the way old things are patient."
+
+        voice "narration/neutro2.mp3"
         "It doesn't rush. It has seen three hundred festivals. It is taking the measure of this one."
+
+        voice "narration/neutro3.mp3"
         "The music falters for just a moment. Then holds."
+
+        voice "narration/neutro4.mp3"
         "The Bakunawa is massive, ancient, neither angry nor pleased. It circles the moon, considering."
+
+        voice "narration/neutro5.mp3"
         "The festival bought time, but nothing more."
         ba_o "Child, quickly, you can return home, partially transformed, or stay and help us find a new way."
+
+        voice "narration/neutro6.mp3"
         narrator "You stand between two worlds, unsure which path to choose."
         menu:
             "Stay":
@@ -2246,17 +2310,33 @@ label start:
                 jump leave_here
 
         label stay_here:
+            voice "narration/staend1.mp3"
             narrator "You look at Kadyos. He looks at you." 
+
+            voice "narration/staend2.mp3"
             "You think of your mother's house. You think of the drums you heard from the village, the festival that happened without you." 
+
+            voice "narration/staend3.mp3"
             "You think of Ba-O's kitchen, and Sigay's light-fractured costumes, and Lusay's wrong lanterns that worked."
             kilaw "...I'll stay. For now."
+
+            voice "narration/staend4.mp3"
             narrator "Ba-O looks at you. Something in her expression is careful"
             ba_o "Then you are one of us. For as long as the tide asks it."
+
+            voice "narration/staend5.mp3"
             narrator "You nod. The scales don't fully recede."
+
+            voice "narration/staend6.mp3"
             "You find, with some surprise, that you mind less than you expected. They catch the bioluminescent light beautifully."
 
+            voice "narration/staend7.mp3"
             "Kadyos leans against you. His tail moves, once." 
+
+            voice "narration/staend8.mp3"
             "He is content here, because you are here. That is all he has ever required." 
+
+            voice "narration/staend9.mp3"
             "Quietly, you think to yourself"
             kilaw "I'll write something in the water. Mom will find it eventually."
 
@@ -2269,13 +2349,25 @@ label start:
             #You stayed in the spirit realm. You are not sure how long you will stay, but you know you will be here for a while.
 
         label leave_here:
+
+            voice "narration/leavend1.mp3"
             narrator "You look at the portal. You think of the mangrove at dawn. You think of your village. Your mom."
+
+            voice "narration/leavend2.mp3"
             "You think of all the lanterns your neighbors hung for the festival you missed, the drums you heard from the water three moons ago."
+
+            voice "narration/leavend3.mp3"
             "The way you always forget how much you love home until you're standing at the edge of losing it."
             kilaw "I need to go home."
             ba_o "We understand, child. We'll be here. We always are."
+
+            voice "narration/leavend4.mp3"
             narrator "When you went back to the surface, the aquatic features don't entirely recede."
-            "Faint scales along your wrist, ears that catch the sound of running water differently now, a sensitivity to tides you didn't have before." 
+
+            voice "narration/leavend5.mp3"
+            "Faint scales along your wrist, ears that catch the sound of running water differently now, a sensitivity to tides you didn't have before."
+
+            voice "narration/leavend6.mp3" 
             "You don't mind. They're a reminder. Proof that something happened, that it was real, that you were there and came back."
 
             scene ending6 with Fade(0.5, 0.3, 0.8)
@@ -2288,22 +2380,42 @@ label start:
 
     #BAD OUTCOME
     label bad_ending:
+        voice "narration/bad1.mp3"
         narrator "The Bakunawa does not pause when it arrives. It does not circle. It does not consider. It is simply here, and then the moon is not."
 
+        voice "narration/bad2.mp3"
         "The silence that follows is not the silence of things that are quiet. It is the silence of something that was there and is gone now and will not come back."
         
+        voice "narration/bad3.mp3"
         "The Bakunawa arrived in fury. The festival's failure is an insult to centuries of negotiation. No pleading can stop what comes next."
+
+        voice "narration/bad4.mp3"
         "The moon disappears into the serpent's jaws. Darkness swallows both realms. You watch, helpless, as everything is consumed."
+
+        voice "narration/bad5.mp3"
         "The transformation completes. No longer mortal. No longer entirely spirit. Something the boundary has decided to keep, because it was not returned in time."
-        "In the mortal world, your village lights lanterns every night. Mourning. Warning." 
+
+        voice "narration/bad6.mp3"
+        "In the mortal world, your village lights lanterns every night. Mourning. Warning."
+
+        voice "narration/bad7.mp3" 
         "The water no longer glows. Your name becomes a cautionary tale; the girl who came and went, and was never to be seen again"
-        
+
+        voice "narration/bad8.mp3"
         "The men on the night watch face the treeline at dusk. They stand there longer now. Not in tribute. In grief."
+
+        voice "narration/bad9.mp3"
         "You sit at the water's edge of the spirit realm, your realm now, and watch where the moon used to be."
+
+        voice "narration/bad10.mp3"
         "Kadyos sits beside you. He is all fin and gills, but he still leans against you the same way."
+
+        voice "narration/bad11.mp3"
         "You hold onto Kadyos, as you muttered to yourself."
 
         kilaw "I should have helped more. I should have tried harder."
+
+        voice "narration/bad12.mp3"
         narrator "Somewhere in the mortal world, your village lights another lantern."
 
         scene ending5 with Fade(0.5, 0.3, 0.8)
