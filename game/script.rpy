@@ -42,9 +42,9 @@ init python:
     config.layers = ["master", "foreground", "transient", "screens", "overlay"]
 
 # Human Form
-transform left_char:
-    xalign 0.2
-    yalign 1.0
+#transform left_char:
+    #xalign 0.2
+    #yalign 1.0
 
 image kilaw normal    = "kilaw_normal_sprite.png"
 image kilaw happy     = "kilaw_happy_sprite.png"
@@ -97,6 +97,25 @@ image bilo serious   = "bilo_serious_sprite.png"
 image bilo irritated = "bilo_irritated_sprite.png"
 image bilo surprise  = "bilo_surprise_sprite.png"
 
+# Kasag
+image kasag normal = "kasag_normal_sprite.png"
+image kasag happy  = "kasag_happy_sprite.png"
+image kasag angry  = "kasag_angry_sprite.png"
+image kasag surprise  = "kasag_surprise_sprite.png"
+
+# Sigay
+image sigay normal = "sigay_normal_sprite.png"
+image sigay happy  = "sigay_happy_sprite.png"
+image sigay proud  = "sigay_proud_sprite.png"
+image sigay panic  = "sigay_panic_sprite.png"
+
+# Ba-o
+image bao normal = "bao_normal_sprite.png"
+image bao happy  = "bao_happy_sprite.png"
+image bao sad = "bao_sad_sprite.png"
+image bao worried  = "bao_worried_sprite.png"
+image bao unimpressed  = "bao_unimpressed_sprite.png"
+
 ## Background
 image background moving = Movie(play= "images/Comp1.webm", loop=False, keep_last_frame=True)
 image intro village = Movie(play= "images/intro village.webm", Loop=False, keep_last_frame=True)
@@ -116,6 +135,16 @@ image sunset = Movie(play= "images/sunset.webm", loop=False, keep_last_frame=Tru
 image intro children = Movie(play= "images/intro children.webm", loop=False, keep_last_frame=True)
 image intro festival prep1 = Movie(play= "images/intro festival prep1.webm", loop=False, keep_last_frame=True)
 image intro feet running = Movie(play= "images/intro feet running.webm", loop=False, keep_last_frame=True)
+image mooneater = Movie(play= "images/mooneater", loop=False, keep_last_frame=True)
+image festival start = Movie(play= "images/festival start.webm", loop=False, keep_last_frame=True)
+image mudfish = Movie(play= "images/mudfish.webm", loop=False, keep_last_frame=True)
+image kilaw fish eye = Movie(play= "images/kilaw fish eye.webm", loop=False, keep_last_frame=True)
+image transforming = Movie(play= "images/transforming.webm", loop=False, keep_last_frame=True)
+image dancing festive = Movie(play= "images/dancing festive.webm", loop=False, keep_last_frame=True)
+image bye portal = Movie(play= "images/bye portal.webm", loop=False, keep_last_frame=True)
+image bakunawa rising = Movie(play= "images/bakunawa rising.webm", loop=False, keep_last_frame=True)
+image bakunawa eyes = Movie(play= "images/bakunawa eyes.webm", loop=False, keep_last_frame=True)
+image backhome = Movie(play= "images/backhome.webm", loop=False, keep_last_frame=True)
 
 ## Audios
 ## Atmosphere & Environment
@@ -195,9 +224,9 @@ label start:
     
     "Morning smells of salt and smoke. Children run between the stilts"
     
-    voice "narration/intro9.wav"
     scene intro caught fish with Dissolve(2.0)
-    play sound woman_laughter volume 0.2
+    play sound woman_laughter volume 1.0
+    voice "narration/intro9.wav"
 
     "Neighbors call to each other across the water."
     
@@ -205,7 +234,7 @@ label start:
     voice "narration/intro10.wav"
 
     play audio children_laughing volume 0.4
-    play sound wood_running volume 0.1
+    play sound wood_running volume 0.2
 
     "The old lecturing the young."
 
@@ -347,30 +376,83 @@ label start:
     kilaw "He just wants food."
     
     scene panahuyan village 
-    show dawa happy
-    show kilaw happy at left_char
+    show dawa happy:
+        xalign 0.7
+        yalign 1.0
+    show kilaw focused:
+        xalign 0.2
+        yalign 1.0
+    show kadyos happy:
+        xalign 0.4
+        yalign 1.9
 
     with Dissolve(2.0)
 
     dawa "Mm. Don't we all."
 
+    show kilaw determined:
+        xalign 0.2
+        yalign 1.0
+    show kadyos normal:
+        xalign 0.4
+        yalign 1.9
+
     narrator "You grinned slightly at that, leaning against a root as you watched her work."
+
+    show dawa serious:
+        xalign 0.7
+        yalign 1.0
+    show kilaw worried:
+        xalign 0.2
+        yalign 1.0
 
     kilaw "We haven't caught anything since yesterday."
     
+    show dawa crab 
+    show kilaw normal:
+        xalign 0.2
+        yalign 1.0
     #scene intro dawa screen2 ung may hawak siyang crab
     narrator "Dawa pulls a crab from the net, tosses it into a basket without looking."
 
     dawa "Then you waited too long. Tide's already turning."
+
+    show kilaw normal:
+        xalign 0.2
+        yalign 1.0
+
     kilaw "Then i'll go deeper." 
     kilaw "There's always something in the bakawan."
 
     narrator "Dawa paused at that, just a moment, before tossing you a net."
 
+    show dawa happy 
+    show kilaw shocked:
+        xalign 0.2
+        yalign 1.0
+
     kilaw "Hey!"
+
+    show dawa serious 
+    show kilaw worried:
+        xalign 0.2
+        yalign 1.0
+        
     dawa "There's always something, yes."
+
+    show dawa serious 
+    show kilaw worried:
+        xalign 0.2
+        yalign 1.0
+    
     kilaw "You say that like it's a bad thing."
     dawa "I say it like it's true. I've lived longer than you."
+
+    show dawa serious 
+    show kilaw focused:
+        xalign 0.2
+        yalign 1.0
+
     dawa "Go if you must. But don't follow quiet water."
 
     narrator "You looked at her like she was saying something silly again"
@@ -379,21 +461,43 @@ label start:
 
     narrator "Dawa shook her head, like you were being silly."
 
+    show dawa wry:
+        xalign 0.7
+        yalign 1.0
+
     dawa "No. Water always has noise."  
     dawa "It's the silence that should trouble you."
     dawa "Because, you never know when you'll be taken."
 
+    show dawa happy
+    show kilaw focused:
+        xalign 0.2
+        yalign 1.0
+
     narrator "She pokes your shoulder abruptly. Lightly, in a joking manner"
+
+    show kilaw happy:
+        xalign 0.2
+        yalign 1.0
+    show kadyos happy:
+        xalign 0.4
+        yalign 1.9
 
     "You huffed and gently swatted her hands away. She was already smiling at you."
     
     menu:
         "They're just old stories":
+            show kilaw determined:
+                xalign 0.2
+                yalign 1.0
             $ kilaw_personality = "skeptic"
             kilaw "Stories like that are meant for children, Dawa. I'm not afraid."
             dawa "Stubborn as a mule. Just remember, the silence is where the sea listens the hardest."
 
         "I believe in them":
+            show kilaw normal:
+                xalign 0.2
+                yalign 1.0
             $ kilaw_personality = "believer"
             kilaw "I know. The village elders don't face the treeline for nothing. I'll be careful."
             dawa "Good. Caution is a better friend than courage when the tide turns."
@@ -411,6 +515,10 @@ label start:
     kilaw "So am I!" 
     kilaw "Don't worry, I'll remember."
 
+    hide dawa happy with Dissolve(0.5)
+    show kadyos normal at Transform(xalign=0.6) with move
+    show kilaw normal at Transform(xalign=0.4) with move
+
     narrator "With that you went on your way."
 
     kilaw "Before I head into the bakawan, I should bring an offering..."
@@ -421,6 +529,7 @@ label start:
             "The elders say salt is a barrier between our world and theirs."
 
         "Small brass bell":
+            show kilaw determined
             $ player_offering = "noise"
             "The Bakunawa hates the sound of metal and noise. If I get lost, perhaps a sharp sound will startle the shadows away."
 
@@ -429,6 +538,7 @@ label start:
             "An offering of peace. Pure and white, it represents the light of the moon that the Great Serpent hungers for."
 
         "I'll bring nothing":
+            show kilaw focused
             $ player_offering = "none"
             kilaw "My independence is my offering."
             kilaw "Dawa says I'm stubborn. Maybe she's right, but I'll find my own way."
@@ -438,10 +548,10 @@ label start:
 
     "The afternoon light is golden and low." 
     
-    "Somewhere, further down the shoreline, you can hear the faint pulse of drums — the festival preparations already beginning."
+    "Somewhere, further down the shoreline, you can hear the faint pulse of drums, the festival preparations already beginning."
 
     scene panahuyan village 
-    show dawa
+    show dawa serious
     with Dissolve(2.0)
     #scene intro into bakawan
     #whistle audio
@@ -553,10 +663,21 @@ label start:
         narrator "A boat. It sits in the mud like a silent witness."
         narrator "You remember the rituals, the swaying, the blessings. A cold shiver runs down your back."
 
-    scene boat scene with dissolve
+    scene boat scene 
+    show kilaw normal:
+        xalign 0.4
+        yalign 1.0
+
+    show kadyos normal:
+        xalign 0.6
+        yalign 1.9
+    
+    with dissolve
 
     narrator "You looked at the boat with careful attention."
     "In your village, there was a rituals seafarers practiced which involved chanting before fishing or sea raids."
+
+    show kilaw focused
     "If the boat swayed, the spirits blessed the trip."
 
     scene boat light with dissolve
@@ -571,7 +692,17 @@ label start:
     
     narrator "You blinked, before approaching the boat."
 
+    show kilaw normal:
+        xalign 0.4
+        yalign 1.0
+
+    show kadyos happy:
+        xalign 0.6
+        yalign 1.9
+
     kilaw "Looks sturdy enough. It's probably from one of our neighbors... maybe this will take us to the fattest fish out there!"
+
+    show kilaw determined
     kilaw "I don't think they would mind us borrowing it."
     kilaw "What do you think, Captain Kadyos? Ready to sail?"
     
@@ -587,15 +718,32 @@ label start:
 
     #ROUTE
     label route_stay_on_land:
-        narrator "You look at the boat — then at the dark water beyond it. You take a step back."
+        show kilaw normal
+        show kadyos normal
+
+        narrator "You look at the boat, then at the dark water beyond it. You take a step back."
+
+        show kilaw sad
 
         kilaw "...No. I don't think so. Something doesn't feel right about that water tonight."
-
+        show kadyos sad
         narrator "Kadyos presses against your side, as if agreeing. You and Kadyos decided to just stay on land, finding other ways to get food." 
 
+        hide kilaw with dissolve
+        hide kadyos with dissolve
         scene normal mangrove with dissolve
 
         "You foraged for nearby fruit, young leaves, seeds, and fish you could catch near land."
+
+        show kilaw determined:
+            xalign 0.4
+            yalign 1.0
+
+        show kadyos happy:
+            xalign 0.6
+            yalign 1.9
+
+        with dissolve
 
         kilaw "Okay. Land food it is. No mysterious glowing water required."
 
@@ -604,6 +752,9 @@ label start:
         "Ripe bayabas along the bank, mudskippers in the shallows you could scoop with your hands." 
         
         "Even some wild kangkong near the water's edge."
+
+        show kilaw happy
+        show kadyos normal
 
         kilaw "Ha. Mom would be proud. Fresh greens, fresh fish. Better than the ones our own traders brought."
 
@@ -664,7 +815,7 @@ label start:
             show fish spirit:
                 xpos -1920        
                 ypos 1080        
-                linear 3.0 xpos 0 ypos 0 
+                linear 2.0 xpos 0 ypos 0 
 
             $ renpy.pause(4.0)
 
@@ -699,11 +850,26 @@ label start:
         label route_go_home:
             voice "narration/badend1.mp3"
 
+            scene boat light
+           
+            show kilaw normal:
+                xalign 0.4
+                yalign 1.0
+
+            show kadyos happy:
+                xalign 0.6
+                yalign 1.9
+
             narrator "You shoulder your foraged bundle and walks past without looking back."
+
+            show kilaw focused
+            show kadyos sad
 
             kilaw "Nope. Not my boat. Home time, Kadyos."
 
             voice "narration/badend2.mp3"
+            hide kilaw with Dissolve(0.5)
+            hide kadyos sad with Dissolve(0.9)
 
             narrator "Kadyos trots after you, tail going. He glances back at the boat once, just once, then follows"
 
@@ -712,10 +878,11 @@ label start:
 
             "By the time you reach the stilts the sky is the color of cooling embers."
 
+            scene village noon with dissolve
             voice "narration/badend4.mp3"
             "The smell of woodsmoke and neighbor-cooking is the best thing you've encountered all day." 
 
-            voice "narration/badend4.mp3"
+            voice "narration/badend5.mp3"
             "Your mother scolds you for coming back without fish."
 
             voice "narration/badend6.mp3"
@@ -728,16 +895,19 @@ label start:
 
             "It's good. It was a normal evening."
 
-            #scene black with Dissolve(3.0)
+            scene black with Dissolve(2.0)
 
             voice "narration/badend8.mp3"
             "You went to sleep."
 
+            scene intro bakawan with Dissolve(3.0)
+
             voice "narration/badend9.mp3"
             "Behind the village, in the deep water hours, the mangrove is very quiet."
 
-
             #"The men on the night watch stand at the treeline and face it, the way they always do."
+
+            scene black with Dissolve(1.9)
 
             voice "narration/badend10.mp3"
             "The festival does not fall apart loudly."
@@ -751,12 +921,14 @@ label start:
             voice "narration/badend13.mp3"
             "Not the soft darkness of early morning."
 
+            scene lantern with Dissolve(2.0)
             voice "narration/badend14.mp3"
             "You light a lantern."
 
             voice "narration/badend15.mp3"
             "Through your window, the mangrove stands the same as it always has."
 
+            scene no moon with Dissolve(2.0)
             voice "narration/badend16.mp3"
             "You don't know what you missed. You won't. The water keeps what it keeps."
 
@@ -904,7 +1076,7 @@ label start:
             ease 0.4 ypos 300
             linear 2.5 ypos 1080 alpha 0.0
 
-        narrator "The shallow tide rose like a living thing — spinning, dragging you beneath the glowing current."
+        narrator "The shallow tide rose like a living thing, spinning, dragging you beneath the glowing current."
 
         show screen choice_timer(3.0, "route_vortex_timeout")
 
@@ -938,13 +1110,13 @@ label start:
     label route_grab_boat:
         narrator "You reach for the edge of the boat, fingers catching the worn wood. For one breathless moment, you hold on"
 
-        kilaw "Got it — I've got it—!"
+        kilaw "Got it—I've got it—!"
 
         narrator "But the vortex pulls harder. You can feel your grip loosening, the water like cold hands around your wrists."
 
         "From above, Kadyos barks frantically. You felt the splash before you see him trying to jump in."
 
-        kilaw "No — Kadyos, stay back! Stay—!"
+        kilaw "No—Kadyos, stay back! Stay—!"
 
         scene waves underwater with Fade(0.5, 0.3, 0.9)
         show drowning:
@@ -964,11 +1136,11 @@ label start:
     label route_grab_kadyos: 
         narrator "You reach for Kadyos instead, arms closing around the warm weight of your dog."
 
-        kilaw "I've got you, boy — hold on—"
+        kilaw "I've got you, boy—hold on—"
 
         narrator "Kadyos paddles furiously, eyes wide with effort. For a breath they almost make it"
 
-        "Then the vortex catches them together — one spiral, pulling two."
+        "Then the vortex catches them together, one spiral, pulling two."
 
         "It is, somehow, less terrifying this way. You hold him tighter."
 
@@ -992,7 +1164,7 @@ label start:
     label welcome_spiritrealm_no_kadyos: 
         narrator "There is no falling, exactly. It's more like the moment you step off a boat and realize the water is far deeper than your feet expected." 
         
-        narrator "One second the roots are solid beneath you. The next second — they aren't anything at all."
+        narrator "One second the roots are solid beneath you. The next second, they aren't anything at all."
 
         narrator "Then; silence. Before lights came from below."
 
@@ -1014,28 +1186,53 @@ label start:
         
         narrator "Through the arch, there is light."
 
+        show kilaw sad:
+            xalign 0.5
+            yalign 1.0
+
+        with Dissolve(1.5)
+
+        kilaw "Kadyos...?" 
+    
+        narrator "You reach out, your hand searching for the familiar warmth of brown fur, but you find only the cold, damp surface of the root."
+
         narrator "Before you can sit up fully, a voice arrives."
 
-        narrator "It belongs to a small spirit — narrow, silver-finned, hovering at the edge of the root-arch with the particular energy." 
+        show kilaw worried:
+            xalign 0.2
+            yalign 1.0
+        with move
+
+        show sili worried:
+            alpha 0.0 xalign 0.9 yalign 1.0 
+            linear 1.0 alpha 1.0 xalign 0.7
+
+
+        narrator "It belongs to a small spirit, narrow-finned, hovering at the edge of the root-arch with the particular energy." 
         narrator "Like someone who looked like a child that was sent to do a task and is now reconsidering the task."
 
-        unknown "Oh — oh good, you're awake." 
+        unknown "Oh—oh good, you're awake." 
+
+        kilaw "I had someone with me! A dog, brown, small. Have you seen him?"
 
         narrator "Their fins won't quite stay still. They are holding what appears to be a paper??"
         
         "It seems to have been crumpled and re-smoothed at least twice."
 
-        unknown "We felt you came through."  
-        unknown "Well. Everyone felt you came through"
+        unknown "I'm sorry. I'm not sure, but I think someone took him inside the village."
+    
+        sili "I'm Sili-Sili. Ba-O sent me to find you. She might have the answers you're looking for."
 
-        unknown "When something crosses the boundary — falls through the rift — the whole surrouding shift." 
+        sili "We felt you came through here."  
+        sili "Well. Everyone felt you came through"
+
+        sili "When something crosses the boundary—falls through the rift—the whole surrouding shift." 
         
-        unknown "It seems like you hit the boundaries of our world pretty hard, are you okay?"
+        sili "It seems like you hit the boundaries of our world pretty hard, are you okay?"
 
         narrator "They gesture vaguely at you."
 
-        sili "You. Anyway. I'm Sili-Sili. Ba-O sent me to bring you in."
-        sili "Are you — can you walk? "
+        sili "Are you—can you walk? "
 
         menu:
             "Where's Kadyos?":
@@ -1050,7 +1247,7 @@ label start:
     label welcome_spiritrealm_main:
         narrator "There is no falling, exactly. It's more like the moment you step off a boat and realize the water is far deeper than your feet expected." 
         narrator "One second the roots are solid beneath you."
-        narrator "The next second — they aren't anything at all."
+        narrator "The next second—they aren't anything at all."
         
         narrator "You reached for Kadyos. You aren't sure if you found him or if he found you first."
 
@@ -1069,15 +1266,30 @@ label start:
         narrator "Old and enormous, trailing kelp and blossoms you don't have a name for, its wood dark and warm."
 
         narrator "You are outside something. Just outside." 
+
+        show kilaw sad:
+            xalign 0.5
+            yalign 1.0
+
+        with Dissolve(1.5)
         
         narrator "Through the arch, there is light."
 
         narrator "Before you can sit up fully, a voice arrives."
 
-        narrator "It belongs to a small spirit — narrow, silver-finned, hovering at the edge of the root-arch with the particular energy." 
+        show kilaw worried:
+            xalign 0.2
+            yalign 1.0
+        with move
+
+        show sili worried:
+            alpha 0.0 xalign 0.9 yalign 1.0 
+            linear 1.0 alpha 1.0 xalign 0.7
+
+        narrator "It belongs to a small spirit, narrow-finned, hovering at the edge of the root-arch with the particular energy." 
         "Like someone who looked like a child that was sent to do a task and is now reconsidering the task."
 
-        unknown "Oh — oh good, you're awake. We felt you come through."
+        unknown "Oh—oh good, you're awake. We felt you come through."
         narrator "A beat. Kadyos shakes water off his ears."
 
         narrator "Their fins won't quite stay still. They are holding what appears to be a paper??"
@@ -1086,14 +1298,14 @@ label start:
         unknown "Well." 
         unknown "Everyone felt you come through"
 
-        unknown "When something crosses the boundary — falls through the rift — the whole surrouding shift." 
+        unknown "When something crosses the boundary—falls through the rift—the whole surrouding shift." 
         
         unknown "It seems like you hit the boundaries of our world pretty hard, are you okay?"
 
         narrator "They gesture vaguely at you two."
 
         sili "You. Anyway. I'm Sili-Sili. Ba-O sent me to bring you in."
-        sili "Are you — can you walk? "
+        sili "Are you—can you walk? "
 
         menu:
             "Where are we?":
@@ -1104,13 +1316,35 @@ label start:
     
     #ROUTE ------------------------------------
     label route_wheres_kadyos:
-        kilaw "Kadyos — where's—"
         
-        narrator "A bark, from somewhere very close. Kadyos materializes from behind the root-arch with a piece of dried sea-grass in his mouth, tail going."
+        show kilaw shocked
+        kilaw "I can't just leave without him!"
+
+        show kilaw normal:
+            linear 0.5 xalign 0.17
+        
+        show sili worried:
+            linear 0.5 xalign 0.85
+
+        
+        show kadyos happy:
+            alpha 0.0 zoom 0.5 xalign 0.4 yalign 1.9
+           
+            parallel:
+                linear 0.5 alpha 1.0
+            parallel:
+                linear 0.5 zoom 1.0
+        
+        narrator "Suddenly, a bark, from somewhere very close. Kadyos materializes from behind the arch with a piece of dried sea-grass in his mouth."
+
+        show kilaw happy:
+            xalign 0.3
+            yalign 3.0
+        with move
         
         narrator "Kadyos comes barreling in, scattering a nearby spirit entirely, and hits Kilaw at full speed."
 
-        kilaw "Oh — okay — okay, I've got you—"
+        kilaw "Oh—okay—okay, I've got you—"
 
         narrator "You do, for a moment, simply hold Kadyos. He smells like the spirit sea. His tail hasn't stopped."
 
@@ -1127,10 +1361,11 @@ label start:
         jump route_inside_gate_main
 
     label route_where_are_we:
+        show kilaw shocked
         kilaw "Where...where is this?"
 
         sili "The spirit realm. The deep part under the mangrove's roots." 
-        sili "It's — it's easier to show you than explain."
+        sili "It's—it's easier to show you than explain."
         
         narrator "A beat. Sili-Sili gestures through the root-arch."
 
@@ -1140,27 +1375,66 @@ label start:
     label route_lead_way:
         narrator "You get to your feet. Your legs hold. Kadyos presses against your side."
 
+        show kilaw sad
+
         kilaw "...Uhh, sure. Lead the way then."
+
+        show sili relief:
+            xalign 0.7
+            yalign 1.0
 
         narrator "She looked visibly relieved by your easy agreement as her fins settle slightly."
-
-        kilaw "...Uhh, sure. Lead the way then."
         jump route_inside_gate_main
 
     #ROUTE: INSIDE THE WOODLAND GATES ----------------------------------
     label route_inside_gate_main: 
-        scene village house with Dissolve(2.0)
+        scene village house
+
+        show sili worried:
+            xalign 0.8
+            yalign 1.0
+        show kilaw normal:
+            xalign 0.2
+            yalign 1.0
+
+        with Dissolve(2.0)
 
         narrator "Sili-Sili leads you through the root-arch."
 
         kilaw "Woah..."
 
-        narrator "Kadyos runs past you excitedly."
+        show kilaw normal:
+            linear 0.5 xalign 0.17
+        
+        show sili worried:
+            linear 0.5 xalign 0.85
 
-        narrator "The light. It comes from below as much as above — water running in shallow channels between stone paths." 
+        
+        show kadyos happy:
+            alpha 0.0 zoom 0.5 xalign 0.4 yalign 1.9
+           
+            parallel:
+                linear 0.5 alpha 1.0
+            parallel:
+                linear 0.5 zoom 1.0
+
+        narrator "Kadyos stood by you, looking excitedly."
+
+        show kilaw determined:
+            xalign 0.3
+            yalign 2.0
+        with move
+        narrator "You felt relief to have him with you."
+
+        narrator "The light. It comes from below as much as above, water running in shallow channels between stone paths." 
         "The whole ground lit from underneath. Every shadow falls upward." 
         
         narrator "The sky looks like the sea" 
+
+        show kilaw normal:
+            xalign 0.3
+            yalign 1.0
+        with move
         
         narrator "You're in underwater right now."
 
@@ -1210,7 +1484,7 @@ label start:
         
         narrator "When you catch their eye, there's a quality to the look that's somewhere between curiosity and recognition."
         
-        narrator "They did not rush, but they don't slow down either — they move automatically." 
+        narrator "They did not rush, but they don't slow down either, they move automatically." 
         narrator "Dodging other creatures with ease. You had to actually keep up."
 
         #CHOICES: YOU FOLLOW THEM AND SAID...
@@ -1274,7 +1548,7 @@ label start:
 
         toto "Of course, I'm not alone in what I handle."
 
-        narrator "Ba-O nodded to Toto, she gestures broadly at the marketplace — the stumbling, crashing, slightly desperate marketplace. She continue."
+        narrator "Ba-O nodded to Toto, she gestures broadly at the marketplace, the stumbling, crashing, slightly desperate marketplace. She continue."
 
         ba_o "We are the Spirit Committee. All of us together. The ones who keep the old arrangements."
         
@@ -1390,7 +1664,7 @@ label start:
 
         voice "narration/help3.mp3"
 
-        narrator "You rolled your sleeves. You'd help — at arm's length, just wanting to get it done."
+        narrator "You rolled your sleeves. You'd help, at arm's length, just wanting to get it done."
 
         voice "narration/help4.mp3"
 
@@ -1398,7 +1672,7 @@ label start:
 
         voice "narration/help5.mp3"
 
-        "Because of your hesitation, the Bakunawa will neither leave nor strike — it will watch, just as you watched."
+        "Because of your hesitation, the Bakunawa will neither leave nor strike, it will watch, just as you watched."
         jump neutral_ending
 
     label route_watch:
@@ -1864,6 +2138,7 @@ label start:
 
     label scales:
         voice "narration/scalend1.mp3"
+        scene transforming with Dissolve(3.0)
         narrator "The scales catch the light beautifully. You're not thinking about that."
 
         voice "narration/scalend2.mp3"
@@ -1877,6 +2152,7 @@ label start:
 
         kilaw "No—no no no—I can't—this isn't—please"
 
+        scene panic with Dissolve(3.0)
         voice "narration/scalend5.mp3"
         narrator "You felt like choking, but you're breathing more easily than before."
 
@@ -1948,7 +2224,7 @@ label start:
         narrator "You know, now, what you could have done. You can see it clearly from here—every moment, every hand you could have offered, every word you could have said. You can see the whole shape of it."
 
         voice "narration/scalend28.mp3"
-        "Kadyos leans against you. He is all fin now, and still— somehow—entirely him."
+        "Kadyos leans against you. He is all fin now, and still, somehow—entirely him."
 
         voice "narration/scalend29.mp3"
         "His tail moves, once. Slowly. You put your hand on his back."
@@ -2312,18 +2588,24 @@ label start:
         label stay_here:
             voice "narration/staend1.mp3"
             narrator "You look at Kadyos. He looks at you." 
-
+            
+            scene village bg1 with Dissolve(3.0)
             voice "narration/staend2.mp3"
             "You think of your mother's house. You think of the drums you heard from the village, the festival that happened without you." 
 
+            scene bao kitchen2 with Dissolve(3.0)
             voice "narration/staend3.mp3"
             "You think of Ba-O's kitchen, and Sigay's light-fractured costumes, and Lusay's wrong lanterns that worked."
+
+            scene bye with Dissolve(3.0)
             kilaw "...I'll stay. For now."
 
             voice "narration/staend4.mp3"
             narrator "Ba-O looks at you. Something in her expression is careful"
             ba_o "Then you are one of us. For as long as the tide asks it."
 
+
+            scene transforming with Dissolve(3.0)
             voice "narration/staend5.mp3"
             narrator "You nod. The scales don't fully recede."
 
@@ -2349,6 +2631,7 @@ label start:
             #You stayed in the spirit realm. You are not sure how long you will stay, but you know you will be here for a while.
 
         label leave_here:
+            scene intro village with Dissolve(3.0)
 
             voice "narration/leavend1.mp3"
             narrator "You look at the portal. You think of the mangrove at dawn. You think of your village. Your mom."
@@ -2358,9 +2641,12 @@ label start:
 
             voice "narration/leavend3.mp3"
             "The way you always forget how much you love home until you're standing at the edge of losing it."
+
+            scene bye with Dissolve(3.0)
             kilaw "I need to go home."
             ba_o "We understand, child. We'll be here. We always are."
 
+            scene halfblood with Dissolve(3.0)
             voice "narration/leavend4.mp3"
             narrator "When you went back to the surface, the aquatic features don't entirely recede."
 
@@ -2380,6 +2666,7 @@ label start:
 
     #BAD OUTCOME
     label bad_ending:
+        scene mooneater with Dissolve(2.0)
         voice "narration/bad1.mp3"
         narrator "The Bakunawa does not pause when it arrives. It does not circle. It does not consider. It is simply here, and then the moon is not."
 
@@ -2389,12 +2676,15 @@ label start:
         voice "narration/bad3.mp3"
         "The Bakunawa arrived in fury. The festival's failure is an insult to centuries of negotiation. No pleading can stop what comes next."
 
+        scene kilaw fish eye with Dissolve(2.0)
         voice "narration/bad4.mp3"
         "The moon disappears into the serpent's jaws. Darkness swallows both realms. You watch, helpless, as everything is consumed."
 
         voice "narration/bad5.mp3"
         "The transformation completes. No longer mortal. No longer entirely spirit. Something the boundary has decided to keep, because it was not returned in time."
 
+
+        scene intro bakawan with Dissolve(2.0)
         voice "narration/bad6.mp3"
         "In the mortal world, your village lights lanterns every night. Mourning. Warning."
 
@@ -2403,6 +2693,8 @@ label start:
 
         voice "narration/bad8.mp3"
         "The men on the night watch face the treeline at dusk. They stand there longer now. Not in tribute. In grief."
+
+        scene black with Dissolve(3.0)
 
         voice "narration/bad9.mp3"
         "You sit at the water's edge of the spirit realm, your realm now, and watch where the moon used to be."
