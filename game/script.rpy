@@ -696,45 +696,71 @@ label start:
             jump welcome_spiritrealm_main
 
 
-        label route_go_home: 
+        label route_go_home:
+            voice "narration/badend1.mp3"
+
             narrator "You shoulder your foraged bundle and walks past without looking back."
 
             kilaw "Nope. Not my boat. Home time, Kadyos."
 
+            voice "narration/badend2.mp3"
+
             narrator "Kadyos trots after you, tail going. He glances back at the boat once, just once, then follows"
 
             scene sunset with Dissolve(2.0)
+            voice "narration/badend3.mp3"
 
             "By the time you reach the stilts the sky is the color of cooling embers."
+
+            voice "narration/badend4.mp3"
             "The smell of woodsmoke and neighbor-cooking is the best thing you've encountered all day." 
-            
+
+            voice "narration/badend4.mp3"
             "Your mother scolds you for coming back without fish."
+
+            voice "narration/badend6.mp3"
             "You show her the kangkong and the bayabas and the mudskippers, and she scolds you less."
-            
+
+            voice "narration/badend7.mp3"
             "You cook together."
+
+            voice "narration/badend7_7.mp3"
+
             "It's good. It was a normal evening."
 
-            scene black with Dissolve(3.0)
+            #scene black with Dissolve(3.0)
 
+            voice "narration/badend8.mp3"
             "You went to sleep."
 
+            voice "narration/badend9.mp3"
             "Behind the village, in the deep water hours, the mangrove is very quiet."
-            
-            "The men on the night watch stand at the treeline and face it, the way they always do."
 
+
+            #"The men on the night watch stand at the treeline and face it, the way they always do."
+
+            voice "narration/badend10.mp3"
             "The festival does not fall apart loudly."
-            "It falls apart the way a net comes undone, one thread, then another, then a hole where the fish slip through."
 
+            voice "narration/badend11.mp3"
+            "It falls apart the way a net comes undone, one thread, and then another, then a hole where the fish slip through."
+
+            voice "narration/badend12.mp3"
             "You wake to darkness."
-            "Not the soft darkness of early morning."
-            "The other kind. The kind that sits wrong on the skin."
 
+            voice "narration/badend13.mp3"
+            "Not the soft darkness of early morning."
+
+            voice "narration/badend14.mp3"
             "You light a lantern."
 
+            voice "narration/badend15.mp3"
             "Through your window, the mangrove stands the same as it always has."
 
+            voice "narration/badend16.mp3"
             "You don't know what you missed. You won't. The water keeps what it keeps."
 
+            voice "narration/badend17.mp3"
             "Kadyos puts his head in your lap. His tail moves once, slowly."
 
             scene ending1 with Fade(0.5, 0.3, 0.8)
@@ -1350,15 +1376,28 @@ label start:
 
     #ROUTE: --------------------
     label route_help_them:
+        voice "narration/help1.mp3"
+
         narrator "You watched, but after the second day."
+        
+        voice "narration/help2.mp3"
+
         narrator "Something about the way Ba-O's hands shake as she carries numerous offerings and ingredients made your chest hurt."
 
         kilaw "...Okay. Okay, fine. But only because you all look like you're floundering out there. No offense."
 
         ba_o "None taken, child. Thank you."
 
+        voice "narration/help3.mp3"
+
         narrator "You rolled your sleeves. You'd help — at arm's length, just wanting to get it done."
+
+        voice "narration/help4.mp3"
+
         "Your feelings and your effort would be written into the work of your hands, whether you meant it or not."
+
+        voice "narration/help5.mp3"
+
         "Because of your hesitation, the Bakunawa will neither leave nor strike — it will watch, just as you watched."
         jump neutral_ending
 
@@ -1824,40 +1863,97 @@ label start:
         jump kasag_intro
 
     label scales:
+        voice "narration/scalend1.mp3"
         narrator "The scales catch the light beautifully. You're not thinking about that."
+
+        voice "narration/scalend2.mp3"
         "You are thinking how wrong this is. This all is wrong"
+
+        voice "narration/scalend3.mp3"
         "The words going round and round without your permission, and the room going small around you." 
+
+        voice "narration/scalend4.mp3"
         "You hear Kadyos whimpering somewhere that feels very far away even though he is right there, pressed against your leg, and you cannot reach down to touch him because you can't move."
 
         kilaw "No—no no no—I can't—this isn't—please"
 
+        voice "narration/scalend5.mp3"
         narrator "You felt like choking, but you're breathing more easily than before."
+
+        voice "narration/scalend6.mp3"
         "You back against the wall. Kadyos whimpers. You slide to the floor."
-        "You know, distantly, that the festival is tomorrow." 
+
+        voice "narration/scalend7.mp3"
+        "You know, distantly, that the festival is tomorrow."
+
+        voice "narration/scalend8.mp3" 
         "You know that Ba-O's hands shake because of her tender age and the music committee is one argument away from collapsing.."
+
+        voice "narration/scalend9.mp3"
         "Everything isn't ready."
+
+        voice "narration/scalend10.mp3"
         "You know all of this. You can't get up off the floor."
+
+        voice "narration/scalend11.mp3"
         "It isn't weakness, exactly."
+
+        voice "narration/scalend12.mp3"
         "It's more like the moment when everything arrives at once—all the water you've been treading since you fell into the vortex, your body simply decides that this is as far as it goes."
+
+        voice "narration/scalend13.mp3"
         "The scales are spreading past your wrists now."
-        "Your ears catch sound differently." 
+
+        voice "narration/scalend14.mp3"
+        "Your ears catch sound differently."
+
+        voice "narration/scalend15.mp3"
         "You are changing into something and you have no way of knowing, and you are still so young, but so far away from home, and you have hit the floor pass what you can carry."
+
+        voice "narration/scalend16.mp3"
         "Kadyos licks your scaled hand. You don't respond."
+
+        voice "narration/scalend17.mp3"
         "The sun had passed. Then the moon. Then the festival."
+
+        voice "narration/scalend18.mp3"
         "Outside, the festival stumbles forward without you, and what it can is not enough, and they know it."
+
+        voice "narration/scalend19.mp3"
         "And they do it anyway because that is what you do when you have no other choice." 
+
+        voice "narration/scalend20.mp3"
         "A lot of things are missing. Not complete. Not enough."
+
+        voice "narration/scalend21.mp3"
         "The Bakunawa arrives before the last lantern is lit."
+
+        voice "narration/scalend22.mp3"
         "You don't see any of it. You are still on the floor when the darkness comes."
+
+        voice "narration/scalend23.mp3"
         "Later—much later—you sit at the water's edge and watch where the moon used to be."
+
+        voice "narration/scalend24.mp3"
         "You are not crying anymore."
+
+        voice "narration/scalend25.mp3"
         "You are just sitting, the way people sit when they have gone past the part where crying helps."
+
+        voice "narration/scalend26.mp3"
         "You look below, not bothering to look at the underwater sky, you can't bring yourself to look at something that isn't there anymore."
         kilaw "I should have gotten up. I should have tried."
 
+        voice "narration/scalend27.mp3"
         narrator "You know, now, what you could have done. You can see it clearly from here—every moment, every hand you could have offered, every word you could have said. You can see the whole shape of it."
+
+        voice "narration/scalend28.mp3"
         "Kadyos leans against you. He is all fin now, and still— somehow—entirely him."
+
+        voice "narration/scalend29.mp3"
         "His tail moves, once. Slowly. You put your hand on his back."
+
+        voice "narration/scalend30.mp3"
         "Somewhere far away, you thought, you don't think can ever find a way back home, you can't even recognize yourself anymore."
 
         scene ending3 with Fade(0.5, 0.3, 0.8)
@@ -2003,37 +2099,72 @@ label start:
     ## BEFORE FESTIVAL
     ## ═══════════════════════════════════════════════════
     label before_festival:
+        voice "narration/berof1.mp3"
         narrator "As the final sunset before the festival descends, You take stock of your work. You did your best."
+
+        voice "narration/berof2.mp3"
         "You can only hope that would be enough."
+        voice "narration/berof3.mp3"
         "You find Kadyos near the festival grounds entrance, sitting perfectly still, watching the lights come on one by one."
         kilaw "It's really happening, isn't it."
 
+        voice "narration/berof4.mp3"
         narrator "It wasn't really a question. Kadyos leans against your transformed legs."
         kilaw "Whatever the Bakunawa decides, we did something real here. All of us. Even the parts that went wrong."
 
+        voice "narration/berof5.mp3"
         narrator "The bioluminescent sea ignites below and up the festival grounds, the same glow you followed from the boat." 
+
+        voice "narration/berof6.mp3"
         narrator "What felt like a lifetime ago."
+
+        voice "narration/berof.7mp3"
         "The same light that started everything."
+
+        voice "narration/berof8.mp3"
         "You looks at your hands and saw the scales spreading, fast"
         kilaw "How much more do we have before..."
+
+        voice "narration/berof9.mp3"
         narrator "You don't finish the thought. Kadyos whimpers, his tail now fully finned."
 
         scene sunset with Dissolve(2.0)
 
+        voice "narration/berof10.mp3"
         "The final sunset paints the spirit realm in golden light."
+
+        voice "narration/berof11.mp3"
         "You kneel beside Kadyos on the festival grounds, exhausted but reflective."
         kilaw "We did it, Kadyos. Well... most of it, anyway."
+
+        voice "narration/berof12.mp3"
         narrator "Kadyos whimpers, nuzzling against you."
         kilaw "I know, boy. I'm scared too. Look at us... we're barely recognizable."
         kilaw "But maybe... maybe this meant something. Three moons ago, they were falling apart. Now they're—"
 
-        narrator "You closes your eyes, holding Kadyos tighter as the sunset fades to twilight."
+        voice "narration/berof13.mp3"
+        narrator "You close your eyes, holding Kadyos tighter as the sunset fades to twilight."
+
+        voice "narration/berof14.mp3"
         "Three moons of work now shine before you."
-        "You watched as the celebration you helped create comes to life, your transformed body aching with every breath."
+        #"You watched as the celebration you helped create comes to life, your transformed body aching with every breath."
+
+        voice "narration/berof15.mp3"
         "Spirits dance in new costumes, feast on rediscovered flavors, move to harmonized music."
+
+        voice "narration/berof16.mp3"
         "The preparations are complete. Now, they wait."
+
+        voice "narration/berof17.mp3"
         "You wait along them."
-        "Scales have spread to your neck. Kadyos is more fish than dog." 
+
+        voice "narration/berof18.mp3"
+        "Scales have spread to your neck"
+        
+        voice "narration/berof19.mp3"
+        "Kadyos is more fish than dog." 
+
+        voice "narration/berof20.mp3"
         "Will the Bakunawa accept your offering? Will you ever see home again?"
 
         scene black with Dissolve(3.0)
@@ -2044,7 +2175,7 @@ label start:
     ## CALCULATE SCORE AND ENDINGS
     ## ═══════════════════════════════════════════════════
     label pre_ending:
-        narrator "The water beneath the festival grounds begins to tremble — not the frantic churning of the vortex that brought you here."
+        narrator "The water beneath the festival grounds begins to tremble—not the frantic churning of the vortex that brought you here."
         narrator "But something deeper. Deliberate. Aware."
         sigay "It's coming. The Bakunawa comes."
         narrator "Bao looks on quietly. She stayed close, her presence felt. Warmth against the cold waters. She does not reach for you."
