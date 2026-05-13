@@ -163,6 +163,17 @@ define audio.water_drop    = "audio/water drop sound.ogg"
 define audio.fell_underwater = "audio/fell underwater sound.ogg"
 define audio.wood_running = "audio/wood running sound.ogg"
 define audio.night_village = "audio/night village.ogg"
+define audio.single_frog_croak = "audio/single frog croak sound.mp3"
+define audio.cicades_shore = "audio/cicades close to shore sound.mp3"
+define audio.waves_splashing = "audio/waves splashing sound.mp3"
+define audio.portal_sound = "audio/portal sound.mp3"
+define audio.fell_through_portal = "audio/fell through portal sound.mp3"
+define audio.crowd_sound = "audio/crowd sound.mp3"
+define audio.break_sound = "audio/break glass_sound.mp3"
+define audio.rowing_sound = "audio/rowing sound.mp3"
+define audio.multiple_breaking = "audio/multiple breaking.mp3"
+define audio.leaves_rustle = "audio/leaves rustle.mp3"
+define audio.underwater_ambiance = "audio/UnderwaterAMB sound.mp3"
 
 
 ## Character & Narrative SFX
@@ -178,6 +189,8 @@ define audio.festival_drums = "audio/festival drums sound.ogg"
 define audio.music_beginning = "audio/music beginning.ogg"
 define audio.music_gate      = "audio/music gate spirit realm.ogg"
 define audio.music_spirit_realm = "audio/music spirit realm.ogg"
+define audio.intense_sound = "audio/intense sound.mp3"
+define audio.bass_heartbeat = "audio/bass heartbeat sound.mp3"
 
 ## ──────────────────────────────────────────────────────────────
 
@@ -254,7 +267,8 @@ label start:
     voice "narration/intro12.wav"
 
     scene intro night with Dissolve(2.0)
-    play audio night_village volume 1.0 fadein 2.7
+    play audio cicades_shore volume 1.0 fadein 2.7
+    play sound waves_splashing volume 0.9
 
     "The evening carries distant laughter, the sound of wind and waves folding into each other."
 
@@ -284,9 +298,9 @@ label start:
     voice "narration/intro18.wav"
     
     "stands the bakawan."
-    scene intro frog with Dissolve(2.0)
-    #Add frog sounds 
 
+    scene intro frog with Dissolve(2.0)
+    play audio single_frog_croak
     voice "narration/intro19.wav"
     "Not planted." 
     #scene intro frog2 with Dissolve(1.0
@@ -350,7 +364,7 @@ label start:
 
     "Attention, in Panhuy-an, is a kind of offering."
     scene intro feet running with Dissolve(2.0)
-
+    play sound wood_running
     voice "narration/intro32.wav"
 
     "Children are told not to wander near the roots after dark."
@@ -562,6 +576,8 @@ label start:
     scene panahuyan village 
     show dawa serious
     with Dissolve(2.0)
+
+    stop audio fadeout 2.0
     #scene intro into bakawan
     #whistle audio
 
@@ -648,6 +664,8 @@ label start:
     # BOATT! ----------- 
 
     narrator "You saw something at the corner of your eyes."
+
+    play sound leaves_rustle volume 1.0
 
     transform gentle_jump:
         yoffset 0
@@ -788,6 +806,8 @@ label start:
 
             kilaw "...Ugh. Okay. Just a little look. Ten minutes. Then we go home."
 
+            play sound rowing_sound volume 0.8
+
             scene boat scene3 
             with Fade(0.5, 0.3, 0.8)
 
@@ -801,6 +821,8 @@ label start:
             hide rowing boat
 
             narrator "You grab Kadyos and tie your food for later. Both of you stepping into the boat together."
+
+            play music music_spirit_realm volume 0.1
 
             transform fog1_pan:
                 xpos 0 ypos -10
@@ -840,6 +862,8 @@ label start:
             narrator "The mudfish appears."
             
             "You reach for it without thinking."
+            
+            play sound water_drop volume 1.0
 
             scene waves underwater with Fade(0.5, 0.3, 1.0)
             show drowning:
@@ -848,9 +872,12 @@ label start:
                 ypos -3000
                 alpha 5.0
                 easein 5.0 xpos -1920 ypos 0 alpha 0.0
+            
+            play sound fell_underwater volume 1.0
 
             pause 3.5
             scene black with Dissolve(3.0)
+            play sound portal_sound volume 1.0
 
             "You fell out of the boat and into the water below."
             jump welcome_spiritrealm_main
@@ -904,6 +931,7 @@ label start:
 
             "It's good. It was a normal evening."
 
+            play sound cicades_shore volume 1.0
             scene black with Dissolve(2.0)
 
             voice "narration/badend8.mp3"
@@ -961,6 +989,8 @@ label start:
         scene boat in with dissolve
 
         kilaw "All aboard! Let's see what secrets this mangrove's been hiding."
+
+        play sound rowing_sound volume 0.8
         
         scene boat scene3 
         with Fade(0.5, 0.3, 0.8)
@@ -975,6 +1005,8 @@ label start:
         hide rowing boat
 
         narrator "The sun hung low, painting the mangrove in warm orange light. The water glimmered softly, catching the last fire of the day."
+
+        play sound rowing_sound volume 1.0
         
         transform pan_bg:
             xpos -1920 ypos 0
@@ -1058,8 +1090,12 @@ label start:
 
         narrator "You try to pull the fish to the surface. Before—"
 
+        play sound water_drop volume 1.0
+
         show splash with dissolve
         show splash2 with Dissolve(0.9)
+
+        play music bass_heartbeat volume 1.0 fadein 2.0
 
         kilaw "Wait... Whoa—!"
 
@@ -1112,6 +1148,7 @@ label start:
             easein 5.0 xpos -1920 ypos 0 alpha 0.0
 
         pause 3.5
+        play sound portal_sound volume 1.0
         scene black with Dissolve(3.0)
         jump welcome_spiritrealm_main
 
@@ -1137,6 +1174,7 @@ label start:
 
         pause 3.5
         scene black with Dissolve(3.0)
+        play sound portal_sound volume 1.0
 
         narrator "The boat lists sideways. The current claims you both. Darkness swallows the last shiver of light."
         jump welcome_spiritrealm_no_kadyos
@@ -1155,6 +1193,8 @@ label start:
 
         kilaw "...It's okay, Kadyos. We'll be—"
 
+        play sound water_drop volume 1.0
+
         scene waves underwater with Fade(0.5, 0.3, 0.9)
         show drowning:
             zoom 1.6
@@ -1163,14 +1203,21 @@ label start:
             alpha 5.0
             easein 5.0 xpos -1920 ypos 0 alpha 0.0
         
+        stop sound fadeout 2.0
         pause 3.5
+        play sound fell_underwater volume 1.0
         scene black with Dissolve(3.0)
+
+        play sound portal_sound volume 1.0
 
         narrator "Darkness. Then silence."
         jump welcome_spiritrealm_main
 
     #ROUTE: WELCOME TO THE SPIRIT REALM ---------------------------
-    label welcome_spiritrealm_no_kadyos: 
+    label welcome_spiritrealm_no_kadyos:
+        play music music_gate volume 0.1
+        play sound underwater_ambiance volume 1.0
+
         narrator "There is no falling, exactly. It's more like the moment you step off a boat and realize the water is far deeper than your feet expected." 
         
         narrator "One second the roots are solid beneath you. The next second, they aren't anything at all."
@@ -1254,6 +1301,9 @@ label start:
                 jump route_lead_way
 
     label welcome_spiritrealm_main:
+        play music music_gate volume 0.1
+        play sound underwater_ambiance volume 1.0
+
         narrator "There is no falling, exactly. It's more like the moment you step off a boat and realize the water is far deeper than your feet expected." 
         narrator "One second the roots are solid beneath you."
         narrator "The next second—they aren't anything at all."
@@ -1397,6 +1447,9 @@ label start:
 
     #ROUTE: INSIDE THE WOODLAND GATES ----------------------------------
     label route_inside_gate_main: 
+        play music music_beginning volume 0.1
+        play sound underwater_ambiance volume 1.0
+
         scene village house
 
         show sili worried:
@@ -1453,6 +1506,7 @@ label start:
         with dissolve
 
         scene marketplace with Dissolve(2.0)
+        play sound crowd_sound volume 1.0
             
         narrator "What you thought was a small clearing turns out to be a marketplace, enormous." 
         narrator "Stalls of woven sea-grass and old fishing net, clay pots big enough to sleep in, lanterns strung between crooked posts." 
@@ -1460,6 +1514,8 @@ label start:
         narrator "At the center: a great stone basin of the same glowing water. The paths all converge on it."
 
         narrator "The smell is brine and food and something sweet you don't quite have a name for."
+
+        play sound multiple_breaking volume 1.0
         "Two voices argue from somewhere to the left. Something crashes from behind a stall."
         show kilaw normal:
             xalign -0.5 yalign 1.0
@@ -1611,6 +1667,7 @@ label start:
 
         toto "Of course, I'm not alone in what I handle."
 
+        play sound break_sound volume 1.0
         narrator "Ba-O nodded to Toto, she gestures broadly at the marketplace, the stumbling, crashing, slightly desperate marketplace. She continue."
 
         ba_o "We are the Spirit Committee. All of us together. The ones who keep the old arrangements."
@@ -1622,6 +1679,7 @@ label start:
         show kadyos sad
         show kilaw shocked
 
+        play sound multiple_breaking volume 1.0
         narrator "A stack of offering trays tips, slides, crashes. A nearby spirit lunges. Misses."
 
         show kilaw worried
@@ -1990,7 +2048,7 @@ label start:
         show kilaw determined
         ba_o "Good. Begin when you're ready. My memories are waiting to be awakened."
         
-        call minigame_food_start
+        call minigame_food_start from _call_minigame_food_start
         if score_food >= 3:
             jump bao_good
         elif score_food >= 2:
@@ -2209,7 +2267,7 @@ label start:
             show sigay happy
             sigay "Wise words. Yes... let's try to find that joy together." 
 
-        call minigame_costume_start
+        call minigame_costume_start from _call_minigame_costume_start
         if score_costume >= 3:
             jump sigay_good
         elif score_costume >= 2:
@@ -2420,7 +2478,7 @@ label start:
         sili "...Different flower."
         narrator "They look at each other. Something shifts."
 
-        call minigame_dance_start
+        call minigame_dance_start from _call_minigame_dance_start
         if score_dance >= 3:
             jump BS_good
         elif score_dance >= 2:
@@ -2559,7 +2617,7 @@ label start:
         narrator "You look wistfully distracted, not noticing the fond look that Lusay is giving you."
         lusay "A mess that works. I like that."
 
-        call minigame_props_start
+        call minigame_props_start from _call_minigame_props_start
         if score_props >= 3:
             jump lusay_good
         elif score_props >= 2:
@@ -2928,7 +2986,7 @@ label start:
             show kilaw normal
             kasag "Perhaps... perhaps my shell has grown too thick."
             kasag "Fine. Child, show me your ideas. But make them GOOD."
-            call minigame_music_start
+            call minigame_music_start from _call_minigame_music_start
             if score_music >= 3:
                 jump kasag_good
             elif score_music >= 2:
@@ -2999,7 +3057,7 @@ label start:
 
             kasag "That... might work. IF done with precision."
             kilaw "Then try it. Together."
-            call minigame_music_start
+            call minigame_music_start from _call_minigame_music_start_1
 
             if score_music >= 3:
                 jump kasag_good
@@ -3211,6 +3269,7 @@ label start:
         "Light surrounds you. The scales fade. The gills close." 
 
         voice "narration/good4.mp3"
+        play sound portal_sound volume 1.0
         "A portal shimmers open before you, warm, golden-edged."
 
         scene backhome with Dissolve(2.0)
@@ -3248,6 +3307,7 @@ label start:
         voice "narration/good10.mp3"
         "Both of you are left standing there as the festival continues around you. The music, the dancing, the food felt very real at the moment."
 
+        play sound portal_sound volume 1.0
         scene bye portal with Dissolve(2.0)
         kilaw "Thank you too."
 
