@@ -191,6 +191,8 @@ define audio.music_gate      = "audio/music gate spirit realm.ogg"
 define audio.music_spirit_realm = "audio/music spirit realm.ogg"
 define audio.intense_sound = "audio/intense sound.mp3"
 define audio.bass_heartbeat = "audio/bass heartbeat sound.mp3"
+define audio.music_end = "audio/music_end.mp3"
+define audio.good = "audio/good.mp3"
 
 ## ──────────────────────────────────────────────────────────────
 
@@ -884,6 +886,7 @@ label start:
 
 
         label route_go_home:
+            play music music_end volume 1.0 fadein 2.7
             voice "narration/badend1.mp3"
 
             scene boat light
@@ -1888,6 +1891,8 @@ label start:
         jump neutral_ending
 
     label route_watch:
+        play music music_end volume 1.0 fadein 2.7
+
         narrator "You cross your arms. You don't move. You watch as the committees argue, drop things, dissolve into a cascade of small disasters."
 
         kilaw "They'll figure it out. They said so themselves, they have done this for centuries, right? What does me being here change?"
@@ -2737,6 +2742,8 @@ label start:
         jump kasag_intro
 
     label scales:
+        play music music_end volume 1.0 fadein 2.7
+
         voice "narration/scalend1.mp3"
         scene transforming with Dissolve(3.0)
         narrator "The scales catch the light beautifully. You're not thinking about that."
@@ -3256,6 +3263,7 @@ label start:
 
     #GOOD OUTCOME
     label good_ending:
+        play music good volume 1.0 fadein 2.7
         scene bakunawa rising with Dissolve(2.0)
         voice "narration/good1.mp3"
         narrator "The Bakunawa sees the sincerity woven into every detail."
@@ -3383,6 +3391,8 @@ label start:
 
     #NEUTRAL OUTCOME
     label neutral_ending:
+        play music music_end volume 1.0 fadein 2.7
+
         scene bakunawa rising with Dissolve(2.0)
         voice "narration/neutro1.mp3"
         narrator "The Bakunawa rises, vast and patient, the way old things are patient."
@@ -3462,6 +3472,8 @@ label start:
             #You stayed in the spirit realm. You are not sure how long you will stay, but you know you will be here for a while.
 
         label leave_here:
+            play music good volume 1.0 fadein 2.7
+
             scene intro village with Dissolve(3.0)
 
             voice "narration/leavend1.mp3"
@@ -3497,6 +3509,7 @@ label start:
 
     #BAD OUTCOME
     label bad_ending:
+        play music music_end volume 1.0 fadein 2.7
 
         scene mooneater with Dissolve(2.0)
         voice "narration/bad1.mp3"
