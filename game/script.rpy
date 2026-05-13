@@ -1438,8 +1438,13 @@ label start:
         
         narrator "You're in underwater right now."
 
+        hide kilaw 
+        hide kadyos 
+        hide sili 
+        with dissolve
+
         scene marketplace with Dissolve(2.0)
-        
+            
         narrator "What you thought was a small clearing turns out to be a marketplace, enormous." 
         narrator "Stalls of woven sea-grass and old fishing net, clay pots big enough to sleep in, lanterns strung between crooked posts." 
         
@@ -1447,16 +1452,42 @@ label start:
 
         narrator "The smell is brine and food and something sweet you don't quite have a name for."
         "Two voices argue from somewhere to the left. Something crashes from behind a stall."
+        show kilaw normal:
+            xalign -0.5 yalign 1.0
+            linear 0.5 xalign 0.17
+
+        show sili worried:
+            xalign -0.5 yalign 1.0
+            linear 0.7 xalign 0.85
+
+        show kadyos happy:
+            xalign -0.5 yalign 1.9
+            linear 0.6 xalign 0.30
 
         narrator "None of the spirits stop. None of them look up."
+
         narrator "Except that's not quite right. Because here and there, ones and twos, you catch the sideways glance."
         narrator "The way someone pretends to check a stall display while actually looking elsewhere." 
         narrator "They know you're here. They felt you arrive. They're just letting someone else handle it."
 
+        hide sili worried with Dissolve(0.3)
+
+        show kilaw focused:
+            linear 0.3 xalign 0.05 
+        show kadyos normal:
+            linear 0.3 xalign 0.22 yalign 1.9 
+
+        show toto normal:
+            xalign 1.5 yalign 0.9
+            linear 0.3 xalign 0.85
+        show bao unimpressed:
+            xalign 1.5 yalign -1.9
+            linear 0.4 xalign 0.53
+            
         narrator "Someone is waiting at the edge of the plaza."
 
         narrator "She is small and ancient-looking, she's holding something on her head." 
-        narrator "Built like a great tidal clam, her shell smoothed by centuries of water. Flour-dusted hands." 
+        narrator "Her skin seems smoothed by centuries of water. Flour-dusted hands." 
         
         narrator "An expression of someone who has set down one problem to deal with a second problem." 
         narrator "And would very much like both problems to resolve quickly. She is holding a clay ladle."
@@ -1466,21 +1497,29 @@ label start:
 
         narrator "Then they look at you. She looks at Kadyos infront of you. She gave a small nods"
 
+        show kilaw normal
+        show kadyos happy
+
         unknown "Good. You're upright. And the dog is... also upright."
 
         narrator "Kadyos tail wags."
 
         if kilaw_personality == "skeptic":
+            show bao sad
             unknown "You seem to have the eyes of someone who doesn't believe what they see. That will change soon enough."
         else:
+            show bao normal
             unknown "You seem to carry the weight of your elders' respect. It is rare for a mortal to arrive with so much reverence still intact."
 
+        show bao unimpressed
         unknown "Come. Walk with me. There is a great deal to explain and very little time to explain it in."
 
         narrator "Beside her, keeping pace in the way of someone who has always kept pace with her, is a spirit who moves like still water."
         narrator "Unhurried, present, draped in the particular calm of someone who has seen most things already,"
         "and larger than the space they occupy."  
         narrator "They do not introduce themselves."
+
+        show toto calm
         
         narrator "When you catch their eye, there's a quality to the look that's somewhere between curiosity and recognition."
         
@@ -1502,9 +1541,17 @@ label start:
     #ROUTE REPLY
     label route_what_is_this:
         $ seen_what_is_this = True
+
+        show bao sad
+        show toto normal
+        show kilaw sad
+        show kadyos normal
         ba_o "Did Sili-Sili not tell you? This is the realm of the spirits. Under the mangrove's roots."
         
         ba_o "You came through the boundary when the current took you—through the rift of our world."
+
+        show bao worried
+        show kilaw normal
 
         narrator "A pause. Somewhere nearby, something falls and breaks"
 
@@ -1524,6 +1571,9 @@ label start:
 
         narrator "They say this without pretense, the way one recounts a thing that is simply true."
 
+        show bao sad
+        show kilaw worried
+
         toto "He made it back."
 
         narrator "A beat." 
@@ -1538,6 +1588,10 @@ label start:
         $ seen_who_are_you = True
         $ bao_name = "Ba-O"
         $ toto_name = "Toto"
+
+        show kilaw normal
+        show bao normal
+        show toto calm
 
         ba_o "Ba-O. I keep the ceremonial table. Every offering, every dish, every ingredient placed with intention before the Bakunawa."
         ba_o "Also one of those who oversees this festivity."
@@ -1554,13 +1608,22 @@ label start:
         
         ba_o "And this, this is three days before the awaited festival, which is the most important event in three centuries, and we are—"
 
+        show bao worried
+        show toto normal
+        show kadyos sad
+        show kilaw shocked
+
         narrator "A stack of offering trays tips, slides, crashes. A nearby spirit lunges. Misses."
+
+        show kilaw worried
 
         ba_o "Behind. We are behind."
         jump introduction_choices 
 
     #AFTER THE CHOICES -----
     label route_after_the_introduction:
+
+        show bao sad
         narrator "Toto watches the crash with the expression of someone who has already mentally filed it away."
         
         "Their gaze returns to you. Something settles in it like a decision."
@@ -1595,9 +1658,24 @@ label start:
 
         toto "I have other things to see to. The boundary. The night watch. The preparations that cannot wait."
 
+        show toto calm
+
         narrator "They rest a hand, brief, light, on the top of your head. You do not know why, but it feels like something."
 
+        show kilaw sad
+
         toto "Ba-O will take care of you. She is good at that."
+
+        hide toto with Dissolve(0.3)
+
+        show kilaw sad:
+            linear 0.5 xalign 0.15 
+
+        show kadyos normal:
+            linear 0.5 xalign 0.35 yalign 1.9 
+
+        show bao unimpressed:
+            linear 0.5 xalign 0.75 
 
         narrator "And then they are gone, easing back into the crowd with the easy unhurry of the sea finding its level."
         "Ba-O does not watch them go. She is already looking at you."
@@ -1613,33 +1691,69 @@ label start:
 
     #ROUTE: -----------------
     label route_help:
+        show kilaw worried
+        show kadyos happy
+        show bao normal
+
         narrator "With no way back home, you and Kadyos had only one choice."
         "Help them finish the festival.... and find a way to return."
         "It would also be a good story to tell the others"
+
+        show bao happy
 
         ba_o "Excellent, lets get this festival up and running!"
         jump route_kitchen
 
     label route_pass:
+        show kilaw worried
+        show kadyos sad
         narrator "You step back, pulling Kadyos with you."
+
+        show bao sad
 
         kilaw "I...I don't know. This isn't my world. Is it really my problem? I wasn't even supposed to be here."
 
+        show bao worried
+
         "A hush falls over the two, and to those who heard. Ba-O lowers her great shell slowly." 
-        
-        "Sili-sili wrings their translucent fins together."
+
+        show bao sad
 
         ba_o "That is your right, child. We won't force your tide."
 
         narrator "Another voice pop up,"
 
+        show kilaw sad:
+            linear 0.3 xalign 0.05 
+        show kadyos sad:
+            linear 0.3 xalign 0.22 yalign 1.9 
+
+        show sili mad:
+            xalign 1.5 yalign 1.0
+            linear 0.2 xalign 0.85
+        show bao worried:
+            xalign 0.5 yalign -1.9
+        with move
+
         sili "But...current-ly, you've no way home either. You're caught in the same deep water as us."
+
+        show sili worried
+
+        "Sili-sili wrings their translucent fins together."
 
         narrator "You forgotten they were there."
         "You hesitate." 
         "The spirits drift back to their preparations, anxious, stumbling, clearly overwhelmed."
 
         "You watched as they move around in organize chaos."
+
+        hide sili 
+        hide bao 
+        hide kadyos 
+        hide kilaw
+        scene marketplace night
+        with Dissolve(2.0)
+
         "The sun came and went, and you're surprised by all the things they can do with all this chaos"
         "You think you can get more done if you offered."
         menu:
@@ -1652,19 +1766,50 @@ label start:
     label route_help_them:
         voice "narration/help1.mp3"
 
+        show kilaw sad:
+            xalign 0.4
+            yalign 1.0
+
+        show kadyos sad:
+            xalign 0.6
+            yalign 1.9
+
         narrator "You watched, but after the second day."
         
         voice "narration/help2.mp3"
 
+        show kilaw sad:
+            linear 0.5 xalign 0.15 
+
+        show kadyos sad:
+            linear 0.5 xalign 0.35 yalign 1.9 
+
+        show bao worried:
+            linear 0.9 xalign 0.7
+
         narrator "Something about the way Ba-O's hands shake as she carries numerous offerings and ingredients made your chest hurt."
 
+        show kilaw worried
+        show bao sad
+
         kilaw "...Okay. Okay, fine. But only because you all look like you're floundering out there. No offense."
+
+        show bao happy
+        show kadyos normal
+        show kilaw determined
 
         ba_o "None taken, child. Thank you."
 
         voice "narration/help3.mp3"
 
+        hide kilaw 
+        hide kadyos
+        hide bao 
+        with Dissolve (2.0)
+
         narrator "You rolled your sleeves. You'd help, at arm's length, just wanting to get it done."
+
+        scene black with Dissolve(3.0)
 
         voice "narration/help4.mp3"
 
@@ -1731,6 +1876,19 @@ label start:
     ## BA-O — FOOD COMMITTEE
     ## ═══════════════════════════════════════════════════
     label route_kitchen:
+        scene village house with Dissolve(3.0)
+        show kilaw normal:
+            xalign -0.5 yalign 1.0
+            linear 0.5 xalign 0.17
+
+        show bao unimpressed:
+            xalign -0.4 yalign -0.5
+            linear 0.7 xalign 0.75 
+
+        show kadyos happy:
+            xalign -0.5 yalign 1.9
+            linear 0.6 xalign 0.30
+
         narrator "Ba-O leads you through a passage where the walls are woven from dried sea-grass and old fishing nets."
         "The kind of weave, you think, that looks almost like hablon from back home, if hablon were made of wood itself. It looks natural."
 
@@ -1739,7 +1897,18 @@ label start:
         ba_o "Good. Then you understand that food is memory." 
         ba_o "Every dish I have forgotten is a piece of this realm lost. We cannot let the Bakunawa come to an empty table."
 
-        scene bao kitchen with Dissolve(2.0)
+        scene kitchen bao 
+        show bao normal:
+            xalign 0.8
+            yalign -0.9
+        show kilaw normal:
+            xalign 0.2
+            yalign 1.0
+        show kadyos happy:
+            yalign 1.9
+            xalign 0.3
+
+        with Dissolve(2.0)
 
         narrator "The kitchen opens up enormous clay pots the size of fishing boats, fires lit with bioluminescent coral."
         "The smell of sea and something warm and familiar."
@@ -1748,25 +1917,54 @@ label start:
         ba_o "I would offer you something, but I can't trust my own taste right now. That is the problem."
 
         kilaw "...What do you normally make? For the festival?"
+
+        show kilaw focused
+        show kadyos normal
+        show bao worried
+
         ba_o "Everything. Seafood layered in the olden way, each ingredient placed with intention, a prayer."
+
         ba_o "We call it the ceremonial dish. Every realm has one. Ours is from the deep."
 
-        narrator "Ba-O pauses, her ancient shell creaking as she leans in to get a better look at you."
+        show bao sad
+
+        narrator "Ba-O pauses as she leans in to get a better look at you."
 
         if player_offering == "salt":
             ba_o "You carry the scent of the upper tides, child. Coarse salt... 'asin'."
             ba_o "The elders of your village taught you well. Salt is the memory of the sea, and it keeps the flavors of this realm from fading into the mist."
         elif player_offering == "white_rice":
+            show bao calm
             ba_o "White rice? The grain of the moon and sun."
             ba_o "It is a pure offering. Using it as a foundation shows you have a respectful hand. It makes me think you might actually be able to handle these ingredients."
         else:
+            show bao unimpressed
+
             ba_o "A brass bell? You brought a noise-maker to a kitchen?"
             ba_o "Hmph. Just make sure you don't ring it over the broth."
             ba_o "The Bakunawa has a long memory for the sounds that drive it back, but my food prefers silence."
 
-        scene bao kitchen2 with Dissolve(2.0)
+        hide kilaw 
+        hide kadyos
+        hide bao
+        with dissolve
+
+        scene kitchen2 bao 
+        show bao normal:
+            xalign 0.8
+            yalign -0.9
+        show kilaw normal:
+            xalign 0.2
+            yalign 1.0
+        show kadyos happy:
+            yalign 1.9
+            xalign 0.3
+
+        with Dissolve(2.0)
 
         narrator "She slides a tray of ingredients toward you. It glows faintly."
+
+        show kilaw focused
 
         ba_o "You will build the ceremonial dish layer by layer. After that, dress it with colors and textures from our realm."
 
@@ -1779,6 +1977,8 @@ label start:
                 jump route_no 
 
     label route_understood:
+        show bao happy
+        show kilaw determined
         ba_o "Good. Begin when you're ready. My memories are waiting to be awakened."
         
         call minigame_food_start
@@ -1790,6 +1990,9 @@ label start:
             jump bao_bad
 
     label route_no:
+        show bao normal
+        show kilaw sad
+        show kadyos normal
         ba_o "Ah, honesty. A rare seasoning these days. Let me explain once more, slowly."
 
         ba_o "You will build the ceremonial dish layer by layer. After that, dress it with colors and textures from our realm."
@@ -1805,6 +2008,9 @@ label start:
                 jump route_no_again
 
     label route_no_again:
+        show kilaw worried
+        show bao unimpressed
+        show kadyos sad
         ba_o "Again, you will build the ceremonial dish layer by layer. After that, dress it with colors and textures from our realm."
 
         menu:
@@ -1817,29 +2023,71 @@ label start:
     ## ── BA-O FEEDBACK ──────────────────────────────────
 
     label bao_good:
+
+        show bao happy:
+            xalign 0.8
+            yalign -0.9
+        show kilaw determined:
+            xalign 0.2
+            yalign 1.0
+        show kadyos happy:
+            yalign 1.9
+            xalign 0.3
+        
         ba_o "Wait, this is it! the taste, the texture, the feeling.....it's the recipe I'd forgotten!"
+
+        show kilaw happy
         ba_o "This is… absolutely wonderful, you're such a wonderful cook!"
         ba_o "Well, thanks to you, my memory's back, and I couldn't be happier!"
+
+        show bao normal
+        show kilaw determined
+        show kadyos normal
+
         ba_o "Anyway, the others definitely need your help."
         ba_o "And Sigay needed some help with their costumes, but with you pitching in, I'm pretty sure it will turn out beautifully."
         ba_o "I'm sure you'll be of good use to them."
         narrator "Ba-O waves you off with one fin, already back at the pot, muttering recipes under her breath like a prayer she's relearning."
+
+        scene black with Dissolve(3.0)
         jump sigay_intro
     
     label bao_neutral:
+        show kilaw happy
+        show bao happy
         ba_o "Oh, that's delicious. It brings back a faint memory......just a little."
         ba_o "Well, atleast you've managed to shake my memory."
+
+        show bao normal
+        show kilaw determined
+        show kadyos normal
         ba_o "Anyway, I shouldn't keep you, the others surely need your help"
         narrator "Ba-O waves you off with one fin, already back at the pot, muttering recipes under her breath like a prayer she's relearning."
+
+        scene black with Dissolve(3.0)
         jump sigay_intro
         
     label bao_bad:
+        show bao worried
+        show kilaw sad
+        show kadyos sad
+
         ba_o "Ergh."
         narrator "She holds her fin clenched to her lips, as she swallows slowly."
+
+        show bao sad
         ba_o "That's… well, an experience. Great. A memory I won't truly forget. Too bad it doesn't help at all."
+
+        show kilaw worried
+        show bao normal
         ba_o "Looks like helping me didn't go so well...but don't worry, your next task awaits. Sigay will need your help with her costumes."
+
+        show kilaw sad
+        show bao unimpressed
         ba_o "I'm sure you'll be more of good use to them."
         narrator "Ba-O waves you off with one fin, already back at the pot, muttering recipes under her breath like a prayer she's relearning."
+
+        scene black with Dissolve(3.0)
         jump sigay_intro
 
 
@@ -1847,46 +2095,109 @@ label start:
     ## SIGAY — COSTUME COMMITTEE
     ## ═══════════════════════════════════════════════════
     label sigay_intro:
+        scene village house with Dissolve (2.0)
         narrator "You follow the sound of frustrated sighing, which leads you, eventually..." 
 
-        scene sigays_workshop with Dissolve(2.0) 
+        scene sigays_workshop 
+        with Dissolve(2.0) 
 
         "to a studio that appears to have been recently hit by a typhoon." 
-        "Bolts of luminescent fabric spill across the floor. Half-finished headdresses lean against walls like tired dancers." 
+        "Bolts of luminescent fabric spill across the floor. Half-finished headdresses lean against walls like tired dancers."
+
+        show sigay normal:
+            xalign 0.5
+            yalign 0.5
+        with Dissolve(1.0) 
         "In the center of the chaos, a jellyfish the color of a sunset sits surrounded by crumpled designs."
         kilaw "Right. Costumes next. I can do costumes."
-        sigay " I thought I had it all under control... but why does it still feel like I'm missing something?"
+
+        show sigay panic
+        sigay "I thought I had it all under control... but why does it still feel like I'm missing something?"
+
+        show sigay panic:
+            yalign 0.5
+            xalign 0.7
+        with move
+
+        show kilaw normal:
+            xalign -0.5 yalign 1.0
+            linear 0.5 xalign 0.17
+
+        show kadyos normal:
+            xalign -0.5 yalign 1.9
+            linear 0.5 xalign 0.30
+
+
+
         kilaw "Need a hand with those costumes? I can help figure it out."
+
+        show sigay happy
+        show kilaw determined
+
         sigay "Oh... thank you I really need some assistance"
         narrator "Sigay holds up a half-made headdress—layers of sea glass and woven thread, technically accomplished, completely lifeless."
+
+        show sigay normal 
+        show kilaw focused 
         sigay "Every year, the costumes are the highlight of the festival. "
         sigay "Every year, I know exactly what to do. But this year... it's like the current dried up inside me. Nothing flows."
+
+        show kilaw normal 
         kilaw "What did last year's look like?"
         sigay "Magnificent. Sea greens and deep blues. Woven like—oh, what do you mortals call it—that fabric from your islands?" 
+
+        show kilaw focused
         sigay "The one that takes three moons to make?"
         kilaw "Hablon?"
+
+        show sigay proud
         sigay "Yes! Like hablon, but of bioluminescent thread. The dancers glowed as they moved. It was... it was alive."
+
+        show kilaw focused
         kilaw "So what changed?"
+
+        show sigay panic
         narrator "Sigay's tentacles droop."
+
+        show kilaw sad
+        show kadyos sad
         sigay "The Bakunawa has been circling for many cycles now. The realm is... frightened."
         sigay "When you design from fear, everything looks like armor. Nothing looks like celebration."
+
+        show kilaw determined
+        show kadyos happy
+        show sigay normal
         kilaw "Then let's design from something else. What does the celebration actually feel like?" 
         kilaw "Not what it's supposed to look like, what does it feel like?"
         narrator "Sigay is quiet. Then, slowly:"
         sigay "Like when the bioluminescent sea ignites all at once. Like everyone gasping the same breath at the same time."
         sigay "The feeling of hopefulness? Being alive?"
+
+        show kilaw focused
+        show kadyos normal
         narrator "You're not sure if you got it. But you think you do."
         kilaw "Okay. Start there."
+
+        show sigay panic
         narrator "Sigay sighed, frustrated and tired."
         sigay "It's not that simple."
+
+        show kilaw determined
         kilaw "It's alright. I'll help you as much as I can"
         
         if kilaw_personality == "skeptic":
-            kilaw "It's just fabric and light, Sigay. If it worked once, we can make it work again with a little effort." 
+            kilaw "It's just fabric and light, Sigay. If it worked once, we can make it work again with a little effort."
+
+            show sigay normal 
             sigay "Effort? How... practical. Maybe a little human 'fix-it' energy is exactly what we need." 
         else:
+            show kilaw normal
             kilaw "It's about the soul of the celebration."
+
+            show sigay normal
             kilaw "My lola said the threads have to remember the joy to really glow." 
+
+            show sigay happy
             sigay "Wise words. Yes... let's try to find that joy together." 
 
         call minigame_costume_start
@@ -1906,24 +2217,69 @@ label start:
     ## ── SIGAY FEEDBACK ─────────────────────────────────
 
     label sigay_good:
+        
+        show sigay happy:
+            yalign 0.5
+            xalign 0.7
+        show kilaw determined:
+            xalign 0.2
+            yalign 1.0
+        show kadyos happy:
+            yalign 1.9
+            xalign 0.3
+        
         narrator "Sigay holds up the finished costume. It catches the bioluminescent light and fractures it into a thousand small suns."
         narrator "The both of you did your best."
         sigay "Oh...oh, this is out of my usual fin entirely. In the best way. I haven't made something like this in three centuries."
+
+        show kilaw happy
+        show sigay proud
         sigay "You brought something back, Kilaw. Something I didn't know I'd lost."
+
+        scene black with Dissolve(3.0)
         jump bilo_sili_intro
 
     label sigay_neutral:
+        show sigay proud:
+            yalign 0.5
+            xalign 0.7
+        show kilaw determined:
+            xalign 0.2
+            yalign 1.0
+        show kadyos happy:
+            yalign 1.9
+            xalign 0.3
+
         narrator "The costume is good. Technically accomplished. Better than what was there before."
         narrator "The both of you did your best."
         sigay "It's...yes. It will do. The dancers can work with this."
+
+        show kilaw happy
         sigay "Thank you. You gave my fins somewhere to start again. That is not nothing."
+
+        scene black with Dissolve(3.0)
         jump bilo_sili_intro
 
     label sigay_bad:
+        show sigay panic:
+            yalign 0.5
+            xalign 0.7
+        show kilaw sad:
+            xalign 0.2
+            yalign 1.0
+        show kadyos sad:
+            yalign 1.9
+            xalign 0.3
+
         narrator "The both of you did your best."
         narrator "The costume exists. That's the most generous thing you can say about it."
+
+        show sigay normal
+        show kilaw worried
         sigay "Well. It covers the body and holds together, so...we're at least above bare-finned."
         sigay "Go help the others, child. You tried. The current doesn't always flow where we want it to."
+
+        scene black with Dissolve(3.0)
         jump bilo_sili_intro
 
 
@@ -1991,18 +2347,24 @@ label start:
         sili "Neither did I. But here we are, swimming in the same direction for once."
         bilo "Don't push your fin, Sili-Sili."
         narrator "Sili-Sili can't help but smile widely, their fins curl as they barely suppressing delight"
+
+        scene black with Dissolve(3.0)
         jump lusay_intro
 
     label BS_neutral:
         narrator "A compromise is reached, not a true blend, but a structure where the traditional verses anchor Sili-Sili's more inventive choruses."
         bilo "It is...workable."
         sili "It's a high praise coming from them, honestly."
+
+        scene black with Dissolve(3.0)
         jump lusay_intro
 
     label BS_bad:
         narrator "The argument continues. You had to pick one side to support, and the other carries the wound into the performance."
         bilo "You've made your choice, mortal. I hope it is the right one."
         sili "Or wrong one. We'll see at the festival."
+
+        scene black with Dissolve(3.0)
         jump lusay_intro
 
 
@@ -2064,12 +2426,16 @@ label start:
         kilaw "See? Wrong lanterns and all."
         lusay "The mess works! The mess absolutely works!"
         narrator "Lusay laughs, they shined brightly, wide with relief and joy. You both shared a relieved look as the lanterns begin to glow."
+
+        scene black with Dissolve(3.0)
         jump transformation
 
     label lusay_neutral:
         narrator "Not everything they built works. Some lanterns glow. Some don't."
         lusay "It's...not everything I imagined. But it's something."
         kilaw "Something is always enough to start with."
+
+        scene black with Dissolve(3.0)
         jump transformation
 
     label lusay_bad:
@@ -2078,6 +2444,8 @@ label start:
         lusay "I'm sorry. I know I wasted your time. My ideas are always better in my head."
         narrator "You bumped your shoulders together, getting her out of her own head."
         kilaw "They're not wasted. You know what doesn't work now. That's worth something."
+
+        scene black with Dissolve(3.0)
         jump transformation
 
 
@@ -2134,6 +2502,8 @@ label start:
 
         kilaw "One day. We can do one day, Kadyos. Then we go home. Whatever home looks like after this."
         narrator "Kadyos barks, one short, firm ARF. An agreement."
+
+        scene black with Dissolve(3.0)
         jump kasag_intro
 
     label scales:
@@ -2327,6 +2697,8 @@ label start:
             "The ensemble plays discordantly, some following Kasag's rigid tempo, others rebelling with their own."
             "The result is something that doesn't sound pleasant to your human ear."
             "You looks at your hands and saw the scales spreading, fast."
+
+            scene black with Dissolve(3.0)
             jump before_festival
 
         label combination:
@@ -2354,11 +2726,15 @@ label start:
             kasag "This... this sounds like—something forgotten."
             narrator "The music becomes something new yet familiar—tradition evolving like the tides."
             "On festival night, the melody moves spirits to tears, reminding them why they celebrate."
+
+            scene black with Dissolve(3.0)
             jump before_festival
 
         label kasag_neutral:
             narrator "The music improves, but tension remains. Kasag allows input but still dominates."
             "The result is technically proficient but lacks true harmony, a performance that satisfies tradition without inspiring joy."
+
+            scene black with Dissolve(3.0)
             jump before_festival
 
         label kasag_bad:
@@ -2368,6 +2744,8 @@ label start:
             "He reached out towards you, ruffling your hair."
             kasag "I thank you, child. For your effort."
             kasag "But next time, do not meddle with things you don't understand."
+
+            scene black with Dissolve(3.0)
             jump before_festival
 
 
