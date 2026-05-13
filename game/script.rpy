@@ -71,7 +71,8 @@ image dawa happy   = "dawa_happy_sprite.png"
 image dawa wry     = "dawa_wry_sprite.png"
 image dawa crab    = "dawa_crab_sprite.png"
 
-image spirit_npc = "spiritnpc_sprite.png"
+# NPC
+image spiritnpc = "spiritnpc_sprite.png"
 image rocky      = "rocky_sprite.png"
 image fish_npc   = "fish_sprite.png"
 image jellyfish  = "jellyfish_sprite.png"
@@ -116,6 +117,12 @@ image bao sad = "bao_sad_sprite.png"
 image bao worried  = "bao_worried_sprite.png"
 image bao unimpressed  = "bao_unimpressed_sprite.png"
 
+# Lusay
+image lusay disappointed = "lusay_dissapointed_sprite.png"
+image lusay happy        = "lusay_happy_sprite.png"
+image lusay sad          = "lusay_sad_sprite.png"
+image lusay proud        = "lusay_proud_sprite.png"
+
 ## Background
 image background moving = Movie(play= "images/Comp1.webm", loop=False, keep_last_frame=True)
 image intro village = Movie(play= "images/intro village.webm", Loop=False, keep_last_frame=True)
@@ -135,7 +142,7 @@ image sunset = Movie(play= "images/sunset.webm", loop=False, keep_last_frame=Tru
 image intro children = Movie(play= "images/intro children.webm", loop=False, keep_last_frame=True)
 image intro festival prep1 = Movie(play= "images/intro festival prep1.webm", loop=False, keep_last_frame=True)
 image intro feet running = Movie(play= "images/intro feet running.webm", loop=False, keep_last_frame=True)
-image mooneater = Movie(play= "images/mooneater", loop=False, keep_last_frame=True)
+image mooneater = Movie(play= "images/moon_eater", loop=False, keep_last_frame=True)
 image festival start = Movie(play= "images/festival start.webm", loop=False, keep_last_frame=True)
 image mudfish = Movie(play= "images/mudfish.webm", loop=False, keep_last_frame=True)
 image kilaw fish eye = Movie(play= "images/kilaw fish eye.webm", loop=False, keep_last_frame=True)
@@ -145,6 +152,8 @@ image bye portal = Movie(play= "images/bye portal.webm", loop=False, keep_last_f
 image bakunawa rising = Movie(play= "images/bakunawa rising.webm", loop=False, keep_last_frame=True)
 image bakunawa eyes = Movie(play= "images/bakunawa eyes.webm", loop=False, keep_last_frame=True)
 image backhome = Movie(play= "images/backhome.webm", loop=False, keep_last_frame=True)
+image way home = Movie(play= "images/way home.webm", loop=False, keep_last_frame=True)
+
 
 ## Audios
 ## Atmosphere & Environment
@@ -2491,23 +2500,53 @@ label start:
         show kadyos normal:
             yalign 1.9
             xalign 0.6
-        with Dissolve(2.0)
 
         "Their workshop is absolute chaos. Dozens of started projects, but nothing finished."
         "You step over three unfinished lanterns, a net of sea glass that has been tangled rather than woven."
         "It appears to be an entire installation of hanging coral that has fallen sideways."
+
+        show kilaw focused:
+            yalign 1.0
+            xalign 0.2
+        show kadyos normal:
+            yalign 1.9 
+            xalign 0.4
+        show lusay happy:
+            xalign 1.5 yalign 0.9  
+            linear 0.4 xalign 0.8
+
+        with move
+
         lusay "Oh! You're... you're the mortal girl. Kilaw, right? I heard about you."
+
+        show kilaw determined
         kilaw "Good things, I hope."
         kilaw "You're Lusay right?"
+
+        show lusay proud
+        show kadyos happy
         narrator "Lusay smiled brightly as she moved away from her unfinished projects."
         lusay "That's me! No worries, they all say great things! Wonderful things!"
+
+        show lusay sad
+        show kilaw sad
+        show kadyos sad
         lusay "Unlike me..."
         narrator "She gestures helplessly at the chaos."
         lusay " Every idea I have is the best idea I've ever had until I actually start it. And then it becomes the worst thing I've ever made." 
-        "I don't know how to finish anything. I have twelve great beginnings and zero endings."
+        show lusay disappointed
+        lusay "I don't know how to finish anything. I have twelve great beginnings and zero endings."
+
+        show kilaw determined
+        show kadyos normal
         kilaw "What was the one you were most excited about?"
+
+        show lusay sad
+        show kilaw normal
         lusay "...The lights. Lanterns made from dried jellyfish membrane—they catch the bioluminescence from the sea and hold it." 
         lusay "When you string hundreds of them across the festival grounds they look like the night sky fell sideways. But I—"
+
+        show lusay disappointed
         lusay "I've started fourteen of them. None are finished even."
         narrator "..."
         kilaw "Then we finish one. Just one. Then another. That's all."
@@ -2531,8 +2570,14 @@ label start:
     ## ── LUSAY FEEDBACK ─────────────────────────────────
 
     label lusay_good:
+        show kilaw happy
+        show kadyos happy
+        show lusay happy
         narrator "Together they completed something spectacular, moving with coordination and at ease."
         "The decoration was finished, and so is the morning."
+
+        show lusay proud
+        show kilaw determined
         lusay "It's—oh. Oh, it actually works. It's actually beautiful."
         kilaw "See? Wrong lanterns and all."
         lusay "The mess works! The mess absolutely works!"
@@ -2542,18 +2587,33 @@ label start:
         jump transformation
 
     label lusay_neutral:
+        show lusay sad
+        show kadyos normal
+        show kilaw normal
         narrator "Not everything they built works. Some lanterns glow. Some don't."
         lusay "It's...not everything I imagined. But it's something."
+
+        show kilaw sad
+        show kadyos sad
         kilaw "Something is always enough to start with."
 
         scene black with Dissolve(3.0)
         jump transformation
 
     label lusay_bad:
+        show lusay disappointed
+        show kilaw sad
+        show kadyos sad
         narrator "The workshop remains largely in chaos. A few pieces are done, not enough."
         "You both sat on the floor surrounded by unfinished ideas. Tired."
+
+        show lusay sad
         lusay "I'm sorry. I know I wasted your time. My ideas are always better in my head."
+
+        show kilaw worried
         narrator "You bumped your shoulders together, getting her out of her own head."
+
+        show kilaw normal
         kilaw "They're not wasted. You know what doesn't work now. That's worth something."
 
         scene black with Dissolve(3.0)
@@ -2564,6 +2624,7 @@ label start:
     ## TRANSFORMATION AND MUTATION
     ## ═══════════════════════════════════════════════════
     label transformation:
+        scene village house with dissolve
         narrator "You decided to sleep there until sunrise. You curled up in their provided room, courtesy of Ba-O." 
 
         "Kadyos warm against your back, and closed your eyes to the soft pulse of the bioluminescent sea." 
@@ -2726,39 +2787,105 @@ label start:
     ## KASAG — MUSIC COMMITTEE
     ## ═══════════════════════════════════════════════════
     label kasag_intro:
-        scene village house with Dissolve(2.0)
+        scene marketplace with Dissolve(2.0)
+        show kilaw normal:
+            xalign 0.4
+            yalign 1.0
+        show kadyos normal:
+            yalign 1.9
+            xalign 0.6
+        with Dissolve(2.0)
 
         narrator "Outside you heard a booming voice, proud and loud, filling the whole corridor of the festival grounds like a wave filling a cave."
+        show kilaw focused
+        show kadyos sad
         "Kadyos's fin-tail stiffened. Even he seemed uncertain about approaching."
         kilaw "That's... the music committee?"
+
+        show kilaw focused:
+            yalign 1.0
+            xalign 0.2
+        show kadyos normal:
+            yalign 1.9 
+            xalign 0.4
+        with move
+        
+        show spiritnpc:
+            xalign 1.5 yalign 0.9  
+            linear 0.4 xalign 0.8  
+
         narrator "A passing spirit nodded, eyes wide."
+
+        show kilaw worried
         unknown "Kasag. Old crab."
         unknown "Been conducting the music for three hundred years, but this cycle—the younger musicians have been pushing back."
+        show kilaw focused
         unknown "Makes his claws very... clicky."
+
+        show spiritnpc:
+            xalign 0.8 yalign 0.9  
+            linear 0.7 xalign -0.5 
+
+        show kilaw sad:
+            xalign 0.4
+            yalign 1.0
+        show kadyos sad:
+            yalign 1.9
+            xalign 0.6
+        with move
+
         narrator "You took a breath. Scales itched along your collarbone. You walked toward the sound."
 
         scene kasag_music_workshop with Dissolve(2.0)
 
+        show kasag normal: 
+            xalign 0.8
+            yalign -0.9
+        show kilaw normal:
+            xalign 0.2
+            yalign 1.0
+        show kadyos happy:
+            yalign 1.9
+            xalign 0.3
+        with Dissolve(2.0)
+
         kilaw "Kasag? I'm here to help with the music—"
+
+        show kasag angry 
+        show kilaw shocked
+        show kadyos sad
         kasag "Help? HAH! Who said I needed help? You?"
+
+        show kilaw sad
+        show kasag surprise
+
         narrator "He berated a nearby spirit for even holding their instrument in a wrong way."
         "He said a lot of unwarranted things towards them, before they turn to you."
         kasag "I've been conducting this festival's music for many cycles before you, mortal, was even born."
+
+        show kilaw worried
+        show kasag angry
+
         kasag "What I need is MY direction followed properly!"
         kasag "My music kept the Bakunawa away from eating the last moon we have! It would've been eaten if I didn't take charge."
 
         if player_offering == "noise":
+            show kasag happy
             narrator "As he puffs out his chest, the small brass bell in your pocket gives a sharp, clear ring."
             kilaw "I brought this from the village. I thought... well, I thought the serpent might need reminding of that sound."
+
+            show kilaw normal 
             kasag "HAH! A noise-maker! You understand then!"
             kasag "We don't just play music for the ears, mortal. We play to keep the darkness at bay."
             kasag "Your preparation shows you have more spine than these other musicians!"
 
         elif player_offering == "salt":
+            show kasag normal
             kasag "And what do you have there? Salt? You think you can preserve a melody like a piece of dried fish?"
             kasag "Hmph. At least you're prepared to protect yourself. But here, only the rhythm will save you."
 
         elif player_offering == "white_rice":
+            show kasag surprise
             kasag "White rice. A peaceful gift for a creature that wants to swallow the sky."
             kasag "You have a quiet heart, child. Let's see if that quiet can find the strength to beat a drum."
 
@@ -2777,16 +2904,28 @@ label start:
 
         #ROUTE ---------------------------
         label argue_controlling:
+            show kilaw focused
             kilaw "A strong leader lifts others up. You're just pushing them down."
+
+            show kasag angry
             kasag "You don't know anything. I'm ensuring quality!"
+
+            show kasag normal
             kilaw "You're ensuring obedience. There's a difference."
             narrator "The other nearby spirits were muttering between themselves, busying themselves with idle tasks."
             "Kasag took a deep breath."
+
+            show kasag surprise
             kasag "Mistakes are not allowed, child. Too many risk."
             kasag "Why fix something that doesn't need to be fix?"
+
+            show kilaw worried
             kilaw "The question is whether the same sound, performed without feeling, carries the same power it once did."
             kilaw "There's no passion on what you do. Just routine."
             narrator "..."
+
+            show kasag normal
+            show kilaw normal
             kasag "Perhaps... perhaps my shell has grown too thick."
             kasag "Fine. Child, show me your ideas. But make them GOOD."
             call minigame_music_start
@@ -2798,11 +2937,32 @@ label start:
                 jump kasag_bad
 
         label screw_this:
+            show kilaw focused
+            show kasag normal
             kilaw "You know what? I don't have time for this. Figure it out yourself."
+
+            show kasag angry 
             kasag "What? You dare walk away from—"
             kilaw "You don't want help. You just want an audience."
             narrator "Numerous spirits tried to persuade you to stay."
+
+            show spiritnpc:
+                xalign 1.5 yalign 0.9 
+                linear 0.4 xalign 0.8 
+            show kasag normal:
+                xalign 0.8 yalign 1.0
+                linear 0.4 xalign 0.9 yalign 1.0 
+
             unknown "Please! Wait!"
+
+            hide kilaw 
+            hide kadyos 
+            hide kasag
+            hide spiritnpc
+            with Dissolve(2.0)
+
+            scene village house
+            with Dissolve(2.0)
 
             narrator "The music committee fractures."
             "The ensemble plays discordantly, some following Kasag's rigid tempo, others rebelling with their own."
@@ -2813,11 +2973,30 @@ label start:
             jump before_festival
 
         label combination:
+            show kilaw focused
+            show kasag normal
             kilaw "What if you combine both?"
+            show kasag angry
             kasag "Impossible. Music needs ONE conductor—"
+            show kasag surprise
             kilaw "From where I'm from, music has layers."
+            show kilaw normal
+            show kadyos normal
             kilaw "Your powerful foundation with their fresh melodies. Like waves and currents—both part of the same ocean."
+
+            show spiritnpc:
+                xalign 1.5 yalign 0.9 
+                linear 0.4 xalign 0.8 
+            show kasag normal:
+                xalign 0.8 yalign 1.0
+                linear 0.4 xalign 0.9 yalign 1.0
+
             unknown "We could play traditional beats in the chorus, our style in the verses?"
+
+            show spiritnpc:
+                xalign 0.8 yalign 0.9  
+                linear 0.7 xalign -0.5 
+
             kasag "That... might work. IF done with precision."
             kilaw "Then try it. Together."
             call minigame_music_start
@@ -2832,8 +3011,15 @@ label start:
     ## ── KASAG FEEDBACK ──────────────────────────────────
 
         label kasag_good:
+            show kasag normal 
+            show kilaw determined
+            show kadyos happy 
             narrator "The musicians begin to play—Kasag's strength meeting the young spirits' innovation."
+
+            show kasag happy
             narrator "Kasag's voice soften in awe. The musicians seems happy with themselves."
+
+            show kilaw happy
             kasag "This... this sounds like—something forgotten."
             narrator "The music becomes something new yet familiar—tradition evolving like the tides."
             "On festival night, the melody moves spirits to tears, reminding them why they celebrate."
@@ -2842,6 +3028,9 @@ label start:
             jump before_festival
 
         label kasag_neutral:
+            show kilaw determined
+            show kadyos normal
+            show kasag surprise
             narrator "The music improves, but tension remains. Kasag allows input but still dominates."
             "The result is technically proficient but lacks true harmony, a performance that satisfies tradition without inspiring joy."
 
@@ -2849,11 +3038,19 @@ label start:
             jump before_festival
 
         label kasag_bad:
+            show kilaw worried
+            show kadyos sad
+            show kasag normal
             narrator "The music was nothing but a mix and match of chaos and disorder."
+            show kilaw sad
             "It was a disaster. It left you nothing but disappointment."
+            
+            show kilaw worried
             "Kasag maintains an even look, but you can't help but feel his disapointment."
             "He reached out towards you, ruffling your hair."
+            show kasag surprise
             kasag "I thank you, child. For your effort."
+            show kilaw sad
             kasag "But next time, do not meddle with things you don't understand."
 
             scene black with Dissolve(3.0)
@@ -2864,14 +3061,32 @@ label start:
     ## BEFORE FESTIVAL
     ## ═══════════════════════════════════════════════════
     label before_festival:
+        scene village house night with Dissolve(2.0)
+        show kilaw sad:
+            xalign 0.5
+            yalign 1.0
+        with dissolve
+
         voice "narration/berof1.mp3"
-        narrator "As the final sunset before the festival descends, You take stock of your work. You did your best."
+        narrator "You take stock of your work. You did your best."
 
         voice "narration/berof2.mp3"
         "You can only hope that would be enough."
+
+        scene marketplace festival 
         voice "narration/berof3.mp3"
+        show kilaw sad:
+            xalign 0.4
+            yalign 1.0
+
+        show kadyos sad:
+            yalign 1.9
+            xalign 0.5
+        with Dissolve(2.0)
         "You find Kadyos near the festival grounds entrance, sitting perfectly still, watching the lights come on one by one."
         kilaw "It's really happening, isn't it."
+
+        scene transforming with dissolve
 
         voice "narration/berof4.mp3"
         narrator "It wasn't really a question. Kadyos leans against your transformed legs."
@@ -2898,6 +3113,15 @@ label start:
         voice "narration/berof10.mp3"
         "The final sunset paints the spirit realm in golden light."
 
+        scene marketplace festival
+        show kilawfish sad:
+            xalign 0.4
+            yalign 1.0
+        show kadyosfish sad:
+            yalign 1.9
+            xalign 0.6
+        with dissolve
+
         voice "narration/berof11.mp3"
         "You kneel beside Kadyos on the festival grounds, exhausted but reflective."
         kilaw "We did it, Kadyos. Well... most of it, anyway."
@@ -2913,6 +3137,8 @@ label start:
         voice "narration/berof14.mp3"
         "Three moons of work now shine before you."
         #"You watched as the celebration you helped create comes to life, your transformed body aching with every breath."
+
+        scene dancing festive with dissolve
 
         voice "narration/berof15.mp3"
         "Spirits dance in new costumes, feast on rediscovered flavors, move to harmonized music."
@@ -2940,12 +3166,22 @@ label start:
     ## CALCULATE SCORE AND ENDINGS
     ## ═══════════════════════════════════════════════════
     label pre_ending:
+        scene marketplace festival:
+            xoffset 2
+            pause .05
+            xoffset -2
+            pause .05
+            repeat 10
+        with Dissolve(2.0)
+
         voice "narration/berof21.mp3"
         narrator "The water beneath the festival grounds begins to tremble—not the frantic churning of the vortex that brought you here."
 
         voice "narration/berof22.mp3"
         narrator "But something deeper. Deliberate. Aware."
         sigay "It's coming. The Bakunawa comes."
+
+        scene festival start  with Dissolve(2.0)
 
         voice "narration/berof23.mp3"
         narrator "Bao looks on quietly. She stayed close, her presence felt. Warmth against the cold waters. She does not reach for you."
@@ -2962,17 +3198,22 @@ label start:
 
     #GOOD OUTCOME
     label good_ending:
+        scene bakunawa rising with Dissolve(2.0)
         voice "narration/good1.mp3"
         narrator "The Bakunawa sees the sincerity woven into every detail."
 
         voice "narration/good2.mp3"
         narrator "Satisfied, it circles the moon as guardian, then descends peacefully into the depths."
 
+        scene kilaw fish eye with Dissolve(2.0)
+
         voice "narration/good3.mp3"
         "Light surrounds you. The scales fade. The gills close." 
 
         voice "narration/good4.mp3"
         "A portal shimmers open before you, warm, golden-edged."
+
+        scene backhome with Dissolve(2.0)
 
         voice "narration/good5.mp3"
         "And on the other side you can smell salt and woodsmoke and the particular smell of a village morning."
@@ -2982,6 +3223,19 @@ label start:
 
         voice "narration/good7.mp3"
         "You were about to step forward before someone calls you."
+
+        scene marketplace festival
+        show bao happy:
+            xalign 0.8
+            yalign -0.9
+        show kilaw happy:
+            xalign 0.2
+            yalign 1.0
+        show kadyos happy:
+            yalign 1.9
+            xalign 0.3
+        with Dissolve(2.0)
+
         ba_o "Child, Before you go walk the shore first. Let the tide run over your feet. Let it take what followed you. Then you may go home."
 
         voice "narration/good8.mp3"
@@ -2993,9 +3247,21 @@ label start:
 
         voice "narration/good10.mp3"
         "Both of you are left standing there as the festival continues around you. The music, the dancing, the food felt very real at the moment."
+
+        scene bye portal with Dissolve(2.0)
         kilaw "Thank you too."
+
         voice "narration/good11.mp3"
         narrator "With that you stepped onto the portal home."
+
+        scene backhome
+        show kilaw determined:
+            xalign 0.4
+            yalign 1.0
+        show kadyos happy:
+            yalign 1.9
+            xalign 0.6 
+        with Dissolve(2.0)
 
         voice "narration/good12.mp3"
         "Dawn breaks over the mangrove. You and Kadyos emerge through the portal, onto the shore, into the early morning light."
@@ -3011,6 +3277,12 @@ label start:
 
         voice "narration/good16.mp3"
         "You walk the shoreline. You let the tide come over your feet. Cold, real, present."
+
+        hide kadyos 
+        hide kilaw
+        with Dissolve (2.0)
+
+        scene way home with dissolve
 
         voice "narration/good17.mp3"
         "You paddle home after that. The boat still where you left it."
@@ -3028,6 +3300,8 @@ label start:
 
         voice "narration/good21.mp3"
         narrator "Kadyos shakes his fur one more time. He is very happy about this."
+
+        scene mudfish with Dissolve(2.0)
 
         voice "narration/good22mp3"
         "Just then, a mudfish, the one that starts it all, jumps into the boat." 
@@ -3049,6 +3323,7 @@ label start:
 
     #NEUTRAL OUTCOME
     label neutral_ending:
+        scene bakunawa rising with Dissolve(2.0)
         voice "narration/neutro1.mp3"
         narrator "The Bakunawa rises, vast and patient, the way old things are patient."
 
@@ -3063,6 +3338,7 @@ label start:
 
         voice "narration/neutro5.mp3"
         "The festival bought time, but nothing more."
+        scene bye with Dissolve(2.0)
         ba_o "Child, quickly, you can return home, partially transformed, or stay and help us find a new way."
 
         voice "narration/neutro6.mp3"
@@ -3082,7 +3358,7 @@ label start:
             voice "narration/staend2.mp3"
             "You think of your mother's house. You think of the drums you heard from the village, the festival that happened without you." 
 
-            scene bao kitchen2 with Dissolve(3.0)
+            scene kitchen2 night bao with Dissolve(3.0)
             voice "narration/staend3.mp3"
             "You think of Ba-O's kitchen, and Sigay's light-fractured costumes, and Lusay's wrong lanterns that worked."
 
@@ -3093,9 +3369,15 @@ label start:
             narrator "Ba-O looks at you. Something in her expression is careful"
             ba_o "Then you are one of us. For as long as the tide asks it."
 
-
-            scene transforming with Dissolve(3.0)
             voice "narration/staend5.mp3"
+            scene spirit map night
+            show kilawfish normal:
+                xalign 0.4
+                yalign 1.0
+            show kadyosfish normal:
+                yalign 1.9
+                xalign 0.6
+            with Dissolve(3.0)
             narrator "You nod. The scales don't fully recede."
 
             voice "narration/staend6.mp3"
@@ -3155,12 +3437,15 @@ label start:
 
     #BAD OUTCOME
     label bad_ending:
-        scene mooneater with Dissolve(2.0)
+
         voice "narration/bad1.mp3"
-        narrator "The Bakunawa does not pause when it arrives. It does not circle. It does not consider. It is simply here, and then the moon is not."
+        scene mooneater with Dissolve(2.0)
+        narrator "The Bakunawa does not pause when it arrives. It does not circle."
+        narrator "It does not consider. It is simply here, and then the moon is not."
 
         voice "narration/bad2.mp3"
-        "The silence that follows is not the silence of things that are quiet. It is the silence of something that was there and is gone now and will not come back."
+        "The silence that follows is not the silence of things that are quiet."
+        "It is the silence of something that was there and is gone now and will not come back."
         
         voice "narration/bad3.mp3"
         "The Bakunawa arrived in fury. The festival's failure is an insult to centuries of negotiation. No pleading can stop what comes next."
@@ -3168,6 +3453,8 @@ label start:
         scene kilaw fish eye with Dissolve(2.0)
         voice "narration/bad4.mp3"
         "The moon disappears into the serpent's jaws. Darkness swallows both realms. You watch, helpless, as everything is consumed."
+
+        scene black with Dissolve(3.0)
 
         voice "narration/bad5.mp3"
         "The transformation completes. No longer mortal. No longer entirely spirit. Something the boundary has decided to keep, because it was not returned in time."
@@ -3187,6 +3474,15 @@ label start:
 
         voice "narration/bad9.mp3"
         "You sit at the water's edge of the spirit realm, your realm now, and watch where the moon used to be."
+        
+        scene spirit map night
+        show kilawfish sad:
+            xalign 0.4
+            yalign 1.0
+        show kadyosfish sad:
+            yalign 1.9
+            xalign 0.6
+        with Dissolve(3.0)
 
         voice "narration/bad10.mp3"
         "Kadyos sits beside you. He is all fin and gills, but he still leans against you the same way."
