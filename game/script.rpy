@@ -2279,7 +2279,7 @@ label start:
         sigay "Well. It covers the body and holds together, so...we're at least above bare-finned."
         sigay "Go help the others, child. You tried. The current doesn't always flow where we want it to."
 
-        scene black with Dissolve(3.0)
+        scene black with Dissolve(2.0)
         jump bilo_sili_intro
 
 
@@ -2287,14 +2287,33 @@ label start:
     ## BILO + SILI — PERFORMANCE COMMITTEE
     ## ═══════════════════════════════════════════════════
     label bilo_sili_intro:
-        scene village house with Dissolve(2.0)
+        scene village house 
+        show kilaw normal:
+            xalign 0.4
+            yalign 1.0
+        show kadyos normal:
+            yalign 1.9
+            xalign 0.5
+        with Dissolve(2.0)
 
         narrator "You said your goodbyes and went to the next spirit in need, the performance committee." 
-        narrator "It was held by two spirits, Bilong-Bilong and Sili-Sili."
-        narrator "You heard them before you saw them, two voices, one sharp and declarative, one fluid and insistent,"
-        narrator "talking over each other in perfect disharmony."
 
-        scene dance area with Dissolve(2.0)
+        narrator "It was held by two spirits, Bilong-Bilong and Sili-Sili."
+
+        show kilaw focused
+        show kadyos sad
+
+        narrator "You heard them before you saw them, two voices, one sharp and declarative, one fluid and insistent."
+        narrator "Talking over each other in perfect disharmony."
+
+        scene dance area 
+        show bilo irritated:
+            xalign 0.6
+            yalign 1.0
+        show sili mad:
+            yalign 1.9
+            xalign 0.2
+        with Dissolve(2.0)
 
         narrator "When you got where they were, the two dancers were locked in a bitter disagreement over choreography."
         narrator "One favors traditional movements, the other demands something more fresh and modern in expression."
@@ -2306,23 +2325,85 @@ label start:
         sili "We need something that catches it off guard, something it hasn't seen before!"
         bilo "You want to improvise at the most important ceremony of the century?!"
         sili "I want to perform something worth watching!"
+
+        show kilaw normal:
+            xalign -0.5 yalign 1.0
+            linear 0.4 xalign 0.1
+        show kadyos normal:
+            xalign -0.5 yalign 1.9 
+            linear 0.5 xalign 0.2
+
+        show bilo irritated:
+            xalign 0.8
+            yalign 1.0
+        show sili mad:
+            yalign 1.9
+            xalign 0.6
+        with move
+
         narrator "They stop when they saw you."
+
+        show bilo formal
+        show sili worried
+        show kilaw sad
         bilo "Ah. The mortal girl. Are you here to talk some sense into this current-brained flounder?"
+
+        show sili mad
         sili "They meant me, I'm the flounder."
+        show kilaw focused
         kilaw "I could hear you from the other side of the village, just so you know."
         bilo "Good. Someone needed to hear this. Since Sili-Sili won't."
         sili "I hear fine. I simply choose not to drown in your nonsense."
+
+        show kilaw normal
         kilaw "Okay. Show me. Both of you. Show me what you mean, not tell me. Show me."
+
+        hide kilaw
+        hide kadyos 
+        hide sili 
+        hide bilo
+        with Dissolve(2.0)
 
         narrator "Bilong-Bilo demonstrates the traditional form first, slow, deliberate, weighted with centuries of intention."
         "Each movement connects to the next like the current connecting islands. You feel something ancient in it."
         "Then Sili-Sili performs, quick, surprising, every movement a question that the next movement answers. It's alive in a different way." 
         "Something profoundly new."
+
+        show kilaw focused:
+            yalign 1.0
+            xalign 0.1
+        show kadyos normal:
+            yalign 1.9 
+            xalign 0.2
+
+        show bilo irritated:
+            xalign 0.8
+            yalign 1.0
+        show sili mad:
+            yalign 1.9
+            xalign 0.6
+        
+        with dissolve
+
         kilaw " ...You're both right."
+        
+        show kilaw normal
+        show sili worried
+        show kadyos normal
+        show bilo irritated
+
         narrator "..."
+        show bilo formal
+        show sili mad
         bilo "Excuse me?"
+
+        show kilaw focused
         kilaw "You're both right and you're both not looking at the other's work properly."
+
+        show bilo serious
         kilaw "Bilong-Bilong, the old forms have weight. Real weight. You can feel it." 
+
+        show sili worried
         kilaw "But Sili-Sili, the surprise, the life in it, that's what makes a crowd gasp." 
         kilaw "I think the foundations should never changes, the rhythm, the footwork, but every year the expression is new."
         kilaw "Same roots. Different flower"
@@ -2343,6 +2424,11 @@ label start:
     label BS_good:
         narrator "You mediate between the two, helping each see value in the other's approach." 
         "Blending their styles into something seamless and unified, where both honor the past and the present."
+
+        show kilaw determined
+        show kadyos happy 
+        show bilo surprise
+        show sili happy
         bilo "I...did not think that was possible."
         sili "Neither did I. But here we are, swimming in the same direction for once."
         bilo "Don't push your fin, Sili-Sili."
@@ -2352,14 +2438,24 @@ label start:
         jump lusay_intro
 
     label BS_neutral:
+        show kilaw focused
         narrator "A compromise is reached, not a true blend, but a structure where the traditional verses anchor Sili-Sili's more inventive choruses."
+        show bilo formal
         bilo "It is...workable."
+        show sili relief
+        show kadyos happy
+        show kilaw determined
         sili "It's a high praise coming from them, honestly."
 
         scene black with Dissolve(3.0)
         jump lusay_intro
 
     label BS_bad:
+        show kilaw sad
+        show sili mad
+        show kadyos sad
+        show bilo irritated
+
         narrator "The argument continues. You had to pick one side to support, and the other carries the wound into the performance."
         bilo "You've made your choice, mortal. I hope it is the right one."
         sili "Or wrong one. We'll see at the festival."
@@ -2372,7 +2468,14 @@ label start:
     ## LUSAY — PROPS COMMITTEE
     ## ═══════════════════════════════════════════════════
     label lusay_intro:
-        scene village house with Dissolve(2.0)
+        scene village house 
+        show kilaw normal:
+            xalign 0.4
+            yalign 1.0
+        show kadyos normal:
+            yalign 1.9
+            xalign 0.5
+        with Dissolve(2.0)
 
         narrator "You focused your attention on Lusay. A young oyster brimming with brilliant ideas for props and effects."
         "But you had to find her first. The other spirits already told you about her and her general direction."
@@ -2381,6 +2484,14 @@ label start:
         narrator "A young oyster brimming with brilliant ideas for props and effects. However lacking the confidence to execute them. Or so they said."
 
         scene lusays_workshop with Dissolve(2.0)
+
+        show kilaw normal:
+            xalign 0.4
+            yalign 1.0
+        show kadyos normal:
+            yalign 1.9
+            xalign 0.6
+        with Dissolve(2.0)
 
         "Their workshop is absolute chaos. Dozens of started projects, but nothing finished."
         "You step over three unfinished lanterns, a net of sea glass that has been tangled rather than woven."
