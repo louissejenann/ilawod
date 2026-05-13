@@ -142,7 +142,7 @@ image sunset = Movie(play= "images/sunset.webm", loop=False, keep_last_frame=Tru
 image intro children = Movie(play= "images/intro children.webm", loop=False, keep_last_frame=True)
 image intro festival prep1 = Movie(play= "images/intro festival prep1.webm", loop=False, keep_last_frame=True)
 image intro feet running = Movie(play= "images/intro feet running.webm", loop=False, keep_last_frame=True)
-image mooneater = Movie(play= "images/moon_eater", loop=False, keep_last_frame=True)
+image mooneater = Movie(play= "images/moon_eater.webm", loop=False, keep_last_frame=True)
 image festival start = Movie(play= "images/festival start.webm", loop=False, keep_last_frame=True)
 image mudfish = Movie(play= "images/mudfish.webm", loop=False, keep_last_frame=True)
 image kilaw fish eye = Movie(play= "images/kilaw fish eye.webm", loop=False, keep_last_frame=True)
@@ -3438,8 +3438,8 @@ label start:
     #BAD OUTCOME
     label bad_ending:
 
-        voice "narration/bad1.mp3"
         scene mooneater with Dissolve(2.0)
+        voice "narration/bad1.mp3"
         narrator "The Bakunawa does not pause when it arrives. It does not circle."
         narrator "It does not consider. It is simply here, and then the moon is not."
 
