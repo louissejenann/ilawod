@@ -886,7 +886,7 @@ label start:
 
 
         label route_go_home:
-            play music music_end volume 1.0 fadein 2.7
+            play music music_end volume 0.1 fadein 2.7
             voice "narration/badend1.mp3"
 
             scene boat light
@@ -2742,7 +2742,7 @@ label start:
         jump kasag_intro
 
     label scales:
-        play music music_end volume 1.0 fadein 2.7
+        play music music_end volume 0.1 fadein 2.7
 
         voice "narration/scalend1.mp3"
         scene transforming with Dissolve(3.0)
@@ -3263,7 +3263,7 @@ label start:
 
     #GOOD OUTCOME
     label good_ending:
-        play music good volume 1.0 fadein 2.7
+        play music good volume 0.1 fadein 2.7
         scene bakunawa rising with Dissolve(2.0)
         voice "narration/good1.mp3"
         narrator "The Bakunawa sees the sincerity woven into every detail."
@@ -3391,7 +3391,7 @@ label start:
 
     #NEUTRAL OUTCOME
     label neutral_ending:
-        play music music_end volume 1.0 fadein 2.7
+        play music music_end volume 0.1 fadein 2.7
 
         scene bakunawa rising with Dissolve(2.0)
         voice "narration/neutro1.mp3"
@@ -3472,7 +3472,7 @@ label start:
             #You stayed in the spirit realm. You are not sure how long you will stay, but you know you will be here for a while.
 
         label leave_here:
-            play music good volume 1.0 fadein 2.7
+            play music good volume 0.1 fadein 2.7
 
             scene intro village with Dissolve(3.0)
 
@@ -3509,7 +3509,7 @@ label start:
 
     #BAD OUTCOME
     label bad_ending:
-        play music music_end volume 1.0 fadein 2.7
+        play music music_end volume 0.1 fadein 2.7
 
         scene mooneater with Dissolve(2.0)
         voice "narration/bad1.mp3"
