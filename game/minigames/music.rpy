@@ -1,48 +1,45 @@
-## ============================================================
+################################################################################
 ## MUSIC MINIGAME — Kasag conducts
-## Speed: MODERATELY FAST
-## Notes travel top to bottom into lane targets near the bottom
-## ============================================================
+################################################################################
 
 init python:
-    ## ============================================================
-    ## TUNING — edit these to adjust gameplay feel
-    ## ============================================================
-    MUSIC_NOTE_SIZE  = 50     ## px — match size to rhythm_note_music.png
-    MUSIC_HIT_Y      = 0.70   ## hit zone Y (0.0=top, 1.0=bottom)
-    MUSIC_LANE_X     = [0.35, 0.45, 0.55, 0.65]  ## lane X positions (centered)
-    MUSIC_TIMING_WINDOW = 0.08  ## hit forgiveness (higher = easier)
+
+    ################################################################################
+    MUSIC_NOTE_SIZE  = 50    
+    MUSIC_HIT_Y      = 0.70   
+    MUSIC_LANE_X     = [0.35, 0.45, 0.55, 0.65]  
+    MUSIC_TIMING_WINDOW = 0.08  
 
     ## Note speed per phase (higher = faster)
-    MUSIC_SPEED_P1   = 0.004  ## Phase 1: beginner
-    MUSIC_SPEED_P2   = 0.006  ## Phase 2: warming up
-    MUSIC_SPEED_P3   = 0.009  ## Phase 3: full rhythm
+    MUSIC_SPEED_P1   = 0.004  #slow 
+    MUSIC_SPEED_P2   = 0.006  #warmup
+    MUSIC_SPEED_P3   = 0.009  # full rhythm
 
     ## Phase time boundaries (seconds)
     MUSIC_PHASE_1_END = 9.0
     MUSIC_PHASE_2_END = 18.0
 
-    ## Minigame end buffer — how long after last note before game ends
+    #how long after last note before game ends
     MUSIC_END_BUFFER  = 28.0
 
     ## Score thresholds
     MUSIC_SCORE_GOOD    = 20
     MUSIC_SCORE_NEUTRAL = 12
-    ## ============================================================
+    
 
     ## Each note is (spawn_time, lane)
     ## Phase 1 (0-9s):    slow, one at a time, very wide gaps
     ## Phase 2 (9-18s):   medium, occasional pairs, more breathing room
     ## Phase 3 (18-26s):  faster, tighter but not overwhelming
     music_notes = [
-        ## Phase 1 — one at a time, very relaxed
+        ## Phase 1 one at a time, very relaxed
         (1.0, 0),
         (3.0, 2),
         (5.0, 1),
         (7.0, 3),
         (9.0, 0),
 
-        ## Phase 2 — slight pairs, still breathing room
+        ## Phase 2  slight pairs, 
         (11.0, 1),
         (12.5, 3),
         (14.0, 0), (14.0, 2),
@@ -99,7 +96,7 @@ init python:
                 music_last_action[0] = "hit"
                 renpy.restart_interaction()
                 return
-        ## No note in range — counts as a miss
+        ## No note in range would counts as a miss
         music_last_action[0] = "miss"
         renpy.restart_interaction()
 
@@ -138,7 +135,7 @@ screen minigame_music():
     else:
         add "images/conductor_idle.png" xpos 30 ypos 100
 
-    ## Hit targets — one circle per lane at MUSIC_HIT_Y
+    ## Hit targets 
     for lane_index, lane_x in enumerate(MUSIC_LANE_X):
         add "images/rhythm_hitzone.png":
             xalign lane_x

@@ -1,6 +1,6 @@
-## ============================================================
+################################################################################
 ## PROPS MINIGAME — Lusay's lanterns
-## ============================================================
+################################################################################
 
 init python:
     lantern_types = [
@@ -90,10 +90,9 @@ screen minigame_props():
 
         imagebutton:
             idle "gui/assemble_idle.png" 
-            hover "gui/assemble_hover.png" # You can add a hover file here later
+            hover "gui/assemble_hover.png" 
             xalign 0.5
             
-            # Disable button during the success animation
             action If(not is_switching, 
                 If(bar_val >= zone_start and bar_val <= zone_end,
                     true = [

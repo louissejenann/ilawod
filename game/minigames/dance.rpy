@@ -1,11 +1,8 @@
-## ============================================================
+################################################################################
 ## DANCE MINIGAME — Sili-Sili's performance
-## Speed: FAST
-## Notes travel right to left into lane targets on the left side
-## ============================================================
-
+################################################################################
 init python:
-    DANCE_NOTE_SIZE = 50  ## px — change this to match rhythm_note_dance.png
+    DANCE_NOTE_SIZE = 50  
 
     ## Lane Y positions as fractions of screen height (0.0 to 1.0)
     ## A=top, D=bottom, evenly spaced
