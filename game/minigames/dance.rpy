@@ -62,7 +62,7 @@ init python:
                 dance_last_action[0] = "hit"
                 renpy.restart_interaction()
                 return
-        ## No note in range — counts as a miss
+        ## No note in range wil counts as a miss
         dance_last_action[0] = "miss"
         renpy.restart_interaction()
 
@@ -157,7 +157,6 @@ screen minigame_dance():
 
 label minigame_dance_start:
     narrator "Show them what the performance can be! Press the arrowkeys when the notes reach the line!"
-    narrator "Same roots. Different flower. Press the keys to match the rhythm!"
     call screen minigame_dance
 
     $ dance_hits = _return

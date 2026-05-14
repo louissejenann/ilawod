@@ -69,7 +69,7 @@ screen sigay_search_screen():
         false = Return(len(found))
     )
 
-    ## ── Header UI ───────────────────────────────────────────
+    ## ── Header UI ──
     frame:
         background Solid("#00000088")
         xalign 0.5 
@@ -83,14 +83,14 @@ screen sigay_search_screen():
             else:
                 text "Sigay: \"Hurry! Find the scissors and the red thread so we can finish the festival attire!\"" xalign 0.5 size 22 color "#FFD700"
 
-    ## ── Stats UI ────────────────────────────────────────────
+    ## ── Stats UI ──
     hbox:
         xalign 0.5 ypos 110
         spacing 150
         text "Time: [time_left]s" style "minigame_title"
         text "Items: [len(found)] / 7" style "minigame_title"
 
-    ## ── Interactive Items ──────────────────────────────────
+    ## ── Interactive Items ──
     for item in SIGAY_ITEMS:
         if item["name"] not in found:
             imagebutton:
@@ -112,7 +112,7 @@ screen sigay_search_screen():
         else:
             add item["image"] xpos item["xpos"] ypos item["ypos"] alpha 0.4 matrixcolor TintMatrix("#9FE1CB")
 
-    ## ── Feedback Text ───────────────────────────────────────
+    ## ── Feedback Text ──
     if flash_timer > 0:
         timer 0.5 repeat True action SetScreenVariable("flash_timer", max(0, flash_timer - 1))
         text "✓ Found the [last_item_label]!" xalign 0.5 ypos 600 style "minigame_success" size 35

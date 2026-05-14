@@ -10,7 +10,7 @@ init python:
     MUSIC_LANE_X     = [0.35, 0.45, 0.55, 0.65]  
     MUSIC_TIMING_WINDOW = 0.08  
 
-    ## Note speed per phase (higher = faster)
+    ##speed per phase (higher = faster)
     MUSIC_SPEED_P1   = 0.004  #slow 
     MUSIC_SPEED_P2   = 0.006  #warmup
     MUSIC_SPEED_P3   = 0.009  # full rhythm
@@ -47,8 +47,7 @@ init python:
         (17.0, 3),
         (18.0, 2), (18.0, 0),
 
-        ## Phase 3 — fuller but still manageable
-        (20.0, 1),
+        ## Phase 3 
         (21.0, 3),
         (22.0, 0), (22.0, 2),
         (23.0, 1),
@@ -116,7 +115,6 @@ screen minigame_music():
 
     add "images/bg music_hall.png"
 
-    ## Sync last_action from global each frame
     $ last_action = music_last_action[0]
 
     ## Musicians react to last action 

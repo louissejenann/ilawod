@@ -1,6 +1,6 @@
-## ============================================================
+######################################################
 ## FOOD MINIGAME — Ba-O's ceremonial dish
-## ============================================================
+######################################################
 
 init python:
 
@@ -61,7 +61,7 @@ screen minigame_food():
 
     add "bg food_station.png" fit "cover" xalign 0.5 yalign 0.5
 
-    ## ── Plate preview ───────────────────────────────────────
+    ## ── Plate preview 
 
     if "plate" in selections:
         add ("images/food_" + selections["plate"] + ".png") xalign 0.5 ypos 0
@@ -72,10 +72,10 @@ screen minigame_food():
     if "sauces" in selections:
         add ("images/food_" + selections["sauces"] + ".png") xalign 0.5 ypos 0
 
-    ## ── Category label ──────────────────────────────────────
+    ## ── Category label
     text "[_cat_label]" xpos 60 ypos 28 style "minigame_title"
 
-    ## ── Refresh / Reset button (top right) ─────────────────────
+    ## ── Refresh 
     imagebutton idle "gui/btn_refresh.png" xalign 0.95 yalign 0.05 action [
         SetScreenVariable("cat_index",  0),
         SetScreenVariable("opt_index",  0),
@@ -84,7 +84,7 @@ screen minigame_food():
         SetScreenVariable("feedback",   ""),
     ]
 
-    ## ── All 3 ingredient thumbnails displayed at once ──────────
+    ## ── 3 ingredient 
     if cat_index < 4:
         hbox:
             xalign 0.5
@@ -100,11 +100,11 @@ screen minigame_food():
                     SetScreenVariable("feedback",   "A fine choice." if _opt_good else "Hmm... something feels off."),
                 ]
 
-    ## ── Feedback ────────────────────────────────────────────
+    ## ── Feedback 
     if feedback != "":
         text "[feedback]" xalign 0.5 ypos 690 style "minigame_success"
 
-    ## ── << Back button (shows when not on first category) ──────
+    ## ── << Back button 
     if cat_index > 0:
         imagebutton idle "gui/btn_arrow_left.png" xalign 0.15 ypos 490 action [
             SetScreenVariable("cat_index", cat_index - 1),
@@ -112,7 +112,7 @@ screen minigame_food():
             SetScreenVariable("feedback",  ""),
         ]
 
-    ## ── >> Next button (shows after a pick is made, except on last category) ──
+    ## ── >> Next button 
     if _cat in selections and cat_index < 3:
         imagebutton idle "gui/btn_arrow_right.png" xalign 0.85 ypos 490 action [
             SetScreenVariable("cat_index", cat_index + 1),
@@ -120,7 +120,7 @@ screen minigame_food():
             SetScreenVariable("feedback",  ""),
         ]
 
-    ## ── All done → return bad_picks count ───────────────────
+    ## ── All done → return bad_picks count 
     if len(selections) == 4:
         timer 0.5 action Return(bad_picks)
 
