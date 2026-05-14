@@ -1916,9 +1916,9 @@ label start:
         #ENDING 2: BAD ENDING, YOU SHOULD'VE HELPED
     
 
-    ## ═══════════════════════════════════════════════════
+    ######################################################
     ## BA-O — FOOD COMMITTEE
-    ## ═══════════════════════════════════════════════════
+    ######################################################
     label route_kitchen:
         scene village house with Dissolve(3.0)
         show kilaw normal:
@@ -2064,8 +2064,7 @@ label start:
                 jump route_no_again
 
 
-    ## ── BA-O FEEDBACK ──────────────────────────────────
-
+    ## ── BA-O FEEDBACK ──
     label bao_good:
 
         show bao happy:
@@ -2135,9 +2134,9 @@ label start:
         jump sigay_intro
 
 
-    ## ═══════════════════════════════════════════════════
+    ########################################################
     ## SIGAY — COSTUME COMMITTEE
-    ## ═══════════════════════════════════════════════════
+    ########################################################
     label sigay_intro:
         scene village house with Dissolve (2.0)
         narrator "You follow the sound of frustrated sighing, which leads you, eventually..." 
@@ -2258,7 +2257,7 @@ label start:
         kilaw "My lola said our festival was never about the dancing. It was about the feeling you got watching it."
         sigay "Yes. Yes, exactly that."
 
-    ## ── SIGAY FEEDBACK ─────────────────────────────────
+    ## ── SIGAY FEEDBACK ──
 
     label sigay_good:
         
@@ -2327,9 +2326,9 @@ label start:
         jump bilo_sili_intro
 
 
-    ## ═══════════════════════════════════════════════════
+    ########################################################
     ## BILO + SILI — PERFORMANCE COMMITTEE
-    ## ═══════════════════════════════════════════════════
+    ########################################################
     label bilo_sili_intro:
         scene village house 
         show kilaw normal:
@@ -2463,8 +2462,7 @@ label start:
         else:
             jump BS_bad
 
-    ## ── BILO/SILI FEEDBACK ─────────────────────────────
-
+    ## ── BILO/SILI FEEDBACK ──
     label BS_good:
         narrator "You mediate between the two, helping each see value in the other's approach." 
         "Blending their styles into something seamless and unified, where both honor the past and the present."
@@ -2508,9 +2506,9 @@ label start:
         jump lusay_intro
 
 
-    ## ═══════════════════════════════════════════════════
+    ########################################################
     ## LUSAY — PROPS COMMITTEE
-    ## ═══════════════════════════════════════════════════
+    ########################################################
     label lusay_intro:
         scene village house 
         show kilaw normal:
@@ -2602,7 +2600,7 @@ label start:
         else:
             jump lusay_bad
 
-    ## ── LUSAY FEEDBACK ─────────────────────────────────
+    ## ── LUSAY FEEDBACK ──
 
     label lusay_good:
         show kilaw happy
@@ -2655,9 +2653,9 @@ label start:
         jump transformation
 
 
-    ## ═══════════════════════════════════════════════════
+    ########################################################
     ## TRANSFORMATION AND MUTATION
-    ## ═══════════════════════════════════════════════════
+    ########################################################
     label transformation:
         scene village house with dissolve
         narrator "You decided to sleep there until sunrise. You curled up in their provided room, courtesy of Ba-O." 
@@ -2820,9 +2818,9 @@ label start:
         #BAD ENDING: Your fear was real. So was everything it cost you. 
 
     
-    ## ═══════════════════════════════════════════════════
+    ########################################################
     ## KASAG — MUSIC COMMITTEE
-    ## ═══════════════════════════════════════════════════
+    ########################################################
     label kasag_intro:
         scene marketplace with Dissolve(2.0)
         show kilaw normal:
@@ -3045,7 +3043,7 @@ label start:
             else:
                 jump kasag_bad
 
-    ## ── KASAG FEEDBACK ──────────────────────────────────
+    ## ── KASAG FEEDBACK ──
 
         label kasag_good:
             show kasag normal 
@@ -3094,9 +3092,9 @@ label start:
             jump before_festival
 
 
-    ## ═══════════════════════════════════════════════════
+    ########################################################
     ## BEFORE FESTIVAL
-    ## ═══════════════════════════════════════════════════
+    ########################################################
     label before_festival:
         scene village house night with Dissolve(2.0)
         show kilaw sad:
@@ -3199,9 +3197,9 @@ label start:
         jump pre_ending
 
 
-    ## ═══════════════════════════════════════════════════
+    ########################################################
     ## CALCULATE SCORE AND ENDINGS
-    ## ═══════════════════════════════════════════════════
+    ########################################################
     label pre_ending:
         scene marketplace festival:
             xoffset 2
@@ -3229,9 +3227,9 @@ label start:
         jump calculate_final_score
 
 
-    ## ═══════════════════════════════════════════════════
+    ########################################################
     ## ENDINGS
-    ## ═══════════════════════════════════════════════════
+    ########################################################
 
     #GOOD OUTCOME
     label good_ending:
