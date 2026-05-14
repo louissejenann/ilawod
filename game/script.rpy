@@ -22,13 +22,6 @@ define narrator = Character(None, callback=typewriter_sfx, cb_who="")
 default seen_what_is_this = False
 default seen_who_are_you  = False
 
-## Timer 
-screen choice_timer(time, label_to_jump):
-    timer time action Jump(label_to_jump)
-    
-    # Visual countdown bar
-    bar value AnimatedValue(0, time, time, time) xalign 0.5 ypos 0.1 xsize 500
-
 ## Minigame scores
 default score_food        = 0
 default score_costume     = 0
@@ -1126,35 +1119,14 @@ label start:
 
         narrator "The shallow tide rose like a living thing, spinning, dragging you beneath the glowing current."
 
-        show screen choice_timer(3.0, "route_vortex_timeout")
-
         menu:
             "Grab onto the boat":
-                hide screen choice_timer
                 jump route_grab_boat
             
             "Grab onto Kadyos":
-                hide screen choice_timer
                 jump route_grab_kadyos
         
     #ROUTE
-    label route_vortex_timeout:
-        hide screen choice_timer
-        narrator "The water is too fast! Before you can reach for anything, the current pulls you under."
-
-        scene waves underwater with Fade(0.5, 0.3, 0.9)
-        show drowning:
-            zoom 1.6
-            xpos 1920
-            ypos -3000
-            alpha 5.0
-            easein 5.0 xpos -1920 ypos 0 alpha 0.0
-
-        pause 3.5
-        play sound portal_sound volume 1.0
-        scene black with Dissolve(3.0)
-        jump welcome_spiritrealm_main
-
 
     label route_grab_boat:
         narrator "You reach for the edge of the boat, fingers catching the worn wood. For one breathless moment, you hold on"
