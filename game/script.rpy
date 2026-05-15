@@ -178,6 +178,7 @@ define audio.woman_laughter = "audio/woman laughter sound.ogg"
 define audio.kadyos_bark    = "audio/kadyos bark sound.ogg"
 define audio.kadyos_whimper = "audio/kadyos whimpering sound.ogg"
 define audio.kadyos_silent_whimper = "audio/kadyos silent whimper sound.ogg"
+define audio.sniffing_dog = "audio/sniffing dog.mp3"
 define audio.festival_drums = "audio/festival drums sound.ogg"
 
 ## Music Tracks
@@ -299,7 +300,7 @@ label start:
     "stands the bakawan."
 
     scene intro frog with Dissolve(2.0)
-    play audio single_frog_croak
+    play audio single_frog_croak volume 0.5
     voice "narration/intro19.wav"
     "Not planted." 
     #scene intro frog2 with Dissolve(1.0
@@ -390,6 +391,7 @@ label start:
     voice "narration/intro36.wav"
 
     scene intro dawa noticed with Dissolve(2.0)
+    play sound sniffing_dog 
     "Kadyos sniffs nearby."
     
     scene intro dawa mc with Dissolve(2.0)
@@ -627,6 +629,7 @@ label start:
 
     hide kilaw walking
     show shock kilaw kadyos with hpunch
+    play sound kadyos_bark
 
     "Then, a brown dog, Kadyos, pops out."
     "Tail wagging like he didn't just washed ten years off your life"
@@ -1873,6 +1876,7 @@ label start:
 
         kilaw "They'll figure it out. They said so themselves, they have done this for centuries, right? What does me being here change?"
 
+        play sound kadyos_whimper
         narrator "Kadyos whimpers and presses against your leg. You ignore the sound of something cracking in the Props room."
         "You ignore Ba-O sighing quietly over cold dishes. Three days of watching. Three days of nothing."
 
@@ -2730,6 +2734,7 @@ label start:
         "The words going round and round without your permission, and the room going small around you." 
 
         voice "narration/scalend4.mp3"
+        play sound kadyos_whimper volume 0.7
         "You hear Kadyos whimpering somewhere that feels very far away even though he is right there, pressed against your leg, and you cannot reach down to touch him because you can't move."
 
         kilaw "No—no no no—I can't—this isn't—please"
@@ -2739,6 +2744,7 @@ label start:
         narrator "You felt like choking, but you're breathing more easily than before."
 
         voice "narration/scalend6.mp3"
+        play sound kadyos_silent_whimper
         "You back against the wall. Kadyos whimpers. You slide to the floor."
 
         voice "narration/scalend7.mp3"
@@ -3146,6 +3152,7 @@ label start:
         kilaw "How much more do we have before..."
 
         voice "narration/berof9.mp3"
+        play sound kadyos_whimper
         narrator "You don't finish the thought. Kadyos whimpers, his tail now fully finned."
 
         scene sunset with Dissolve(2.0)
@@ -3167,6 +3174,7 @@ label start:
         kilaw "We did it, Kadyos. Well... most of it, anyway."
 
         voice "narration/berof12.mp3"
+        play sound kadyos_silent_whimper
         narrator "Kadyos whimpers, nuzzling against you."
         kilaw "I know, boy. I'm scared too. Look at us... we're barely recognizable."
         kilaw "But maybe... maybe this meant something. Three moons ago, they were falling apart. Now they're—"
