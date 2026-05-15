@@ -6,15 +6,16 @@ init python:
 
     food_options = {
         "plate"   : ["coral_plate", "seaweed_wrap_plate", "clam_plate"],
-        "dishes"  : ["fish_slice", "crab_soften_coral", "vegetable_ring"],
-        "garnish" : ["anemone_petals", "fragmented_coral_stars", "mangrove_propagule_slices"],
-        "sauces"  : ["bioluminescent_oil", "fermented_spirit_sauce", "mangrove_propagule_slices"],
+        "dishes"  : ["crab_soften_coral", "fish_slice", "vegetable_ring"],
+        "garnish" : [ "fragmented_coral_stars", "mangrove_propagule_slices", "anemone_petals"],
+        "sauces"  : ["bioluminescent_oil", "fermented_spirit_sauce"],
     }
 
     food_good = {
         "plate"   : "coral_plate",
         "dishes"  : "fish_slice",
-        "garnish" : "anemone_petals",
+        "garnish" : "anemone_petals", 
+        "garninsh": "fragmented_coral_stars",
         "sauces"  : "bioluminescent_oil",
     }
 
@@ -87,18 +88,21 @@ screen minigame_food():
     ## ── 3 ingredient 
     if cat_index < 4:
         hbox:
-            xalign 0.5
-            ypos 780
-            spacing 20
-            for _i, _opt in enumerate(_opts):
+            xalign 0.5 
+            ypos 780 
+            spacing 20 
+            for _i, _opt in enumerate(_opts): 
                 python:
-                    _opt_good = (_opt == food_good.get(_cat, ""))
-                imagebutton idle ("images/ingredient_" + _opt + ".png") yalign 0.5 action [
-                    SetScreenVariable("opt_index",  _i),
-                    SetScreenVariable("selections", food_set_selection(selections, _cat, _opt)),
-                    SetScreenVariable("bad_picks",  bad_picks if _opt_good else bad_picks + 1),
-                    SetScreenVariable("feedback",   "A fine choice." if _opt_good else "Hmm... something feels off."),
-                ]
+                    _opt_good = (_opt == food_good.get(_cat, "")) 
+                
+                imagebutton idle ("images/ingredient_" + _opt + ".png") yalign 0.5 action [ 
+                    SetScreenVariable("opt_index",  _i), 
+                    SetScreenVariable("selections", food_set_selection(selections, _cat, _opt)), 
+                    SetScreenVariable("bad_picks",  bad_picks if _opt_good else bad_picks + 1), 
+
+                    # comment
+                    SetScreenVariable("feedback", "This feels just about right." if _opt_good else "Something's off. The texture is all wrong."),
+                ] 
 
     ## ── Feedback 
     if feedback != "":
@@ -126,7 +130,13 @@ screen minigame_food():
 
 
 label minigame_food_start:
-    ba_o "Each ingredient matters. Not everything on the table belongs here, choose with care."
+    show bao sad
+    show kilaw normal
+    show kadyos normal
+    ba_o "Each ingredient matters. HOWEVER, not everything on the table belongs here."
+    show bao worried
+    ba_o "You must choose only what is right. If you mix even one bad thing with the good, the whole dish will be bad."
+    ba_o "You should taste it first, before putting it on the plate"
     narrator "Browse each category with the arrows. Click an ingredient to place it on the dish."
     call screen minigame_food
 

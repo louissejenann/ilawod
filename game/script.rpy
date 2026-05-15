@@ -146,6 +146,8 @@ image bakunawa rising = Movie(play= "images/bakunawa rising.webm", loop=False, k
 image bakunawa eyes = Movie(play= "images/bakunawa eyes.webm", loop=False, keep_last_frame=True)
 image backhome = Movie(play= "images/backhome.webm", loop=False, keep_last_frame=True)
 image way home = Movie(play= "images/way home.webm", loop=False, keep_last_frame=True)
+image goodbye kilaw = Movie(play= "images/goodbye kilaw.webm", loop=False, keep_last_frame=True)
+image shoreline = Movie(play= "images/shoreline.webm", loop=False, keep_last_frame=True)
 
 
 ## Audios
@@ -192,6 +194,8 @@ define audio.good = "audio/good.mp3"
 
 label start:
     stop music fadeout 4.0
+    $ renpy.music.set_volume(0.0, channel="voice") 
+    $ renpy.music.set_volume(0.6, delay=1.0, channel="voice") 
 
     #$ renpy.music.set_volume(2.9, channel="typewriter")
 
@@ -203,7 +207,7 @@ label start:
     play music music_beginning volume 0.1
     play audio morning_birds volume 0.1
     
-    voice "narration/intro1.wav"
+    voice "narration/intro1.wav" 
 
     narrator "There is a place where the sea does not end and the land does not begin."
 
@@ -262,8 +266,8 @@ label start:
     voice "narration/intro12.wav"
 
     scene intro night with Dissolve(2.0)
-    play audio cicades_shore volume 1.0 fadein 2.7
-    play sound waves_splashing volume 0.9
+    play audio cicades_shore volume 0.5 fadein 2.7
+    play sound waves_splashing volume 0.3
 
     "The evening carries distant laughter, the sound of wind and waves folding into each other."
 
@@ -564,7 +568,7 @@ label start:
     scene intro festival prep1 with Dissolve(2.0)
     play audio festival_drums volume 0.1 fadein 2.0
 
-    "The afternoon light is golden and low." 
+    "The afternoon light hangs low, warm and golden." 
     
     "Somewhere, further down the shoreline, you can hear the faint pulse of drums, the festival preparations already beginning."
 
@@ -584,7 +588,7 @@ label start:
     dawa "Your mother will have both our heads if you're not at the lantern lighting!"
 
     if kilaw_personality == "skeptic":
-        dawa "And try not to let your big head get stuck in a root! Keep your ears open."
+        dawa "And don't let your stubbornness lead you off the path! Keep your ears open"
     else:
         dawa "And stay on the path where the sun hits. Don't go wandering!"
 
@@ -595,7 +599,7 @@ label start:
     "It's still three moons away, but the village never waits until the last moment."
 
     "The lantern-hanging hadn't started yet but you could feel it coming."
-    #scene intro bye
+    scene goodbye kilaw with Dissolve(2.0)
 
     "You'll be back in time. You're always on time."
 
@@ -858,7 +862,7 @@ label start:
             
             "You reach for it without thinking."
             
-            play sound water_drop volume 1.0
+            play sound water_drop volume 0.7
 
             scene waves underwater with Fade(0.5, 0.3, 1.0)
             show drowning:
@@ -927,7 +931,7 @@ label start:
 
             "It's good. It was a normal evening."
 
-            play sound cicades_shore volume 1.0
+            play sound cicades_shore volume 0.7
             scene black with Dissolve(2.0)
 
             voice "narration/badend8.mp3"
@@ -986,7 +990,7 @@ label start:
 
         kilaw "All aboard! Let's see what secrets this mangrove's been hiding."
 
-        play sound rowing_sound volume 0.8
+        play sound rowing_sound volume 0.3
         
         scene boat scene3 
         with Fade(0.5, 0.3, 0.8)
@@ -1002,7 +1006,7 @@ label start:
 
         narrator "The sun hung low, painting the mangrove in warm orange light. The water glimmered softly, catching the last fire of the day."
 
-        play sound rowing_sound volume 1.0
+        play sound rowing_sound volume 0.1
         
         transform pan_bg:
             xpos -1920 ypos 0
@@ -1086,12 +1090,12 @@ label start:
 
         narrator "You try to pull the fish to the surface. Before—"
 
-        play sound water_drop volume 1.0
+        play sound water_drop volume 0.1
 
         show splash with dissolve
         show splash2 with Dissolve(0.9)
 
-        play music bass_heartbeat volume 1.0 fadein 2.0
+        play music bass_heartbeat volume 0.1 fadein 2.0
 
         kilaw "Wait... Whoa—!"
 
@@ -1149,7 +1153,7 @@ label start:
 
         pause 3.5
         scene black with Dissolve(3.0)
-        play sound portal_sound volume 1.0
+        play sound portal_sound volume 0.1
 
         narrator "The boat lists sideways. The current claims you both. Darkness swallows the last shiver of light."
         jump welcome_spiritrealm_no_kadyos
@@ -1168,7 +1172,7 @@ label start:
 
         kilaw "...It's okay, Kadyos. We'll be—"
 
-        play sound water_drop volume 1.0
+        play sound water_drop volume 0.9
 
         scene waves underwater with Fade(0.5, 0.3, 0.9)
         show drowning:
@@ -1178,12 +1182,12 @@ label start:
             alpha 5.0
             easein 5.0 xpos -1920 ypos 0 alpha 0.0
         
-        stop sound fadeout 2.0
+        stop sound fadeout 1.0
         pause 3.5
-        play sound fell_underwater volume 1.0
+        play sound fell_underwater volume 0.1
         scene black with Dissolve(3.0)
 
-        play sound portal_sound volume 1.0
+        play sound portal_sound volume 0.1
 
         narrator "Darkness. Then silence."
         jump welcome_spiritrealm_main
@@ -1481,7 +1485,7 @@ label start:
         with dissolve
 
         scene marketplace with Dissolve(2.0)
-        play sound crowd_sound volume 1.0
+        play sound crowd_sound volume 0.1
             
         narrator "What you thought was a small clearing turns out to be a marketplace, enormous." 
         narrator "Stalls of woven sea-grass and old fishing net, clay pots big enough to sleep in, lanterns strung between crooked posts." 
@@ -1490,7 +1494,7 @@ label start:
 
         narrator "The smell is brine and food and something sweet you don't quite have a name for."
 
-        play sound multiple_breaking volume 1.0
+        play sound multiple_breaking volume 0.1
         "Two voices argue from somewhere to the left. Something crashes from behind a stall."
         show kilaw normal:
             xalign -0.5 yalign 1.0
@@ -1642,7 +1646,7 @@ label start:
 
         toto "Of course, I'm not alone in what I handle."
 
-        play sound break_sound volume 1.0
+        play sound break_sound volume 0.1
         narrator "Ba-O nodded to Toto, she gestures broadly at the marketplace, the stumbling, crashing, slightly desperate marketplace. She continue."
 
         ba_o "We are the Spirit Committee. All of us together. The ones who keep the old arrangements."
@@ -1654,7 +1658,7 @@ label start:
         show kadyos sad
         show kilaw shocked
 
-        play sound multiple_breaking volume 1.0
+        play sound multiple_breaking volume 0.1
         narrator "A stack of offering trays tips, slides, crashes. A nearby spirit lunges. Misses."
 
         show kilaw worried
@@ -1863,7 +1867,7 @@ label start:
         jump neutral_ending
 
     label route_watch:
-        play music music_end volume 1.0 fadein 2.7
+        play music music_end volume 0.1 fadein 2.7
 
         narrator "You cross your arms. You don't move. You watch as the committees argue, drop things, dissolve into a cascade of small disasters."
 
@@ -2024,8 +2028,8 @@ label start:
     label route_understood:
         show bao happy
         show kilaw determined
-        ba_o "Good. Begin when you're ready. My memories are waiting to be awakened."
-        
+        ba_o "Good. Begin when you're ready."
+
         call minigame_food_start from _call_minigame_food_start
         if score_food >= 3:
             jump bao_good
@@ -2686,7 +2690,7 @@ label start:
         menu:
             "Kadyos":
                 jump kadyos
-            "Scales":
+            "Panic":
                 jump scales
 
     label kadyos:
@@ -3248,7 +3252,7 @@ label start:
         "Light surrounds you. The scales fade. The gills close." 
 
         voice "narration/good4.mp3"
-        play sound portal_sound volume 1.0
+        play sound portal_sound volume 0.1
         "A portal shimmers open before you, warm, golden-edged."
 
         scene backhome with Dissolve(2.0)
@@ -3286,14 +3290,14 @@ label start:
         voice "narration/good10.mp3"
         "Both of you are left standing there as the festival continues around you. The music, the dancing, the food felt very real at the moment."
 
-        play sound portal_sound volume 1.0
+        play sound portal_sound volume 0.1
         scene bye portal with Dissolve(2.0)
         kilaw "Thank you too."
 
         voice "narration/good11.mp3"
         narrator "With that you stepped onto the portal home."
 
-        scene backhome
+        scene mangrove spirit
         show kilaw determined:
             xalign 0.4
             yalign 1.0
@@ -3314,6 +3318,7 @@ label start:
         voice "narration/good15.mp3"
         "He looks at you like he's been waiting for this moment this whole time and is very pleased with how it turned out"
 
+        scene shoreline with Dissolve (2.0)
         voice "narration/good16.mp3"
         "You walk the shoreline. You let the tide come over your feet. Cold, real, present."
 

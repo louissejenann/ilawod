@@ -63,11 +63,11 @@ define config.has_voice = True
 ## the player is at the main menu. This file will continue playing into the
 ## game, until it is stopped or another file is played.
 
-define config.main_menu_music = "main-menu-theme.ogg"
+define config.main_menu_music = "main-menu-theme.ogg" 
 
-default preferences.volume.music = 0.5
+default preferences.volume.music = 0.8
 default preferences.volume.sfx = 0.7
-default preferences.volume.voice = 0.5
+default preferences.volume.voice = 0.9
 
 ## Transitions #################################################################
 ##
