@@ -95,11 +95,11 @@ screen minigame_dance():
 
     ## Crowd reacts to last action
     if last_action == "hit":
-        add "images/crowd_cheering.png" xpos 950 ypos 80
+        add "images/crowd_cheering.png" xpos 950 ypos 55
     elif last_action == "miss":
-        add "images/crowd_bored.png"    xpos 950 ypos 80
+        add "images/crowd_bored.png"    xpos 950 ypos 100
     else:
-        add "images/crowd_watching.png" xpos 950 ypos 80
+        add "images/crowd_watching.png" xpos 950 ypos 100
 
     ## Hit targets — one circle per lane at DANCE_HIT_X
     for lane_index, lane_y in enumerate(DANCE_LANE_Y):
@@ -119,7 +119,7 @@ screen minigame_dance():
             style "rhythm_key"
 
     ## Hit counter
-    text "Hits: [dance_hit_box[0]]" xpos 550 ypos 20 style "minigame_title"
+    text "Hits: [dance_hit_box[0]]" xpos 650 ypos 20 style "minigame_title"
 
     ## Reset reaction to idle after 0.5s
     if last_action == "hit":

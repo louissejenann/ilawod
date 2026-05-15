@@ -1978,9 +1978,10 @@ label start:
             ba_o "You carry the scent of the upper tides, child. Coarse salt... 'asin'."
             ba_o "The elders of your village taught you well. Salt is the memory of the sea, and it keeps the flavors of this realm from fading into the mist."
         elif player_offering == "white_rice":
-            show bao calm
+            show bao normal
             ba_o "White rice? The grain of the moon and sun."
-            ba_o "It is a pure offering. Using it as a foundation shows you have a respectful hand. It makes me think you might actually be able to handle these ingredients."
+            ba_o "It is a pure offering. Using it as a foundation shows you have a respectful hand."
+            ba_o "It makes me think you might actually be able to handle these ingredients."
         else:
             show bao unimpressed
 
