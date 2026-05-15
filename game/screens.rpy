@@ -97,39 +97,27 @@ init python:
 init python:
     renpy.music.register_channel("typewriter", mixer="voice", loop=False)
 
+    # We use a single list for everyone. 
+    # Keeping the key as "" (empty string) prevents the KeyError.
     _char_sounds = {
-        "Kilaw":         ["audio/kilaw.ogg"],
-        "Kadyos":        ["audio/kadyos.ogg"],
-        "Ba-O":          ["audio/ba_o.ogg"],
-        "Toto":          ["audio/toto.ogg"],
-        "Lusay":         ["audio/lusay.ogg"],
-        "Sili-Sili":     ["audio/sili.ogg"],
-        "Bilong-Bilong": ["audio/bilo.ogg"],
-        "Kasag":         ["audio/kasag.ogg"],
-        "Sigay":         ["audio/sigay.ogg"],
-        "Dawa":          ["audio/dawa.ogg"],
-        "???":           ["audio/unknown.ogg"],
-        "":              ["audio/A1.ogg", "audio/A2.ogg", "audio/A3.ogg", "audio/A4.ogg", "audio/A5.ogg", "audio/B1.ogg", "audio/B2.ogg", "audio/B3.ogg", "audio/B4.ogg", "audio/B5.ogg"],
+    "": ["audio/A1.ogg", "audio/A2.ogg", "audio/A3.ogg", "audio/A4.ogg", "audio/A5.ogg", 
+        "audio/B1.ogg", "audio/B2.ogg", "audio/B3.ogg", "audio/B4.ogg", "audio/B5.ogg"],
     }
 
     def typewriter_sfx(event, interact=True, **kwargs):
-        # Ren'Py strips 'cb_' from 'cb_who', so we look for 'who'
-        who_name = kwargs.get("who", "") 
-        sounds = _char_sounds.get(who_name, _char_sounds[""])
+        # Always use the same fallback list
+        sounds = _char_sounds[""]
 
         if event == "show":
-            # Set volume: 0.4 for narrator, 1.0 for spirits
-            if who_name == "":
-                renpy.music.set_volume(5.0, channel="typewriter")
-            else:
-                renpy.music.set_volume(1.0, channel="typewriter")
+            # Set one consistent volume for both narrator and characters
+            renpy.music.set_volume(1.0, channel="typewriter")
 
             for i in range(60):
                 if i == 0:
                     renpy.sound.play(renpy.random.choice(sounds), channel="typewriter")
                 else:
                     renpy.sound.queue(renpy.random.choice(sounds), channel="typewriter")
-        
+    
         elif event in ("slow_done", "end"):
             renpy.sound.stop(channel="typewriter")
 
