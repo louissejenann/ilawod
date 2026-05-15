@@ -169,6 +169,8 @@ define audio.rowing_sound = "audio/rowing sound.mp3"
 define audio.multiple_breaking = "audio/multiple breaking.mp3"
 define audio.leaves_rustle = "audio/leaves rustle.mp3"
 define audio.underwater_ambiance = "audio/UnderwaterAMB sound.mp3"
+define audio.rumble_underwater = "audio/underwater rumble.mp3"
+define audio.magic = "audio/magic.mp3"
 
 
 ## Character & Narrative SFX
@@ -244,7 +246,7 @@ label start:
 
     voice "narration/intro8.wav"
     
-    "Morning smells of salt and smoke. Children run between the stilts"
+    "Morning smells of salt and smoke. Children run between the stilts."
     
     scene intro caught fish with Dissolve(2.0)
     play sound woman_laughter volume 1.0
@@ -498,7 +500,7 @@ label start:
         xalign 0.2
         yalign 1.0
 
-    narrator "She pokes your shoulder abruptly. Lightly, in a joking manner"
+    narrator "She pokes your shoulder abruptly. Lightly, in a joking manner."
 
     show kilaw happy:
         xalign 0.2
@@ -1902,7 +1904,7 @@ label start:
         "No longer mortal, not fully spirit, either." 
         "Something in between, caught in the boundary you entered without asking permission, and never resolved"
         "Later, much later, you sit at the water's edge and watch where the moon used to be."
-        "You can see it clearly from here." 
+        "You can see it clearly from before." 
         "Every moment."
         "Every hand you could have offered." 
         "Every word you could have said."
@@ -2445,7 +2447,7 @@ label start:
         show bilo irritated
 
         narrator "..."
-        show bilo formal
+        show bilo serious
         show sili mad
         bilo "Excuse me?"
 
@@ -3214,6 +3216,7 @@ label start:
     ## CALCULATE SCORE AND ENDINGS
     ########################################################
     label pre_ending:
+        play sound rumble_underwater
         scene marketplace festival:
             xoffset 2
             pause .05
@@ -3221,15 +3224,18 @@ label start:
             pause .05
             repeat 10
         with Dissolve(2.0)
-
         voice "narration/berof21.mp3"
         narrator "The water beneath the festival grounds begins to tremble—not the frantic churning of the vortex that brought you here."
 
+        scene biomap with Dissolve(2.0) 
         voice "narration/berof22.mp3"
-        narrator "But something deeper. Deliberate. Aware."
-        sigay "It's coming. The Bakunawa comes."
 
-        scene festival start  with Dissolve(2.0)
+        narrator "But something deeper. Deliberate. Aware."
+
+        play sound magic
+        sigay "it's coming. The Bakunawa comes."
+
+        scene festival start with Dissolve(2.0)
 
         voice "narration/berof23.mp3"
         narrator "Bao looks on quietly. She stayed close, her presence felt. Warmth against the cold waters. She does not reach for you."

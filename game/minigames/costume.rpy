@@ -56,7 +56,7 @@ init python:
     ]
 
 screen sigay_search_screen():
-    default time_left       = 55
+    default time_left       = 60
     default found           = []
     default last_item_label = ""
     default flash_timer     = 0
@@ -115,7 +115,14 @@ screen sigay_search_screen():
     ## ── Feedback Text ──
     if flash_timer > 0:
         timer 0.5 repeat True action SetScreenVariable("flash_timer", max(0, flash_timer - 1))
-        text "✓ Found the [last_item_label]!" xalign 0.5 ypos 600 style "minigame_success" size 35
+       
+        frame:
+            xalign 0.5 
+            ypos 100 #\
+            background Solid("#00000088")
+            padding (10, 10)
+            
+            text "✓ Found the [last_item_label]!" style "minigame_success" size 35
 
 label minigame_costume_start:
     sigay "I can't find my tools in this mess! Help me gather the fabrics and my sewing kit."
